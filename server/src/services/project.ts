@@ -35,10 +35,22 @@ async function addMember(projectId: string, userId: string) {
 	return updatedProject;
 }
 
-async function addTask(projectId: string, taskId: string) {
+async function addTask(
+	user: User,
+	projectId: string,
+	title: string,
+	description: string
+) {
+	const task = await TaskModel.create({
+		title: title,
+		description: description,
+		status: "pending",
+		ownerId: user._id,
+		projectId,
+	});
 	const updatedProject = await ProjectModel.findByIdAndUpdate(
 		projectId,
-		{ $push: { tasks: taskId } },
+		{ $push: { tasks: task._id } },
 		{ new: true }
 	)
 		.populate("members")

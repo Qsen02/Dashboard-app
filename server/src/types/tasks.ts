@@ -8,4 +8,5 @@ export interface Task {
 	status: "pending" | "in-progress" | "completed";
 	ownerId: User;
 	projectId: Project;
+	appliedBy?: User;
 }
