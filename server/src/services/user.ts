@@ -2,7 +2,12 @@ import { UserModel } from "../models/users";
 import bcrypt from "bcrypt";
 import { User } from "../types/users";
 
-async function register(username: string, email: string,profileImage:string|null, password: string) {
+async function register(
+	username: string,
+	email: string,
+	profileImage: string,
+	password: string
+) {
 	const isValidUsername = await UserModel.findOne({ username });
 	if (isValidUsername) {
 		throw new Error("Username is already taken!");
@@ -14,8 +19,8 @@ async function register(username: string, email: string,profileImage:string|null
 	const user = new UserModel({
 		username,
 		email,
+		profileImage: profileImage,
 		password: await bcrypt.hash(password, 10),
-		profileImage
 	});
 	await user.save();
 
@@ -33,11 +38,11 @@ async function getUserById(userId: string) {
 async function login(username: string, password: string) {
 	const user = await UserModel.findOne({ username });
 	if (!user) {
-		throw new Error("Invalid username or password!");
+		throw new Error("Username or password not match!");
 	}
 	const isValidPassword = await bcrypt.compare(password, user.password);
 	if (!isValidPassword) {
-		throw new Error("Invalid username or password!");
+		throw new Error("Username or password not match!");
 	}
 	return user;
 }
@@ -53,10 +58,15 @@ async function changeRole(userId: string, newRole: string) {
 	return updatedUser;
 }
 
-async function editUser(userId: string, data: Partial<User>) {
+async function editUser(
+	userId: string,
+	username: string,
+	email: string,
+	profileImage: string
+) {
 	const updatedUser = await UserModel.findByIdAndUpdate(
 		userId,
-		{ $set: { data } },
+		{ $set: { username, email, profileImage } },
 		{ new: true }
 	)
 		.populate("projects")

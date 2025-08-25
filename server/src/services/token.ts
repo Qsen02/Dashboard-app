@@ -1,6 +1,7 @@
-import { profile } from "console";
 import { UserPayload } from "../types/users";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 import { Types } from "mongoose";
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-    changePassword,
+	changePassword,
 	changeRole,
 	checkUserId,
 	editUser,
@@ -17,6 +17,10 @@ import { profile } from "console";
 
 const userRouter = Router();
 
+userRouter.get("/logout", isUser(), (req, res) => {
+	res.status(200).json({ message: "User logged out successfully" });
+});
+
 userRouter.get("/:userId", async (req, res) => {
 	const userId = req.params.userId;
 	try {
@@ -29,10 +33,6 @@ userRouter.get("/:userId", async (req, res) => {
 			res.status(404).json({ message: "Unknown error" });
 		}
 	}
-});
-
-userRouter.get("/logout", isUser(), (req, res) => {
-	res.json({ message: "User logged out successfully" });
 });
 
 userRouter.get("/:userId/projects", isUser(), async (req, res) => {
@@ -54,11 +54,11 @@ userRouter.post(
 		.withMessage("Username must be at least 3 characters long!"),
 	body("email").trim().isEmail().withMessage("Email must be valid!"),
 	body("profileImage")
-		.trim()
-		.isString()
-		.matches(/^(http|https):\/\/[^ "]+$/)
-		.withMessage("Profile image must be valid URL!")
-		.optional({ nullable: true }),
+		.custom(
+			(value: string, { req }) =>
+				value.length == 0 || /^https?:\/\//.test(value)
+		)
+		.withMessage("Image must be valid URL!"),
 	body("password")
 		.trim()
 		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
@@ -78,8 +78,8 @@ userRouter.post(
 			const newUser = await register(
 				fields.username,
 				fields.email,
-				fields.password,
-				fields.profileImage
+				fields.profileImage,
+				fields.password
 			);
 			const token = setToken(newUser);
 			res.json({
@@ -138,7 +138,7 @@ userRouter.post(
 	}
 );
 
-userRouter.post("/:userId/change-role/:role", isUser(), async (req, res) => {
+userRouter.put("/:userId/change-role/:role", isUser(), async (req, res) => {
 	const userId = req.params.userId;
 	const newRole = req.params.role;
 	const isValid = await checkUserId(userId);
@@ -158,11 +158,11 @@ userRouter.put(
 		.withMessage("Username must be at least 3 characters long!"),
 	body("email").trim().isEmail().withMessage("Email must be valid!"),
 	body("profileImage")
-		.trim()
-		.isString()
-		.matches(/^(http|https):\/\/[^ "]+$/)
-		.withMessage("Profile image must be valid URL!")
-		.optional({ nullable: true }),
+		.custom(
+			(value: string, { req }) =>
+				value.length == 0 || /^https?:\/\//.test(value)
+		)
+		.withMessage("Image must be valid URL!"),
 	isUser(),
 	async (req, res) => {
 		const userId = req.params.userId;
@@ -176,7 +176,12 @@ userRouter.put(
 			if (!results.isEmpty()) {
 				throw new Error(errorParser(results));
 			}
-			const updatedUser = await editUser(userId, fields);
+			const updatedUser = await editUser(
+				userId,
+				fields.username,
+				fields.email,
+				fields.profileImage
+			);
 			res.json(updatedUser);
 		} catch (err) {
 			if (err instanceof Error) {
@@ -190,7 +195,7 @@ userRouter.put(
 
 userRouter.put(
 	"/:userId/change-password",
-	body("password")
+	body("newPassword")
 		.trim()
 		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
 		.withMessage(
@@ -209,7 +214,7 @@ userRouter.put(
 			if (!results.isEmpty()) {
 				throw new Error(errorParser(results));
 			}
-			const updatedUser = await changePassword(userId, fields.password);
+			const updatedUser = await changePassword(userId, fields.newPassword);
 			res.json(updatedUser);
 		} catch (err) {
 			if (err instanceof Error) {
