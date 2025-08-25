@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema(
 			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
 			default: [],
 		},
+		profileImage: { type: String, default: "" },
 	},
 	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

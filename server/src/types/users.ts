@@ -6,7 +6,8 @@ export interface User {
 	email: string;
 	password: string;
 	role: "admin" | "user" | "programmer";
-    projects?:Project[];
+    projects:Project[];
+	profileImage?: string;
 }
 
 export interface UserPayload {
@@ -14,4 +15,5 @@ export interface UserPayload {
 	email: string;
 	username: string;
 	role: "admin" | "user" | "programmer";
+	profileImage?: string;
 }

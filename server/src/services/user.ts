@@ -2,7 +2,7 @@ import { UserModel } from "../models/users";
 import bcrypt from "bcrypt";
 import { User } from "../types/users";
 
-async function register(username: string, email: string, password: string) {
+async function register(username: string, email: string,profileImage:string|null, password: string) {
 	const isValidUsername = await UserModel.findOne({ username });
 	if (isValidUsername) {
 		throw new Error("Username is already taken!");
@@ -15,6 +15,7 @@ async function register(username: string, email: string, password: string) {
 		username,
 		email,
 		password: await bcrypt.hash(password, 10),
+		profileImage
 	});
 	await user.save();
 

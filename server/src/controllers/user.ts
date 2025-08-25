@@ -1,0 +1,224 @@
+import { Router } from "express";
+import {
+    changePassword,
+	changeRole,
+	checkUserId,
+	editUser,
+	getUserById,
+	getUserProjects,
+	login,
+	register,
+} from "../services/user";
+import { isUser } from "../middlewares/guard";
+import { body, validationResult } from "express-validator";
+import { errorParser } from "../utils/error_parser";
+import { setToken } from "../services/token";
+import { profile } from "console";
+
+const userRouter = Router();
+
+userRouter.get("/:userId", async (req, res) => {
+	const userId = req.params.userId;
+	try {
+		const user = await getUserById(userId);
+		res.json(user);
+	} catch (err) {
+		if (err instanceof Error) {
+			res.status(404).json({ message: err.message });
+		} else {
+			res.status(404).json({ message: "Unknown error" });
+		}
+	}
+});
+
+userRouter.get("/logout", isUser(), (req, res) => {
+	res.json({ message: "User logged out successfully" });
+});
+
+userRouter.get("/:userId/projects", isUser(), async (req, res) => {
+	const userId = req.params.userId;
+	const isValid = await checkUserId(userId);
+	if (!isValid) {
+		return res.status(404).json({ message: "Resource not found!" });
+	}
+	const projects = await getUserProjects(userId);
+	res.json(projects);
+});
+
+userRouter.post(
+	"/register",
+	body("username")
+		.trim()
+		.isString()
+		.isLength({ min: 3 })
+		.withMessage("Username must be at least 3 characters long!"),
+	body("email").trim().isEmail().withMessage("Email must be valid!"),
+	body("profileImage")
+		.trim()
+		.isString()
+		.matches(/^(http|https):\/\/[^ "]+$/)
+		.withMessage("Profile image must be valid URL!")
+		.optional({ nullable: true }),
+	body("password")
+		.trim()
+		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
+		.withMessage(
+			"Password must be at least 6 symbols and must contain digits, letters and at least one capital letter and special symbol!"
+		),
+	body("repass")
+		.custom((value, { req }) => req.body.password === value)
+		.withMessage("Passwords don't match!"),
+	async (req, res) => {
+		try {
+			const fields = req.body;
+			const results = validationResult(req);
+			if (!results.isEmpty()) {
+				throw new Error(errorParser(results));
+			}
+			const newUser = await register(
+				fields.username,
+				fields.email,
+				fields.password,
+				fields.profileImage
+			);
+			const token = setToken(newUser);
+			res.json({
+				_id: newUser._id,
+				username: newUser.username,
+				email: newUser.email,
+				accessToken: token,
+				role: newUser.role,
+				profileImage: newUser.profileImage,
+			});
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Unknown error" });
+			}
+		}
+	}
+);
+
+userRouter.post(
+	"/login",
+	body("username")
+		.trim()
+		.isString()
+		.isLength({ min: 3 })
+		.withMessage("Username or password not match!"),
+	body("password")
+		.trim()
+		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
+		.withMessage("Username or password not match!"),
+	async (req, res) => {
+		try {
+			const fields = req.body;
+			const results = validationResult(req);
+			if (!results.isEmpty()) {
+				throw new Error(errorParser(results));
+			}
+			const newUser = await login(fields.username, fields.password);
+			const token = setToken(newUser);
+			res.json({
+				_id: newUser._id,
+				username: newUser.username,
+				email: newUser.email,
+				accessToken: token,
+				role: newUser.role,
+				profileImage: newUser.profileImage,
+			});
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Unknown error" });
+			}
+		}
+	}
+);
+
+userRouter.post("/:userId/change-role/:role", isUser(), async (req, res) => {
+	const userId = req.params.userId;
+	const newRole = req.params.role;
+	const isValid = await checkUserId(userId);
+	if (!isValid) {
+		return res.status(404).json({ message: "Resource not found!" });
+	}
+	const updatedUser = await changeRole(userId, newRole);
+	res.json(updatedUser);
+});
+
+userRouter.put(
+	"/:userId/edit",
+	body("username")
+		.trim()
+		.isString()
+		.isLength({ min: 3 })
+		.withMessage("Username must be at least 3 characters long!"),
+	body("email").trim().isEmail().withMessage("Email must be valid!"),
+	body("profileImage")
+		.trim()
+		.isString()
+		.matches(/^(http|https):\/\/[^ "]+$/)
+		.withMessage("Profile image must be valid URL!")
+		.optional({ nullable: true }),
+	isUser(),
+	async (req, res) => {
+		const userId = req.params.userId;
+		const isValid = await checkUserId(userId);
+		if (!isValid) {
+			return res.status(404).json({ message: "Resource not found!" });
+		}
+		try {
+			const fields = req.body;
+			const results = validationResult(req);
+			if (!results.isEmpty()) {
+				throw new Error(errorParser(results));
+			}
+			const updatedUser = await editUser(userId, fields);
+			res.json(updatedUser);
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Unknown error" });
+			}
+		}
+	}
+);
+
+userRouter.put(
+	"/:userId/change-password",
+	body("password")
+		.trim()
+		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
+		.withMessage(
+			"Password must be at least 6 symbols and must contain digits, letters and at least one capital letter and special symbol!"
+		),
+	isUser(),
+	async (req, res) => {
+		const userId = req.params.userId;
+		const isValid = await checkUserId(userId);
+		if (!isValid) {
+			return res.status(404).json({ message: "Resource not found!" });
+		}
+		try {
+			const fields = req.body;
+			const results = validationResult(req);
+			if (!results.isEmpty()) {
+				throw new Error(errorParser(results));
+			}
+			const updatedUser = await changePassword(userId, fields.password);
+			res.json(updatedUser);
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Unknown error" });
+			}
+		}
+	}
+);
+
+export { userRouter };
