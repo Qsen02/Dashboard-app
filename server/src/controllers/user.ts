@@ -4,21 +4,49 @@ import {
 	changeRole,
 	checkUserId,
 	editUser,
+	getLastUsers,
 	getUserById,
 	getUserProjects,
 	login,
 	register,
+	searchUsers,
 } from "../services/user";
 import { isUser } from "../middlewares/guard";
 import { body, validationResult } from "express-validator";
 import { errorParser } from "../utils/error_parser";
 import { setToken } from "../services/token";
-import { profile } from "console";
 
 const userRouter = Router();
 
 userRouter.get("/logout", isUser(), (req, res) => {
 	res.status(200).json({ message: "User logged out successfully" });
+});
+
+userRouter.get("/search/:value", async (req, res) => {
+	try {
+		const query = req.params.value;
+		const users = await searchUsers(query);
+		res.json(users);
+	} catch (err) {
+		if (err instanceof Error) {
+			res.status(400).json({ message: err.message });
+		} else {
+			res.status(400).json({ message: "Unknown error" });
+		}
+	}
+});
+
+userRouter.get("/latest", async (req, res) => {
+	try {
+		const users = await getLastUsers();
+		res.json(users);
+	} catch (err) {
+		if (err instanceof Error) {
+			res.status(400).json({ message: err.message });
+		} else {
+			res.status(400).json({ message: "Unknown error" });
+		}
+	}
 });
 
 userRouter.get("/:userId", async (req, res) => {
@@ -214,7 +242,10 @@ userRouter.put(
 			if (!results.isEmpty()) {
 				throw new Error(errorParser(results));
 			}
-			const updatedUser = await changePassword(userId, fields.newPassword);
+			const updatedUser = await changePassword(
+				userId,
+				fields.newPassword
+			);
 			res.json(updatedUser);
 		} catch (err) {
 			if (err instanceof Error) {

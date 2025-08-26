@@ -104,6 +104,21 @@ async function getUserProjects(userId: string) {
 	return user?.projects || [];
 }
 
+async function searchUsers(query: string) {
+	const users = await UserModel.find({
+		username: { $regex: query, $options: "i" },
+	}).lean();
+	return users;
+}
+
+async function getLastUsers() {
+	const users = await UserModel.find()
+		.sort({ $natural: -1 })
+		.limit(20)
+		.lean();
+	return users;
+}
+
 export {
 	register,
 	getUserById,
@@ -113,4 +128,6 @@ export {
 	changePassword,
 	checkUserId,
 	getUserProjects,
+	searchUsers,
+	getLastUsers,
 };
