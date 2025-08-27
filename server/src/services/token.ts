@@ -17,7 +17,7 @@ interface User {
 
 function setToken(user: User) {
     const payload = {
-        id: user._id,
+        _id: user._id,
         email: user.email,
         name: user.username,
         role: user.role,

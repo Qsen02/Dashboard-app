@@ -1,6 +1,8 @@
 import { UserModel } from "../models/users";
+import { SearchesModel } from "../models/searches";
 import bcrypt from "bcrypt";
 import { User } from "../types/users";
+import { Types } from "mongoose";
 
 async function register(
 	username: string,
@@ -104,10 +106,18 @@ async function getUserProjects(userId: string) {
 	return user?.projects || [];
 }
 
-async function searchUsers(query: string) {
+async function searchUsers(userId: string | undefined, query: string) {
 	const users = await UserModel.find({
 		username: { $regex: query, $options: "i" },
 	}).lean();
+	if (userId) {
+		await SearchesModel.findOneAndUpdate(
+			{ userId: userId },
+			{
+				$set: { searches: { users } },
+			}
+		);
+	}
 	return users;
 }
 
@@ -119,13 +129,35 @@ async function getLastUsers() {
 	return users;
 }
 
-async function paginateUsers(page: number) {
+async function paginateUsers(
+	userId: string | undefined,
+	page: number,
+	isSearched: string
+) {
 	const limit = 10;
-	const users = await UserModel.find()
-		.skip((page - 1) * limit)
-		.limit(limit)
-		.lean();
-	return users;
+	if (isSearched === "true") {
+		const user = await SearchesModel.findOne({ userId })
+			.populate("searches")
+			.lean();
+		const searches =
+			user?.searches.slice((page - 1) * limit, page * limit) || [];
+		const filteredSearches = searches.filter((el) => el);
+		return filteredSearches;
+	} else if (isSearched === "false") {
+		const users = await UserModel.find()
+			.skip((page - 1) * limit)
+			.limit(limit)
+			.lean();
+		return users;
+	}
+}
+
+async function createSearches(userId: Types.ObjectId) {
+	await SearchesModel.create({ userId: userId });
+}
+
+async function removeSearches(userId: string | undefined) {
+	await SearchesModel.findByIdAndDelete(userId);
 }
 
 export {
@@ -139,5 +171,7 @@ export {
 	getUserProjects,
 	searchUsers,
 	getLastUsers,
-	paginateUsers
+	paginateUsers,
+	createSearches,
+	removeSearches,
 };

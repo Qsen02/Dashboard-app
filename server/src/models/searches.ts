@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const searchesShema = new mongoose.Schema(
 	{
-		userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+		userId: { type: String, required: true, unique: true },
 		searches: {
 			type: [mongoose.Schema.Types.ObjectId],
 			ref: "User",
@@ -12,8 +12,8 @@ const searchesShema = new mongoose.Schema(
 	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-const Searches = mongoose.model("Searches", searchesShema);
+const SearchesModel = mongoose.model("Searches", searchesShema);
 
 export {
-    Searches,
+    SearchesModel,
 }

@@ -3,29 +3,37 @@ import {
 	changePassword,
 	changeRole,
 	checkUserId,
+	createSearches,
 	editUser,
 	getLastUsers,
 	getUserById,
 	getUserProjects,
 	login,
+	paginateUsers,
 	register,
+	removeSearches,
 	searchUsers,
 } from "../services/user";
 import { isUser } from "../middlewares/guard";
 import { body, validationResult } from "express-validator";
 import { errorParser } from "../utils/error_parser";
 import { setToken } from "../services/token";
+import { MyRequest } from "../types/express";
 
 const userRouter = Router();
 
-userRouter.get("/logout", isUser(), (req, res) => {
+userRouter.get("/logout", isUser(), async (req: MyRequest, res) => {
+	const user = req.user;
+	await removeSearches(user?._id);
 	res.status(200).json({ message: "User logged out successfully" });
 });
 
-userRouter.get("/search/:value", async (req, res) => {
+userRouter.get("/search/:value", isUser(), async (req: MyRequest, res) => {
 	try {
 		const query = req.params.value;
-		const users = await searchUsers(query);
+		const user = req.user;
+		console.log(user);
+		const users = await searchUsers(user?._id, query);
 		res.json(users);
 	} catch (err) {
 		if (err instanceof Error) {
@@ -36,7 +44,7 @@ userRouter.get("/search/:value", async (req, res) => {
 	}
 });
 
-userRouter.get("/latest", async (req, res) => {
+userRouter.get("/latest", isUser(), async (req, res) => {
 	try {
 		const users = await getLastUsers();
 		res.json(users);
@@ -62,6 +70,26 @@ userRouter.get("/:userId", async (req, res) => {
 		}
 	}
 });
+
+userRouter.get(
+	"/page/:page/isSearched/:isSearched",
+	isUser(),
+	async (req: MyRequest, res) => {
+		const page = Number(req.params.page);
+		const isSearched = req.params.isSearched;
+		const user = req.user;
+		try {
+			const users = await paginateUsers(user?._id, page, isSearched);
+			res.json(users);
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Unknown error" });
+			}
+		}
+	}
+);
 
 userRouter.get("/:userId/projects", isUser(), async (req, res) => {
 	const userId = req.params.userId;
@@ -110,6 +138,7 @@ userRouter.post(
 				fields.password
 			);
 			const token = setToken(newUser);
+			await createSearches(newUser._id);
 			res.json({
 				_id: newUser._id,
 				username: newUser.username,
@@ -147,6 +176,7 @@ userRouter.post(
 				throw new Error(errorParser(results));
 			}
 			const newUser = await login(fields.username, fields.password);
+			await createSearches(newUser._id);
 			const token = setToken(newUser);
 			res.json({
 				_id: newUser._id,
