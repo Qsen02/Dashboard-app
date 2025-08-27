@@ -114,7 +114,16 @@ async function searchUsers(query: string) {
 async function getLastUsers() {
 	const users = await UserModel.find()
 		.sort({ $natural: -1 })
-		.limit(20)
+		.limit(1000)
+		.lean();
+	return users;
+}
+
+async function paginateUsers(page: number) {
+	const limit = 10;
+	const users = await UserModel.find()
+		.skip((page - 1) * limit)
+		.limit(limit)
 		.lean();
 	return users;
 }
@@ -130,4 +139,5 @@ export {
 	getUserProjects,
 	searchUsers,
 	getLastUsers,
+	paginateUsers
 };
