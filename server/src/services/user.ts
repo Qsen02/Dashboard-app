@@ -110,11 +110,12 @@ async function searchUsers(userId: string | undefined, query: string) {
 	const users = await UserModel.find({
 		username: { $regex: query, $options: "i" },
 	}).lean();
+	console.log(users.map((el) => el._id));
 	if (userId) {
 		await SearchesModel.findOneAndUpdate(
 			{ userId: userId },
 			{
-				$set: { searches: { users } },
+				$set: { searches: users.map((el) => el._id) },
 			}
 		);
 	}
@@ -157,7 +158,7 @@ async function createSearches(userId: Types.ObjectId) {
 }
 
 async function removeSearches(userId: string | undefined) {
-	await SearchesModel.findByIdAndDelete(userId);
+	await SearchesModel.findOneAndDelete({ userId: userId });
 }
 
 export {

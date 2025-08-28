@@ -5,7 +5,7 @@ const searchesShema = new mongoose.Schema(
 		userId: { type: String, required: true, unique: true },
 		searches: {
 			type: [mongoose.Schema.Types.ObjectId],
-			ref: "User",
+			ref: "Users",
 			default: [],
 		},
 	},

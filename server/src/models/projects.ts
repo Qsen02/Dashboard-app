@@ -12,17 +12,17 @@ const projectShema = new mongoose.Schema(
 			ref: "User",
 		},
 		members: {
-			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
 			default: [],
 		},
 		tasks: {
-			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task" }],
+			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tasks" }],
 			default: [],
 		},
 	},
 	{ timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-const ProjectModel = mongoose.model("Project", projectShema);
+const ProjectModel = mongoose.model("Projects", projectShema);
 
 export { ProjectModel };

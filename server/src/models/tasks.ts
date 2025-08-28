@@ -10,20 +10,20 @@ const taskShema = new mongoose.Schema({
 	},
 	ownerId: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "User",
+		ref: "Users",
 	},
 	projectId: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Project",
+		ref: "Projects",
 	},
 	appliedBy: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "User",
+		ref: "Users",
 		default: null,
 	},
 }, {timestamps:{createdAt:"created_at",updatedAt:"updated_at"}});
 
-const TaskModel = mongoose.model("Task", taskShema);
+const TaskModel = mongoose.model("Tasks", taskShema);
 
 export {
     TaskModel

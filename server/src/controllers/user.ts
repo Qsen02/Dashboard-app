@@ -32,7 +32,6 @@ userRouter.get("/search/:value", isUser(), async (req: MyRequest, res) => {
 	try {
 		const query = req.params.value;
 		const user = req.user;
-		console.log(user);
 		const users = await searchUsers(user?._id, query);
 		res.json(users);
 	} catch (err) {
