@@ -1,6 +1,6 @@
 import { ProjectModel } from "../models/projects";
 import { TaskModel } from "../models/tasks";
-import { User } from "../types/users";
+import { User, UserPayload } from "../types/users";
 
 async function getProjectById(projectId: string) {
 	const project = await ProjectModel.findById(projectId)
@@ -14,7 +14,10 @@ async function getProjectById(projectId: string) {
 	return project;
 }
 
-async function createProject(name: string, user: User) {
+async function createProject(name: string, user: UserPayload | null | undefined) {
+	if (!user) {
+		throw new Error("Unauthorized");
+	}
 	const project = await ProjectModel.create({
 		name,
 		ownerId: user._id,
@@ -36,11 +39,14 @@ async function addMember(projectId: string, userId: string) {
 }
 
 async function addTask(
-	user: User,
+	user: UserPayload | null | undefined,
 	projectId: string,
 	title: string,
 	description: string
 ) {
+	if(!user) {
+		throw new Error("Unauthorized");
+	}
 	const task = await TaskModel.create({
 		title: title,
 		description: description,

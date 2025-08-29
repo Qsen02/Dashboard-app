@@ -9,7 +9,7 @@ const projectShema = new mongoose.Schema(
 		},
 		ownerId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User",
+			ref: "Users",
 		},
 		members: {
 			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
