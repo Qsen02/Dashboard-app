@@ -14,7 +14,10 @@ async function getTaskById(taskId: string) {
 	return task;
 }
 
-async function applyForTask(taskId: string, userId: string) {
+async function applyForTask(taskId: string, userId: string | null | undefined) {
+	if (!userId) {
+		throw new Error("You are not authenticated!");
+	}
 	const updatedTask = await TaskModel.findByIdAndUpdate(
 		taskId,
 		{ $set: { appliedBy: userId } },
@@ -57,36 +60,32 @@ async function deleteTask(taskId: string, projectId: string) {
 	return updateProject;
 }
 
-async function editTask(
-    taskId: string,
-    title: string,
-    description: string
-) {
-    const updatedTask = await TaskModel.findByIdAndUpdate(
-        taskId,
-        { $set: { title, description } },
-        { new: true }
-    )
-        .populate("appliedBy")
-        .populate("ownerId")
-        .populate("projectId")
-        .lean();
-    return updatedTask;
+async function editTask(taskId: string, title: string, description: string) {
+	const updatedTask = await TaskModel.findByIdAndUpdate(
+		taskId,
+		{ $set: { title, description } },
+		{ new: true }
+	)
+		.populate("appliedBy")
+		.populate("ownerId")
+		.populate("projectId")
+		.lean();
+	return updatedTask;
 }
 
 async function checkTaskId(taskId: string) {
-    const task = await TaskModel.findById(taskId).lean();
-    if (!task) {
-        return false;
-    }
-    return true;
+	const task = await TaskModel.findById(taskId).lean();
+	if (!task) {
+		return false;
+	}
+	return true;
 }
 
 export {
-    getTaskById,
-    applyForTask,
-    changeTaskStatus,
-    deleteTask,
-    editTask,
-    checkTaskId
+	getTaskById,
+	applyForTask,
+	changeTaskStatus,
+	deleteTask,
+	editTask,
+	checkTaskId,
 };

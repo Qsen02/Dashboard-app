@@ -1,6 +1,6 @@
 import { ProjectModel } from "../models/projects";
 import { TaskModel } from "../models/tasks";
-import { User, UserPayload } from "../types/users";
+import { UserPayload } from "../types/users";
 
 async function getProjectById(projectId: string) {
 	const project = await ProjectModel.findById(projectId)
