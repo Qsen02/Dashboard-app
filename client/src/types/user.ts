@@ -20,3 +20,5 @@ export interface UserForAuth {
 	role: "admin" | "user" | "programmer";
 	accessToken: string;
 }
+
+export type Theme = "light" | "dark"
