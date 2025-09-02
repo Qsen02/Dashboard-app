@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserForAuth } from "../../../types/user";
+import { removeUserData, setUserData } from "../../../utils/userHelper";
 
 interface UserState {
 	user: UserForAuth | null;
@@ -13,11 +14,13 @@ const userSlice = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-		setUser: (state, actions) => {
-			state.user = actions.payload.user;
+		setUser: (state, actions: PayloadAction<UserForAuth>) => {
+			state.user = actions.payload;
+            setUserData(actions.payload);
 		},
-		removeUser: (state) => {
+		removeUser:(state) => {
 			state.user = null;
+            removeUserData();
 		},
 	},
 });
