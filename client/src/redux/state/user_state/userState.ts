@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserForAuth } from "../../../types/user";
-import { getUserData } from "../../../utils/userHelper";
 
 interface UserState {
 	user: UserForAuth | null;
