@@ -1,0 +1,41 @@
+.wrapper {
+	margin: 50px auto;
+	width: 50%;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.buttonSection {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 2px darkgray solid;
+}
+
+.buttonSection button {
+	flex-basis: 50%;
+	border: none;
+	padding: 20px;
+	cursor: pointer;
+	font-size: 16pt;
+}
+
+.buttonSection button:nth-child(1) {
+	border-right: 2px darkgrey solid;
+    border-top-left-radius: 10px;
+}
+.buttonSection button:nth-child(2){
+     border-top-right-radius: 10px;
+}
+
+.selected{
+    background-color: rgb(183, 120, 241);
+	color: white;
+}
+
+.notSelected {
+    background-color: transparent;
+}
