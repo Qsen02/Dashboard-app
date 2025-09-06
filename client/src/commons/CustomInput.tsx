@@ -7,7 +7,6 @@ interface CustomInputProps {
 	type: string;
 	className?: string;
 	value: string;
-	theme: Theme;
 }
 
 export default function CustomInput({ label, ...props }: CustomInputProps) {

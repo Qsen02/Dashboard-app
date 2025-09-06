@@ -25,17 +25,37 @@
 
 .buttonSection button:nth-child(1) {
 	border-right: 2px darkgrey solid;
-    border-top-left-radius: 10px;
+	border-top-left-radius: 10px;
 }
-.buttonSection button:nth-child(2){
-     border-top-right-radius: 10px;
+.buttonSection button:nth-child(2) {
+	border-top-right-radius: 10px;
 }
 
-.selected{
-    background-color: rgb(183, 120, 241);
+.selected {
+	background-color: rgb(183, 120, 241);
 	color: white;
 }
 
 .notSelected {
-    background-color: transparent;
+	background-color: transparent;
+}
+
+@media (max-width: 900px) {
+	.wrapper {
+		width: 75%;
+	}
+
+	.buttonSection button {
+		font-size: 14pt;
+	}
+}
+
+@media (max-width: 500px) {
+	.wrapper {
+		width: 95%;
+	}
+
+	.buttonSection button {
+		font-size: 12pt;
+	}
 }
