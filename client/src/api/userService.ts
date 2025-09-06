@@ -2,7 +2,7 @@ import { Project } from "../types/project";
 import { User, UserForAuth } from "../types/user";
 import { get, post, put } from "./requester";
 
-const endpoint = "/users";
+const endpoint = "users";
 
 export async function logout() {
 	return await get(`${endpoint}/logout`);

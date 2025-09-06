@@ -1,25 +1,67 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import CustomInput from "../../../commons/CustomInput";
 import { useState } from "react";
+import { useRegister } from "../../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../../redux/state/user_state/userState";
 
 export default function Register() {
-	const { user } = useSelector((state: RootState) => state.user);
 	const { theme } = useSelector((state: RootState) => state.theme);
 	const dispatch = useDispatch();
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const [isRepassVisible, setIsRepassVisible] = useState(false);
+	const register = useRegister();
+	const navigate = useNavigate();
+	const [isErr, setIsErr] = useState(false);
+	const [errMessage, setErrMessage] = useState("");
+
+	interface formValues {
+		username: string;
+		email: string;
+		profileImage: string;
+		password: string;
+		repass: string;
+	}
 
 	const initValues = {
 		username: "",
 		email: "",
+		profileImage: "",
 		password: "",
 		repass: "",
 	};
 
-	async function onRegister() {
-		console.log("work!");
+	async function onRegister(
+		values: formValues,
+		actions: FormikHelpers<formValues>
+	) {
+		try {
+			const username = values.username;
+			const email = values.email;
+			const password = values.password;
+			const repass = values.repass;
+			const profileImage = values.profileImage;
+			const user = await register({
+				username: username,
+				email: email,
+				profileImage: profileImage,
+				password: password,
+				repass: repass,
+			});
+			dispatch(setUser(user));
+			actions.resetForm();
+			navigate("/");
+		} catch (err) {
+			setIsErr(true);
+			if (err instanceof Error) {
+				setErrMessage(err.message);
+			} else {
+				setErrMessage("Error occurd!");
+			}
+			return;
+		}
 	}
 
 	function showPassword() {
@@ -43,6 +85,7 @@ export default function Register() {
 			{(props) => (
 				<Form className="form">
 					<h3>You can create your account here</h3>
+					{isErr ? <p className="error">{errMessage}</p> : ""}
 					<p className="input">
 						<CustomInput
 							label="Username"
@@ -71,6 +114,20 @@ export default function Register() {
 							}
 							id="email"
 							autoComplete="email"
+						/>
+					</p>
+					<p className="input">
+						<CustomInput
+							label="Profile image"
+							type="text"
+							value={initValues.profileImage}
+							name="profileImage"
+							className={
+								theme === "light"
+									? "lightThemeSmoked"
+									: "darkThemeLighter"
+							}
+							id="profileImage"
 						/>
 					</p>
 					<p className="input">

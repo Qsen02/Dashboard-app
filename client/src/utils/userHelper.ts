@@ -24,7 +24,7 @@ export function getThemeData() {
 	return null;
 }
 
-export function setThemeData(data: object) {
+export function setThemeData(data: string) {
 	localStorage.setItem("theme", JSON.stringify(data));
 }
 

@@ -1,7 +1,7 @@
 import { Task } from "../types/task";
 import { del, get, post, put } from "./requester";
 
-const endpoint = "/tasks";
+const endpoint = "tasks";
 
 export async function getTaskById(taskId: string) {
 	const task = await get(`${endpoint}/${taskId}`);

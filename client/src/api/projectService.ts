@@ -1,7 +1,7 @@
 import { Project } from "../types/project";
 import { del, get, post, put } from "./requester";
 
-const endpoint = "/projects";
+const endpoint = "projects";
 
 export async function getProjectById(projectId: string) {
 	const project = await get(`${endpoint}/${projectId}`);
