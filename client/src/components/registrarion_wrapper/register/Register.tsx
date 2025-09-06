@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRegister } from "../../../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../redux/state/user_state/userState";
+import { registerSchema } from "../../../schemas/schemas";
 
 export default function Register() {
 	const { theme } = useSelector((state: RootState) => state.theme);
@@ -81,7 +82,11 @@ export default function Register() {
 	}
 
 	return (
-		<Formik initialValues={initValues} onSubmit={onRegister}>
+		<Formik
+			initialValues={initValues}
+			onSubmit={onRegister}
+			validationSchema={registerSchema}
+		>
 			{(props) => (
 				<Form className="form">
 					<h3>You can create your account here</h3>

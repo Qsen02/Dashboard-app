@@ -59,6 +59,7 @@ main {
 .error {
 	color: red;
 	font-size: 14pt;
+	word-wrap: break-word;
 }
 
 .form {
