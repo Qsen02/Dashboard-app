@@ -26,13 +26,29 @@ export default function RegistrationWrapper() {
 			<div className={styles.buttonSection}>
 				<button
 					onClick={swapLogin}
-					className={form === "login" ? styles.selected : styles.notSelected}
+					className={
+						form === "login"
+							? styles.selected
+							: `${styles.notSelected} ${
+									theme === "light"
+										? "lightThemeNormal"
+										: "darkThemeNormal"
+							  }`
+					}
 				>
 					Login
 				</button>
 				<button
 					onClick={swapRegister}
-					className={form === "register" ? styles.selected : styles.notSelected}
+					className={
+						form === "register"
+							? styles.selected
+							: `${styles.notSelected} ${
+									theme === "light"
+										? "lightThemeNormal"
+										: "darkThemeNormal"
+							  }`
+					}
 				>
 					Register
 				</button>

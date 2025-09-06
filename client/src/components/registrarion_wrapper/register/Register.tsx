@@ -88,7 +88,7 @@ export default function Register() {
 						/>
 						{isPasswordVisible ? (
 							<i
-								className={`fa-solid fa-eye ${
+								className={`fa-regular fa-eye ${
 									theme === "light"
 										? "lightThemeSmoked"
 										: "darkThemeLighter"
@@ -97,7 +97,7 @@ export default function Register() {
 							></i>
 						) : (
 							<i
-								className={`fa-solid fa-eye-slash ${
+								className={`fa-regular fa-eye-slash ${
 									theme === "light"
 										? "lightThemeSmoked"
 										: "darkThemeLighter"
@@ -121,7 +121,7 @@ export default function Register() {
 						/>
 						{isRepassVisible ? (
 							<i
-								className={`fa-solid fa-eye ${
+								className={`fa-regular fa-eye ${
 									theme === "light"
 										? "lightThemeSmoked"
 										: "darkThemeLighter"
@@ -130,7 +130,7 @@ export default function Register() {
 							></i>
 						) : (
 							<i
-								className={`fa-solid fa-eye-slash ${
+								className={`fa-regular fa-eye-slash ${
 									theme === "light"
 										? "lightThemeSmoked"
 										: "darkThemeLighter"

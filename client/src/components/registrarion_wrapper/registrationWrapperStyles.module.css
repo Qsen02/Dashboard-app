@@ -12,7 +12,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 2px darkgray solid;
+	border-bottom: 1.5px grey solid;
 }
 
 .buttonSection button {
@@ -24,7 +24,7 @@
 }
 
 .buttonSection button:nth-child(1) {
-	border-right: 2px darkgrey solid;
+	border-right: 1.5px grey solid;
 	border-top-left-radius: 10px;
 }
 .buttonSection button:nth-child(2) {
