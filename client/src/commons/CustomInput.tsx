@@ -1,5 +1,4 @@
 import { useField } from "formik";
-import { Theme } from "../types/user";
 
 interface CustomInputProps {
 	label?: string;
@@ -7,14 +6,16 @@ interface CustomInputProps {
 	type: string;
 	className?: string;
 	value: string;
+	id:string;
+	autoComplete?:string;
 }
 
 export default function CustomInput({ label, ...props }: CustomInputProps) {
 	const [field, meta] = useField(props);
 	return (
 		<>
-			{label ? <label>{label}</label> : ""}
-			<input {...props} {...field} />
+			{label ? <label htmlFor={props.id}>{label}</label> : ""}
+			<input {...props} {...field}/>
 			{meta.error && meta.touched ? (
 				<p className="error">{meta.error}</p>
 			) : (
