@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserForAuth } from "../../../types/user";
-import { removeUserData, setUserData } from "../../../utils/userHelper";
+import { getUserData, removeUserData, setUserData } from "../../../utils/userHelper";
 
 interface UserState {
 	user: UserForAuth | null;
 }
 
 const initialState: UserState = {
-	user: null,
+	user: getUserData(),
 };
 
 const userSlice = createSlice({

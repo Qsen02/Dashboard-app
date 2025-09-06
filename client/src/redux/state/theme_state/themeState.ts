@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Theme } from "../../../types/user";
-import { setThemeData } from "../../../utils/userHelper";
+import { getThemeData, setThemeData } from "../../../utils/userHelper";
 
 interface themeState {
-	theme: Theme;
+	theme: Theme | null;
 }
 
 const initialState: themeState = {
-	theme: "light",
+	theme: getThemeData(),
 };
 
 const themeSlice = createSlice({
