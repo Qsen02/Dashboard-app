@@ -7,7 +7,7 @@ interface themeState {
 }
 
 const initialState: themeState = {
-	theme: getThemeData(),
+	theme: getThemeData() || "light",
 };
 
 const themeSlice = createSlice({

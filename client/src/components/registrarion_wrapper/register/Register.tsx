@@ -91,7 +91,7 @@ export default function Register() {
 				<Form className="form">
 					<h3>You can create your account here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}
-					<p className="input">
+					<div className="input">
 						<CustomInput
 							label="Username"
 							type="text"
@@ -105,8 +105,8 @@ export default function Register() {
 							id="username"
 							autoComplete="given-name"
 						/>
-					</p>
-					<p className="input">
+					</div>
+					<div className="input">
 						<CustomInput
 							label="Email"
 							type="text"
@@ -120,8 +120,8 @@ export default function Register() {
 							id="email"
 							autoComplete="email"
 						/>
-					</p>
-					<p className="input">
+					</div>
+					<div className="input">
 						<CustomInput
 							label="Profile image"
 							type="text"
@@ -134,8 +134,8 @@ export default function Register() {
 							}
 							id="profileImage"
 						/>
-					</p>
-					<p className="input">
+					</div>
+					<div className="input">
 						<CustomInput
 							label="Password"
 							type={isPasswordVisible ? "text" : "password"}
@@ -167,8 +167,8 @@ export default function Register() {
 								onClick={showPassword}
 							></i>
 						)}
-					</p>
-					<p className="input">
+					</div>
+					<div className="input">
 						<CustomInput
 							label="Repeat password"
 							type={isRepassVisible ? "text" : "password"}
@@ -200,7 +200,7 @@ export default function Register() {
 								onClick={showRepass}
 							></i>
 						)}
-					</p>
+					</div>
 					<button type="submit">Submit</button>
 				</Form>
 			)}
