@@ -24,8 +24,10 @@ const userRouter = Router();
 
 userRouter.get("/logout", isUser(), async (req: MyRequest, res) => {
 	const user = req.user;
-	await removeSearches(user?._id);
-	res.status(200).json({ message: "User logged out successfully" });
+	if (user?.role === "programmer") {
+		await removeSearches(user?._id);
+		res.status(200).json({ message: "User logged out successfully" });
+	}
 });
 
 userRouter.get("/search/:value", isUser(), async (req: MyRequest, res) => {
@@ -137,7 +139,9 @@ userRouter.post(
 				fields.password
 			);
 			const token = setToken(newUser);
-			await createSearches(newUser._id);
+			if (newUser.role === "programmer") {
+				await createSearches(newUser._id);
+			}
 			res.json({
 				_id: newUser._id,
 				username: newUser.username,
@@ -175,7 +179,9 @@ userRouter.post(
 				throw new Error(errorParser(results));
 			}
 			const newUser = await login(fields.username, fields.password);
-			await createSearches(newUser._id);
+			if (newUser.role === "programmer") {
+				await createSearches(newUser._id);
+			}
 			const token = setToken(newUser);
 			res.json({
 				_id: newUser._id,

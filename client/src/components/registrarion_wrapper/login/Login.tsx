@@ -70,7 +70,7 @@ export default function Register() {
 				<Form className="form">
 					<h3>You can login into your account here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}
-					<p className="input">
+					<div className="input">
 						<CustomInput
 							label="Username"
 							type="text"
@@ -84,8 +84,8 @@ export default function Register() {
 							id="username"
 							autoComplete="given-name"
 						/>
-					</p>
-					<p className="input">
+					</div>
+					<div className="input">
 						<CustomInput
 							label="Password"
 							type={isPasswordVisible ? "text" : "password"}
@@ -97,6 +97,7 @@ export default function Register() {
 									: "darkThemeLighter"
 							}
 							id="password"
+							autoComplete="password"
 						/>
 						{isPasswordVisible ? (
 							<i
@@ -117,7 +118,7 @@ export default function Register() {
 								onClick={showPassword}
 							></i>
 						)}
-					</p>
+					</div>
 					<button type="submit">Submit</button>
 				</Form>
 			)}
