@@ -5,7 +5,6 @@ import styles from "./HeaderStyles.module.css";
 import { toggle } from "../../redux/state/theme_state/themeState";
 import { useLogout } from "../../hooks/useUser";
 import { removeUser } from "../../redux/state/user_state/userState";
-import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {

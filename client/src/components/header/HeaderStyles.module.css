@@ -38,3 +38,47 @@
 	font-size: 16pt;
 	cursor: pointer;
 }
+
+@media (max-width: 1000px) {
+	.wrapper {
+		gap: 30px;
+	}
+	.wrapper ul {
+		flex-basis: 70%;
+		font-size: 14pt;
+		gap: 30px;
+	}
+	.wrapper button {
+		padding: 10px 20px 10px 20px;
+	}
+	.wrapper i {
+		font-size: 14pt;
+	}
+}
+
+@media(max-width:500px){
+    .wrapper {
+		gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        text-align: center;
+        padding: 10px;
+	}
+    .wrapper ul {
+        flex-basis: 10%;
+		font-size: 12pt;
+		gap: 10px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding-left: 0;
+        justify-content: center;
+	}
+    .wrapper button{
+        padding: 5px 10px 5px 10px;
+    }
+    .wrapper i{
+        font-size: 12pt;
+    }
+}
