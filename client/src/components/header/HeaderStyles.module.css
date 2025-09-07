@@ -1,0 +1,40 @@
+.wrapper {
+	width: 100%;
+	background-color: rgb(183, 120, 241);
+	color: white;
+	height: 75px;
+	display: flex;
+	gap: 50px;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.wrapper ul {
+	flex-basis: 80%;
+	padding-left: 50px;
+	display: flex;
+	justify-content: flex-start;
+	gap: 50px;
+	align-items: center;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.wrapper button {
+	border-radius: 20px;
+	padding: 10px 30px 10px 30px;
+	font-size: 14pt;
+	border: none;
+	cursor: pointer;
+	color: black;
+}
+
+.wrapper button:hover {
+	color: white;
+	background-color: rgb(146, 62, 224);
+}
+
+.wrapper i {
+	font-size: 16pt;
+	cursor: pointer;
+}

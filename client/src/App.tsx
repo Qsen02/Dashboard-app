@@ -4,10 +4,12 @@ import RegistrationWrapper from "./components/registrarion_wrapper/RegistrationW
 import UserGuard from "./guards/UserGuard";
 import GuestGuard from "./guards/GuestGuard";
 import Main from "./components/main/Main";
+import Header from "./components/header/Header";
 
 function App() {
 	return (
 		<>
+			<Header />
 			<Main>
 				<Routes>
 					<Route element={<UserGuard />}>

@@ -1,4 +1,4 @@
-import { login, register } from "../api/userService"
+import { login, logout, register } from "../api/userService"
 
 export function useRegister(){
     return async function (data:object){
@@ -9,5 +9,11 @@ export function useRegister(){
 export function useLogin(){
     return async function (data:object){
         return await login(data);
+    }
+}
+
+export function useLogout(){
+    return async function (){
+        return await logout();
     }
 }
