@@ -1,0 +1,30 @@
+.wrapper {
+    width: 100%;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	color: white;
+	background-color: rgb(183, 120, 241);
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+	.wrapper {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		font-size: 14pt;
+	}
+}
+
+@media (max-width: 500px) {
+	.wrapper {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		font-size: 12pt;
+	}
+}
+
+
