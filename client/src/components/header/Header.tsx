@@ -3,14 +3,11 @@ import { RootState } from "../../redux/state/store";
 import LinkItem from "../../commons/LinkItem";
 import styles from "./HeaderStyles.module.css";
 import { toggle } from "../../redux/state/theme_state/themeState";
-import { useLogout } from "../../hooks/useUser";
-import { removeUser } from "../../redux/state/user_state/userState";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 	const { user } = useSelector((state: RootState) => state.user);
 	const dispatch = useDispatch();
-	const logout = useLogout();
     const navigate=useNavigate();
 
 	const userNav = [
@@ -27,10 +24,8 @@ export default function Header() {
 		dispatch(toggle());
 	}
 
-	async function onLogout() {
-		await logout();
-		dispatch(removeUser());
-        navigate("/registration");
+	async function openLogoutModal() {
+		navigate("/logout");
 	}
 
 	return (
@@ -58,7 +53,7 @@ export default function Header() {
 				className="fa-solid fa-circle-half-stroke"
 				onClick={changeTheme}
 			></i>
-			{user ? <button onClick={onLogout}>Logout</button> : ""}
+			{user ? <button onClick={openLogoutModal}>Logout</button> : ""}
 		</header>
 	);
 }

@@ -6,6 +6,7 @@ import GuestGuard from "./guards/GuestGuard";
 import Main from "./components/main/Main";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import Logout from "./components/logout/Logout";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Routes>
 					<Route element={<UserGuard />}>
 						<Route path="/" element={<Home />} />
+						<Route path="/logout" element={<Logout/>}/>
 					</Route>
 					<Route element={<GuestGuard />}>
 						<Route
