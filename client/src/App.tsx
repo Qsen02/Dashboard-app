@@ -7,6 +7,7 @@ import Main from "./components/main/Main";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Logout from "./components/logout/Logout";
+import NotFound from "./components/not_found/NotFound";
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 							element={<RegistrationWrapper />}
 						/>
 					</Route>
+					<Route path="*" element={<NotFound/>}/>
 				</Routes>
 			</Main>
 			<Footer/>
