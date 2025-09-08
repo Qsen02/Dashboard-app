@@ -1,0 +1,59 @@
+.container {
+	width: 90%;
+	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	align-items: center;
+	text-align: center;
+	font-size: 14pt;
+}
+
+.plusContainer {
+	width: 150px;
+	height: 50px;
+	border-radius: 10px;
+	padding: 20px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.plusContainer:hover {
+	background-color: grey;
+}
+
+.plusContainer i {
+	font-size: 50pt;
+	font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+	.container {
+		font-size: 12pt;
+	}
+
+	.plusContainer {
+		width: 130px;
+		height: 30px;
+	}
+	.plusContainer i {
+		font-size: 40pt;
+	}
+}
+
+@media (max-width: 500) {
+	.container {
+		font-size: 10pt;
+	}
+
+	.plusContainer i {
+		font-size: 20pt;
+	}
+
+	.plusContainer {
+		width: 100px;
+		height: 20px;
+	}
+}

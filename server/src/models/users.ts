@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
 			default: "user",
 		},
 		projects: {
-			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
+			type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Projects" }],
 			default: [],
 		},
 		profileImage: { type: String, default: "" },

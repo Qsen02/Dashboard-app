@@ -1,5 +1,6 @@
 import { ProjectModel } from "../models/projects";
 import { TaskModel } from "../models/tasks";
+import { UserModel } from "../models/users";
 import { UserPayload } from "../types/users";
 
 async function getProjectById(projectId: string) {
@@ -14,13 +15,19 @@ async function getProjectById(projectId: string) {
 	return project;
 }
 
-async function createProject(name: string, user: UserPayload | null | undefined) {
+async function createProject(
+	name: string,
+	user: UserPayload | null | undefined
+) {
 	if (!user) {
 		throw new Error("Unauthorized");
 	}
 	const project = await ProjectModel.create({
 		name,
 		ownerId: user._id,
+	});
+	await UserModel.findByIdAndUpdate(user._id, {
+		$push: { projects: project._id },
 	});
 	return project;
 }
@@ -44,7 +51,7 @@ async function addTask(
 	title: string,
 	description: string
 ) {
-	if(!user) {
+	if (!user) {
 		throw new Error("Unauthorized");
 	}
 	const task = await TaskModel.create({
