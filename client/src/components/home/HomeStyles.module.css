@@ -29,6 +29,14 @@
 	font-weight: bold;
 }
 
+.projectWrapper {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+	justify-content: space-evenly;
+}
+
 @media (max-width: 1000px) {
 	.container {
 		font-size: 12pt;
@@ -55,5 +63,12 @@
 	.plusContainer {
 		width: 100px;
 		height: 20px;
+	}
+
+	.projectWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
 	}
 }

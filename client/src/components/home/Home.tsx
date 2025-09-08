@@ -20,7 +20,7 @@ export default function Home() {
 				<i className="fa-solid fa-plus"></i>
 			</div>
 			<h2>The projects you are involved in</h2>
-			<section>
+			<section className={styles.projectWrapper}>
 				{projects.length > 0 ? (
 					projects.map((el) => (
 						<ProjectItem
