@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProjectSchema } from "../../schemas/schemas";
 import { useCreateProject } from "../../hooks/useProjects";
+import styles from "./CreatePropjectStyles.module.css";
 
 export default function CreateProject() {
 	const { theme } = useSelector((state: RootState) => state.theme);
@@ -49,7 +50,7 @@ export default function CreateProject() {
 			validationSchema={createProjectSchema}
 		>
 			{(props) => (
-				<Form className="form">
+				<Form className={`form ${theme==="light"?"lightThemeNormal":"darkThemeNormal"} ${styles.form}`}>
 					<h3>Create your project here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}
 					<div className="input">

@@ -53,6 +53,7 @@
 
 @media (max-width: 500) {
 	.container {
+		width: 100%;
 		font-size: 10pt;
 	}
 

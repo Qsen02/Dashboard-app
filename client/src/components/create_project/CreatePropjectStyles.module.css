@@ -1,0 +1,21 @@
+.form {
+    width: 30%;
+    margin: 30px auto;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+@media(max-width:750px){
+    .form{
+        width:60%;
+    }
+}
+
+@media(max-width:400px){
+     .form{
+        width:90%;
+    }
+}
