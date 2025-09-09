@@ -3,11 +3,17 @@ import { useGetUserProjects } from "../../hooks/useUser";
 import { RootState } from "../../redux/state/store";
 import styles from "./HomeStyles.module.css";
 import ProjectItem from "../../commons/project_item/ProjectItem";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
 	const { user } = useSelector((state: RootState) => state.user);
 	const { theme } = useSelector((state: RootState) => state.theme);
 	const { projects, loading, error } = useGetUserProjects([], user?._id);
+	const navigate = useNavigate();
+
+	function openCreateForm() {
+		navigate("/create");
+	}
 
 	return (
 		<>
@@ -16,9 +22,7 @@ export default function Home() {
 			) : error ? (
 				<div
 					className={`
-						${theme === "light"
-							? "lightThemeNormal"
-							: "darkThemeNormal"}
+						${theme === "light" ? "lightThemeNormal" : "darkThemeNormal"}
 						errorMessage
 					`}
 				>
@@ -33,6 +37,7 @@ export default function Home() {
 								: "darkThemeLighter"
 						}`}
 						title="Create new project"
+						onClick={openCreateForm}
 					>
 						<i className="fa-solid fa-plus"></i>
 					</div>

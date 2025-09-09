@@ -1,11 +1,16 @@
 .wrapper {
-	flex-basis: 50%;
+	width: 200px;
 	padding: 20px;
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
+}
+
+.wrapper h2{
+	width: 100%;
+	word-wrap: break-word;
 }
 
 .wrapper:hover {
@@ -17,5 +22,11 @@
 	gap: 30px;
 	justify-content: space-evenly;
 	border-top: 2px solid grey;
-    padding-top: 20px;
+	padding-top: 20px;
+}
+
+@media (max-width: 500px) {
+	.wrapper {
+		width: 90%;
+	}
 }

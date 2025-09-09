@@ -8,6 +8,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Logout from "./components/logout/Logout";
 import NotFound from "./components/not_found/NotFound";
+import CreateProject from "./components/create_project/CreateProject";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route element={<UserGuard />}>
 						<Route path="/" element={<Home />} />
 						<Route path="/logout" element={<Logout/>}/>
+						<Route path="/create" element={<CreateProject/>}/>
 					</Route>
 					<Route element={<GuestGuard />}>
 						<Route

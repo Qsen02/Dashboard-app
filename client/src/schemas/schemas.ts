@@ -38,3 +38,17 @@ export const loginSchema = yup.object().shape({
 		)
 		.required("Password is required!"),
 });
+
+export const createProjectSchema = yup.object().shape({
+	name: yup
+		.string()
+		.min(
+			3,
+			"Project name is required and should be between 3 and 30 characters long!"
+		)
+		.max(
+			30,
+			"Project name is required and should be between 3 and 30 characters long!"
+		)
+		.required("Project name is requred!"),
+});

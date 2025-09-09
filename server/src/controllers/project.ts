@@ -35,9 +35,9 @@ projectRouter.post(
 	isUser(),
 	body("name")
 		.isString()
-		.isLength({ min: 3 })
+		.isLength({ min: 3,max:30 })
 		.withMessage(
-			"Project name is required and should be at least 3 characters long!"
+			"Project name is required and should be between 3 and 30 characters long!"
 		),
 	async (req: MyRequest, res) => {
 		try {
