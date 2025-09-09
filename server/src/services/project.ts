@@ -42,6 +42,11 @@ async function addMember(projectId: string, userId: string) {
 		.populate("ownerId")
 		.populate("tasks")
 		.lean();
+
+	await UserModel.findByIdAndUpdate(userId, {
+		$push: { projects: projectId },
+	});
+	
 	return updatedProject;
 }
 
