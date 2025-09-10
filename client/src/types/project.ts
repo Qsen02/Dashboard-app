@@ -6,7 +6,7 @@ export interface Project {
 	name: string;
 	tasks: Task[];
 	members: User[];
-	ownerId: User[];
+	ownerId: User;
 	created_at: string;
 	updated_at: string;
 }
