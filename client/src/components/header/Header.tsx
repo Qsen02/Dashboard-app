@@ -49,6 +49,7 @@ export default function Header() {
 					  ))
 					: ""}
 			</ul>
+			<p>Hello, {user?.username}</p>
 			<i
 				className="fa-solid fa-circle-half-stroke"
 				onClick={changeTheme}

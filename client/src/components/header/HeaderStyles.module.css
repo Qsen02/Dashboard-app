@@ -10,7 +10,7 @@
 }
 
 .wrapper ul {
-	flex-basis: 80%;
+	flex-basis: 70%;
 	padding-left: 50px;
 	display: flex;
 	justify-content: flex-start;
@@ -39,6 +39,10 @@
 	cursor: pointer;
 }
 
+.wrapper p {
+	font-size: 16pt;
+}
+
 @media (max-width: 1000px) {
 	.wrapper {
 		gap: 30px;
@@ -54,31 +58,37 @@
 	.wrapper i {
 		font-size: 14pt;
 	}
+	.wrapper p {
+		font-size: 14pt;
+	}
 }
 
-@media(max-width:500px){
-    .wrapper {
+@media (max-width: 500px) {
+	.wrapper {
 		width: auto;
 		gap: 15px;
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        text-align: center;
-        padding: 10px;
+		flex-direction: column;
+		align-items: center;
+		height: auto;
+		text-align: center;
+		padding: 10px;
 	}
-    .wrapper ul {
+	.wrapper ul {
 		font-size: 12pt;
 		gap: 10px;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        padding-left: 0;
-        justify-content: center;
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+		padding-left: 0;
+		justify-content: center;
 	}
-    .wrapper button{
-        padding: 5px 10px 5px 10px;
-    }
-    .wrapper i{
-        font-size: 12pt;
-    }
+	.wrapper button {
+		padding: 5px 10px 5px 10px;
+	}
+	.wrapper i {
+		font-size: 12pt;
+	}
+	.wrapper p {
+		font-size: 12pt;
+	}
 }
