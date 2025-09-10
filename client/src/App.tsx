@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer";
 import Logout from "./components/logout/Logout";
 import NotFound from "./components/not_found/NotFound";
 import CreateProject from "./components/create_project/CreateProject";
+import ProjectDetails from "./components/project_details/ProjectDetails";
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/logout" element={<Logout/>}/>
 						<Route path="/create" element={<CreateProject/>}/>
+						<Route path="/projects/:projectId" element={<ProjectDetails/>}/>
 					</Route>
 					<Route element={<GuestGuard />}>
 						<Route
