@@ -1,0 +1,50 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+    border-bottom: 2px solid grey;
+}
+
+.buttonWrapper {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+}
+
+.buttonWrapper button {
+	padding: 5px 20px 5px 20px;
+	border-radius: 20px;
+	cursor: pointer;
+	background-color: rgb(183, 120, 241);
+	color: white;
+	border: none;
+	font-size: 12pt;
+}
+
+.buttonWrapper button:hover {
+	background-color: rgb(146, 62, 224);
+}
+
+.buttonWrapper i {
+	color: rgb(0, 210, 0);
+	font-size: 16pt;
+}
+
+@media (max-width: 1000px) {
+	.buttonWrapper i {
+		font-size: 14pt;
+	}
+}
+
+@media (max-width: 500px) {
+	.buttonWrapper button {
+		padding: 5px 10px 5px 10px;
+		font-size: 10pt;
+	}
+
+	.buttonWrapper i {
+		font-size: 12pt;
+	}
+}

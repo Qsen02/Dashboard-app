@@ -1,11 +1,13 @@
 import { Project } from "./project";
 
+export type UserRole = "admin" | "user" | "programmer";
+
 export interface User {
 	_id: string;
 	username: string;
 	email: string;
 	password: string;
-	role: "admin" | "user" | "programmer";
+	role: UserRole;
 	projects: Project[];
 	profileImage?: string;
 	created_at: string;
@@ -17,7 +19,7 @@ export interface UserForAuth {
 	username: string;
 	email: string;
 	profileImage?: string;
-	role: "admin" | "user" | "programmer";
+	role: UserRole;
 	accessToken: string;
 }
 

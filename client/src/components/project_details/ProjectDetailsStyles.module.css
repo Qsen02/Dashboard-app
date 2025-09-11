@@ -83,13 +83,7 @@
 	border: none;
 }
 
-.dashboardBody > article > p {
-	border-bottom: 2px solid grey;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.dashboardBody > article > p:last-child {
+.dashboardBody > article > article:last-child{
 	border: none;
 }
 

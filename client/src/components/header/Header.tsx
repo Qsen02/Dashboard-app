@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
 	const { user } = useSelector((state: RootState) => state.user);
 	const dispatch = useDispatch();
-    const navigate=useNavigate();
+	const navigate = useNavigate();
 
 	const userNav = [
 		{ name: "Home", link: "/" },
@@ -49,7 +49,7 @@ export default function Header() {
 					  ))
 					: ""}
 			</ul>
-			<p>Hello, {user?.username}</p>
+			{user ? <p>Hello, {user.username}</p> : ""}
 			<i
 				className="fa-solid fa-circle-half-stroke"
 				onClick={changeTheme}

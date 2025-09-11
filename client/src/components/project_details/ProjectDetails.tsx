@@ -82,7 +82,6 @@ export default function ProjectDetails() {
 											title={el.title}
 											description={el.description}
 											user={user}
-											theme={theme}
 											status={el.status}
 											owner={project.ownerId}
 										/>
@@ -98,7 +97,6 @@ export default function ProjectDetails() {
 											title={el.title}
 											description={el.description}
 											user={user}
-											theme={theme}
 											status={el.status}
 											owner={project.ownerId}
 										/>
@@ -114,7 +112,6 @@ export default function ProjectDetails() {
 											title={el.title}
 											description={el.description}
 											user={user}
-											theme={theme}
 											status={el.status}
 											owner={project.ownerId}
 										/>

@@ -30,17 +30,21 @@ export default function Home() {
 				</div>
 			) : (
 				<section className={styles.container}>
-					<div
-						className={`${styles.plusContainer} ${
-							theme === "light"
-								? "lightThemeSmoked"
-								: "darkThemeLighter"
-						}`}
-						title="Create new project"
-						onClick={openCreateForm}
-					>
-						<i className="fa-solid fa-plus"></i>
-					</div>
+					{user?.role === "admin" ? (
+						<div
+							className={`${styles.plusContainer} ${
+								theme === "light"
+									? "lightThemeSmoked"
+									: "darkThemeLighter"
+							}`}
+							title="Create new project"
+							onClick={openCreateForm}
+						>
+							<i className="fa-solid fa-plus"></i>
+						</div>
+					) : (
+						""
+					)}
 					<h2>The projects you are involved in</h2>
 					<section className={styles.projectWrapper}>
 						{projects.length > 0 ? (
