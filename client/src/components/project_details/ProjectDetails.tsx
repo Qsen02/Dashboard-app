@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { RootState } from "../../redux/state/store";
 import { useGetOneProject } from "../../hooks/useProjects";
 import styles from "./ProjectDetailsStyles.module.css";
+import TaskItem from "../../commons/task_item/TaskItem";
 
 export default function ProjectDetails() {
 	const { theme } = useSelector((state: RootState) => state.theme);
@@ -53,7 +54,13 @@ export default function ProjectDetails() {
                                 ${styles.dashboardWrapper}
 						`}
 					>
-						<section className={styles.dashboardHeader}>
+						<section
+							className={`${styles.dashboardHeader} ${
+								theme === "light"
+									? "lightThemeSmoked"
+									: "darkThemeLighter"
+							}`}
+						>
 							<article>
 								<p>Pending</p>
 							</article>
@@ -69,21 +76,48 @@ export default function ProjectDetails() {
 								{project?.tasks
 									.filter((el) => el.status === "pending")
 									.map((el) => (
-										<p key={el._id}>{el.title}</p>
+										<TaskItem
+											key={el._id}
+											id={el._id}
+											title={el.title}
+											description={el.description}
+											user={user}
+											theme={theme}
+											status={el.status}
+											owner={project.ownerId}
+										/>
 									))}
 							</article>
 							<article>
 								{project?.tasks
 									.filter((el) => el.status === "in-progress")
 									.map((el) => (
-										<p key={el._id}>{el.title}</p>
+										<TaskItem
+											key={el._id}
+											id={el._id}
+											title={el.title}
+											description={el.description}
+											user={user}
+											theme={theme}
+											status={el.status}
+											owner={project.ownerId}
+										/>
 									))}
 							</article>
 							<article>
 								{project?.tasks
 									.filter((el) => el.status === "completed")
 									.map((el) => (
-										<p key={el._id}>{el.title}</p>
+										<TaskItem
+											key={el._id}
+											id={el._id}
+											title={el.title}
+											description={el.description}
+											user={user}
+											theme={theme}
+											status={el.status}
+											owner={project.ownerId}
+										/>
 									))}
 							</article>
 						</section>

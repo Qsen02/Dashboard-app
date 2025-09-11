@@ -74,22 +74,22 @@
 	justify-content: space-around;
 }
 
-.dashboardBody article {
+.dashboardBody > article {
 	flex-basis: 33%;
 	border-right: 2px solid grey;
 }
 
-.dashboardBody article:last-child {
+.dashboardBody > article:last-child {
 	border: none;
 }
 
-.dashboardBody article p {
+.dashboardBody > article > p {
 	border-bottom: 2px solid grey;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
-.dashboardBody article p:last-child {
+.dashboardBody > article > p:last-child {
 	border: none;
 }
 
@@ -98,7 +98,7 @@
 		padding: 10px 20px 10px 20px;
 		font-size: 12pt;
 	}
-	.dashboardHeader article {
+	.dashboardHeader > article {
 		font-size: 14pt;
 	}
 }
@@ -108,7 +108,7 @@
 		padding: 5px 10px 5px 10px;
 		font-size: 10pt;
 	}
-	.dashboardHeader article {
+	.dashboardHeader > article {
 		font-size: 12pt;
 	}
 }
