@@ -7,6 +7,7 @@ import {
 	deleteProject,
 	editProjectName,
 	getProjectById,
+	getProjectMembers,
 } from "../services/project";
 import { isUser } from "../middlewares/guard";
 import { body, validationResult } from "express-validator";
@@ -15,6 +16,16 @@ import { errorParser } from "../utils/error_parser";
 import { checkUserId } from "../services/user";
 
 const projectRouter = Router();
+
+projectRouter.get("/:projectId/members", isUser(), async (req, res) => {
+	const projectId = req.params.projectId;
+	const isValid = await checkProjectId(projectId);
+	if (!isValid) {
+		return res.status(404).json({ message: "Resource not found" });
+	}
+	const members=await getProjectMembers(projectId);
+	res.json(members);
+});
 
 projectRouter.get("/:projectId", isUser(), async (req, res) => {
 	try {
@@ -35,7 +46,7 @@ projectRouter.post(
 	isUser(),
 	body("name")
 		.isString()
-		.isLength({ min: 3,max:30 })
+		.isLength({ min: 3, max: 30 })
 		.withMessage(
 			"Project name is required and should be between 3 and 30 characters long!"
 		),

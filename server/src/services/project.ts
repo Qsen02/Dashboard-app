@@ -101,6 +101,12 @@ async function deleteProject(projectId: string) {
 	return deletedProject;
 }
 
+async function getProjectMembers(projectId:string){
+	const project = await ProjectModel.findById(projectId).populate("members").lean();
+
+	return project?.members;
+}
+
 async function checkProjectId(projectId: string) {
 	const project = await ProjectModel.findById(projectId).lean();
 	if (!project) {
@@ -117,4 +123,5 @@ export {
 	editProjectName,
 	deleteProject,
 	checkProjectId,
+	getProjectMembers
 };

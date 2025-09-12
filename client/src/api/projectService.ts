@@ -1,4 +1,5 @@
 import { Project } from "../types/project";
+import { User } from "../types/user";
 import { del, get, post, put } from "./requester";
 
 const endpoint = "projects";
@@ -6,6 +7,11 @@ const endpoint = "projects";
 export async function getProjectById(projectId: string) {
 	const project = await get(`${endpoint}/${projectId}`);
 	return project as Project;
+}
+
+export async function getProjectMembers(projectId: string) {
+	const members = await get(`${endpoint}/${projectId}/members`);
+	return members as User[];
 }
 
 export async function createProject(data: object) {
@@ -37,6 +43,6 @@ export async function editProjectName(projectId: string, data: object) {
 	return updatedProject as Project;
 }
 
-export async function deleteProject(projectId:string){
-    await del(`${endpoint}/${projectId}/delete`);
+export async function deleteProject(projectId: string) {
+	await del(`${endpoint}/${projectId}/delete`);
 }

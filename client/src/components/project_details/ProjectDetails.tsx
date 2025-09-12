@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { RootState } from "../../redux/state/store";
 import { useGetOneProject } from "../../hooks/useProjects";
 import styles from "./ProjectDetailsStyles.module.css";
@@ -13,6 +13,7 @@ export default function ProjectDetails() {
 
 	return (
 		<>
+			<Outlet />
 			{loading && !error ? (
 				<span className="loader"></span>
 			) : error ? (
