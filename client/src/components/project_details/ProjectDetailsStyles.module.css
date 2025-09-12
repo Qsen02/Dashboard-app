@@ -18,6 +18,7 @@
 	display: flex;
 	gap: 20px;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .buttonWrapper button {
@@ -72,6 +73,8 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
+	height: 70vh;
+	overflow: auto;
 }
 
 .dashboardBody > article {
@@ -80,10 +83,6 @@
 }
 
 .dashboardBody > article:last-child {
-	border: none;
-}
-
-.dashboardBody > article > article:last-child{
 	border: none;
 }
 
@@ -98,11 +97,18 @@
 }
 
 @media (max-width: 500px) {
+	.dashboardWrapper {
+		width: 107%;
+	}
 	.buttonWrapper button {
 		padding: 5px 10px 5px 10px;
 		font-size: 10pt;
 	}
 	.dashboardHeader > article {
 		font-size: 12pt;
+	}
+	.dashboardBody > article {
+		flex-basis: 33%;
+		border-right: 2px solid grey;
 	}
 }
