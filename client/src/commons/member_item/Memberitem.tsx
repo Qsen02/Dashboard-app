@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Theme } from "../../types/user";
 import styles from "./MemberItemStyles.module.css";
+import { profileImageError } from "../../utils/imageErrors";
 
 interface MemberItemProp {
 	id: string;
@@ -25,7 +26,7 @@ export default function MemberItem({
 			`}
 		>
 			<Link to={`/profile/${id}`}>
-				<img src={profileImage} alt={username} />
+				<img src={profileImage} alt={username} onError={profileImageError}/>
 			</Link>
 			<h3>{username}</h3>
 			<p>{email}</p>
