@@ -12,6 +12,7 @@ import CreateProject from "./components/create_project/CreateProject";
 import ProjectDetails from "./components/project_details/ProjectDetails";
 import Members from "./components/project_details/members/Members";
 import AddTask from "./components/project_details/add_task/AddTask";
+import ProjectDelete from "./components/project_details/delete_project/ProjectDelete";
 
 function App() {
 	return (
@@ -29,6 +30,7 @@ function App() {
 						>
 							<Route path="members" element={<Members />} />
 							<Route path="add-task" element={<AddTask/>}/>
+							<Route path="delete" element={<ProjectDelete/>}/>
 						</Route>
 					</Route>
 					<Route element={<GuestGuard />}>

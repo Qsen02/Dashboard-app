@@ -16,7 +16,7 @@ export default function ProjectDetails() {
 
 	return (
 		<>
-			<Outlet context={{ setProjectHandler: setProject }} />
+			<Outlet context={{ setProjectHandler: setProject, projectName:project?.name}} />
 			{loading && !error ? (
 				<span className="loader"></span>
 			) : error ? (

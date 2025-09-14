@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
 	addTaskToProject,
 	createProject,
+	deleteProject,
 	getProjectById,
 	getProjectMembers,
 } from "../api/projectService";
@@ -102,4 +103,10 @@ export function useAddTask() {
 	return async function (projectId: string | undefined, data: object) {
 		return await addTaskToProject(projectId, data);
 	};
+}
+
+export function useDeleteProject(){
+	return async function (projectId:string|undefined){
+		return await deleteProject(projectId);
+	}
 }

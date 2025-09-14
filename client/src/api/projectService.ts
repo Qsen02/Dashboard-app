@@ -46,6 +46,6 @@ export async function editProjectName(projectId: string, data: object) {
 	return updatedProject as Project;
 }
 
-export async function deleteProject(projectId: string) {
+export async function deleteProject(projectId: string | undefined) {
 	await del(`${endpoint}/${projectId}/delete`);
 }
