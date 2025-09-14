@@ -46,6 +46,7 @@ export function useGetOneProject(
 
 	return {
 		project,
+		setProject,
 		loading,
 		error,
 	};

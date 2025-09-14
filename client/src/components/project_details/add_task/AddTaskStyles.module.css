@@ -1,0 +1,11 @@
+.wrapper {
+	border-radius: 10px;
+	padding: 20px;
+	width: 30vw;
+}
+
+.buttons {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+}

@@ -9,11 +9,14 @@ export default function ProjectDetails() {
 	const { theme } = useSelector((state: RootState) => state.theme);
 	const { user } = useSelector((state: RootState) => state.user);
 	const { projectId } = useParams();
-	const { project, error, loading } = useGetOneProject(null, projectId);
+	const { project, setProject, error, loading } = useGetOneProject(
+		null,
+		projectId
+	);
 
 	return (
 		<>
-			<Outlet />
+			<Outlet context={{ setProjectHandler: setProject }} />
 			{loading && !error ? (
 				<span className="loader"></span>
 			) : error ? (
