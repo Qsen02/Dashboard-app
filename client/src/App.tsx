@@ -11,6 +11,7 @@ import NotFound from "./components/not_found/NotFound";
 import CreateProject from "./components/create_project/CreateProject";
 import ProjectDetails from "./components/project_details/ProjectDetails";
 import Members from "./components/project_details/members/Members";
+import AddTask from "./components/project_details/add_task/AddTask";
 
 function App() {
 	return (
@@ -20,10 +21,14 @@ function App() {
 				<Routes>
 					<Route element={<UserGuard />}>
 						<Route path="/" element={<Home />} />
-						<Route path="/logout" element={<Logout/>}/>
-						<Route path="/create" element={<CreateProject/>}/>
-						<Route path="/projects/:projectId" element={<ProjectDetails/>}>
-						<Route path="members" element={<Members/>}/>
+						<Route path="/logout" element={<Logout />} />
+						<Route path="/create" element={<CreateProject />} />
+						<Route
+							path="/projects/:projectId"
+							element={<ProjectDetails />}
+						>
+							<Route path="members" element={<Members />} />
+							<Route path="add-task" element={<AddTask/>}/>
 						</Route>
 					</Route>
 					<Route element={<GuestGuard />}>
@@ -32,10 +37,10 @@ function App() {
 							element={<RegistrationWrapper />}
 						/>
 					</Route>
-					<Route path="*" element={<NotFound/>}/>
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Main>
-			<Footer/>
+			<Footer />
 		</>
 	);
 }
