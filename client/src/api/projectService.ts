@@ -38,7 +38,7 @@ export async function addTaskToProject(
 	return updatedProject as Project;
 }
 
-export async function editProjectName(projectId: string, data: object) {
+export async function editProjectName(projectId: string | undefined, data: object) {
 	const updatedProject = await put(
 		`${endpoint}/project-name/${projectId}/edit`,
 		data

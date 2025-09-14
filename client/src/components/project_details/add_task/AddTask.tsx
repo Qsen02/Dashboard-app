@@ -103,8 +103,8 @@ export default function AddTask() {
 							/>
 						</div>
 						<div className={styles.buttons}>
-							<button onClick={onBack}>Cancel</button>
-							<button>Add</button>
+							<button type="button" onClick={onBack}>Cancel</button>
+							<button type="submit">Add</button>
 						</div>
 					</Form>
 				)}

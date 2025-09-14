@@ -3,6 +3,7 @@ import {
 	addTaskToProject,
 	createProject,
 	deleteProject,
+	editProjectName,
 	getProjectById,
 	getProjectMembers,
 } from "../api/projectService";
@@ -108,5 +109,11 @@ export function useAddTask() {
 export function useDeleteProject(){
 	return async function (projectId:string|undefined){
 		return await deleteProject(projectId);
+	}
+}
+
+export function useEditProject(){
+	return async function (projectId:string | undefined, data:object){
+		return await editProjectName(projectId,data);
 	}
 }
