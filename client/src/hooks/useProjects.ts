@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { createProject, getProjectById, getProjectMembers } from "../api/projectService";
+import {
+	addTaskToProject,
+	createProject,
+	getProjectById,
+	getProjectMembers,
+} from "../api/projectService";
 import { Project } from "../types/project";
 import { useLoadingError } from "./useLoadingError";
 import { User } from "../types/user";
@@ -87,6 +92,14 @@ export function useGetProjectMembers(
 	}, []);
 
 	return {
-		members,loading,error
-	}
+		members,
+		loading,
+		error,
+	};
+}
+
+export function useAddTask() {
+	return async function (projectId: string | undefined, data: object) {
+		return await addTaskToProject(projectId, data);
+	};
 }

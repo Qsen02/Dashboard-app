@@ -9,3 +9,15 @@
 	gap: 30px;
 	justify-content: center;
 }
+
+@media (max-width: 1000px) {
+	.wrapper {
+		width: 50vw;
+	}
+}
+
+@media (max-width: 500px) {
+	.wrapper {
+		width: 80vw;
+	}
+}

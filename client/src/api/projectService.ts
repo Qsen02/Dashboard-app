@@ -27,7 +27,10 @@ export async function addMemberToProject(userId: string, projectId: string) {
 	return updatedProject as Project;
 }
 
-export async function addTaskToProject(projectId: string, data: object) {
+export async function addTaskToProject(
+	projectId: string | undefined,
+	data: object
+) {
 	const updatedProject = await put(
 		`${endpoint}/add-task/in/${projectId}`,
 		data

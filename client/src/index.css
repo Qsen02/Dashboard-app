@@ -112,6 +112,7 @@ main {
 	font-size: 14pt;
 	font-family: Arial, Helvetica, sans-serif;
 	border: 1px solid rgb(93, 93, 93);
+	resize: none;
 }
 
 .input i {

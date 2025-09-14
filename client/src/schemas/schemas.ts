@@ -52,3 +52,17 @@ export const createProjectSchema = yup.object().shape({
 		)
 		.required("Project name is requred!"),
 });
+
+export const addTaskSchema = yup.object().shape({
+	title: yup
+		.string()
+		.min(3, "Title is required and should be at least 3 characters long!")
+		.required("Title is required!"),
+	description: yup
+		.string()
+		.min(
+			10,
+			"Description is required and should be at least 10 characters long!"
+		)
+		.required("Description is required!"),
+});
