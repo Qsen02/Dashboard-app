@@ -73,7 +73,6 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	height: 70vh;
 	overflow: auto;
 }
 
@@ -83,6 +82,10 @@
 }
 
 .dashboardBody > article:last-child {
+	border: none;
+}
+
+.dashboardBody> article > article:last-child{
 	border: none;
 }
 

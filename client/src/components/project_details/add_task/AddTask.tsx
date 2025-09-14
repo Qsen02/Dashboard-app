@@ -72,6 +72,7 @@ export default function AddTask() {
 								: "darkThemeNormal"
 						} ${styles.wrapper}`}
 					>
+						<h2>Add new task</h2>
 						{isErr ? <p className="error">{errMessage}</p> : ""}
 						<div className="input">
 							<CustomInput

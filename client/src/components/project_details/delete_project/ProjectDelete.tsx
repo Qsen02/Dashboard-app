@@ -32,7 +32,7 @@ export default function ProjectDelete() {
 					theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
 				}`}
 			>
-				<h2>Are you sure you want to delete {projectName} project?</h2>
+				<h2>Are you sure you want to delete {projectName}?</h2>
 				<div className={styles.buttons}>
 					<button onClick={onDelete}>Yes</button>
 					<button onClick={onBack}>No</button>
