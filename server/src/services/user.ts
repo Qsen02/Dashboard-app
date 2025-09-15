@@ -110,8 +110,8 @@ async function searchUsers(userId: string | undefined, query: string) {
 	const users = await UserModel.find({
 		username: { $regex: query, $options: "i" },
 	}).lean();
-	console.log(users.map((el) => el._id));
-	if (userId) {
+	const isSearches = await SearchesModel.findOne({ userId: userId }).lean();
+	if (userId && isSearches) {
 		await SearchesModel.findOneAndUpdate(
 			{ userId: userId },
 			{
