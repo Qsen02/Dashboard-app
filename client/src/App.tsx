@@ -14,6 +14,7 @@ import Members from "./components/project_details/members/Members";
 import AddTask from "./components/project_details/add_task/AddTask";
 import ProjectDelete from "./components/project_details/delete_project/ProjectDelete";
 import ProjectEdit from "./components/project_details/edit_project/ProjectEdit";
+import AddMember from "./components/project_details/add_member/AddMember";
 
 function App() {
 	return (
@@ -33,6 +34,7 @@ function App() {
 							<Route path="add-task" element={<AddTask/>}/>
 							<Route path="delete" element={<ProjectDelete/>}/>
 							<Route path="edit" element={<ProjectEdit/>}/>
+							<Route path="add-member" element={<AddMember/>}/>
 						</Route>
 					</Route>
 					<Route element={<GuestGuard />}>

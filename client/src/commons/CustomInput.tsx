@@ -8,6 +8,7 @@ interface CustomInputProps {
 	value: string;
 	id:string;
 	autoComplete?:string;
+	placeholder?:string;
 }
 
 export default function CustomInput({ label, ...props }: CustomInputProps) {
