@@ -1,0 +1,92 @@
+.wrapper {
+	position: relative;
+	width: 50vw;
+	height: 70vh;
+	padding: 20px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center;
+	text-align: center;
+}
+
+.wrapper > button {
+	position: absolute;
+	color: grey;
+	font-size: 20pt;
+	top: 10px;
+	right: 15px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.wrapper > button:hover {
+	color: lightgray;
+}
+
+.inputWrapper input {
+	border-radius: 20px;
+	width: 90%;
+}
+
+.inputWrapper button {
+	position: absolute;
+	top: 0;
+	right: 40px;
+	padding: 9px 20px 9px 20px;
+	background-color: transparent;
+	border-left: 1.5px solid grey;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	color: grey;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputWrapper button:hover {
+	color: lightgrey;
+	background-color: transparent;
+}
+
+.inputWrapper button i {
+	position: static;
+	font-size: 14pt;
+}
+
+@media (max-width: 1000px) {
+	.wrapper {
+		width: 70vw;
+	}
+
+	.inputWrapper button i {
+		font-size: 12pt;
+	}
+	.inputWrapper button {
+        top:1px;
+	}
+
+    .wrapper > button {
+        font-size: 18pt;
+    }
+}
+
+@media(max-width:500px){
+    	.wrapper {
+		width: 80vw;
+	}
+
+	.inputWrapper button {
+		right: 20px;
+        top:1px;
+         padding: 9px 15px 9px 15px;
+	}
+
+    .wrapper > button {
+        font-size: 16pt;
+    }
+}

@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import CustomInput from "../../../commons/CustomInput";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/state/store";
+import styles from "./AddMemberStyles.module.css";
 
 export default function AddMember() {
 	const { theme } = useSelector((state: RootState) => state.theme);
@@ -20,13 +21,17 @@ export default function AddMember() {
 
 	return (
 		<div className="modal">
-			<section>
+			<section
+				className={`${styles.wrapper} ${
+					theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
+				}`}
+			>
 				<button onClick={onBack}>X</button>
 				<Formik initialValues={formValues} onSubmit={onSearch}>
 					{(props) => (
-						<Form>
+						<Form className="form">
 							<h2>Search users</h2>
-							<div className="input">
+							<div className={`input ${styles.inputWrapper}`}>
 								<CustomInput
 									type="text"
 									name="query"
@@ -39,10 +44,10 @@ export default function AddMember() {
 											: "darkThemeLighter"
 									}
 								/>
+								<button type="submit">
+									<i className="fa-solid fa-magnifying-glass"></i>
+								</button>
 							</div>
-							<button type="submit">
-								<i className="fa-solid fa-magnifying-glass"></i>
-							</button>
 						</Form>
 					)}
 				</Formik>
