@@ -32,8 +32,11 @@ userRouter.get("/logout", isUser(), async (req: MyRequest, res) => {
 
 userRouter.get("/search/:value", isUser(), async (req: MyRequest, res) => {
 	try {
-		const query = req.params.value;
+		let query = req.params.value;
 		const user = req.user;
+		if (query === "No value") {
+			query = "";
+		}
 		const users = await searchUsers(user?._id, query);
 		res.json(users);
 	} catch (err) {

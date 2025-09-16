@@ -5,6 +5,7 @@ import {
 	login,
 	logout,
 	register,
+	searchUsers,
 } from "../api/userService";
 import { Project } from "../types/project";
 import { useLoadingError } from "./useLoadingError";
@@ -100,6 +101,14 @@ export function useGetLatestUsers(initValues: []) {
 		users,
 		setUsers,
 		loading,
+		setLoading,
 		error,
+		setError
 	};
+}
+
+export function useSearchUsers(){
+	return async function (query:string){
+		return await searchUsers(query);
+	}
 }
