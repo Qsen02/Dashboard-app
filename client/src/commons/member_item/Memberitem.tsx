@@ -7,16 +7,16 @@ interface MemberItemProp {
 	id: string;
 	profileImage: string | undefined;
 	username: string;
-	email: string;
 	theme: Theme | null;
+	flag: "Add" | "List";
 }
 
 export default function MemberItem({
 	id,
 	profileImage,
 	username,
-	email,
 	theme,
+	flag,
 }: MemberItemProp) {
 	return (
 		<article
@@ -26,10 +26,14 @@ export default function MemberItem({
 			`}
 		>
 			<Link to={`/profile/${id}`}>
-				<img src={profileImage} alt={username} onError={profileImageError}/>
+				<img
+					src={profileImage}
+					alt={username}
+					onError={profileImageError}
+				/>
 			</Link>
 			<h3>{username}</h3>
-			<p>{email}</p>
+			{flag === "List" ? <button>Remove</button> : <button>Add</button>}
 		</article>
 	);
 }

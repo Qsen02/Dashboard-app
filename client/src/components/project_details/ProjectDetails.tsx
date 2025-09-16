@@ -16,7 +16,14 @@ export default function ProjectDetails() {
 
 	return (
 		<>
-			<Outlet context={{ setProjectHandler: setProject, projectName:project?.name}} />
+			<Outlet
+				context={{
+					setProjectHandler: setProject,
+					projectName: project?.name,
+					members: project?.members,
+					owner: project?.ownerId
+				}}
+			/>
 			{loading && !error ? (
 				<span className="loader"></span>
 			) : error ? (

@@ -38,8 +38,8 @@ export default function Members() {
 								id={el._id}
 								profileImage={el.profileImage}
 								username={el.username}
-								email={el.email}
                                 theme={theme}
+								flag="List"
 							/>
 						))
 					)}

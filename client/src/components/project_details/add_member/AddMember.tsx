@@ -4,10 +4,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import styles from "./AddMemberStyles.module.css";
 import { useGetLatestUsers } from "../../../hooks/useUser";
+import { useOutletContext } from "react-router-dom";
+import { ProjectOutletContext } from "../../../types/outlet_context";
+import MemberItem from "../../../commons/member_item/Memberitem";
 
 export default function AddMember() {
 	const { theme } = useSelector((state: RootState) => state.theme);
 	const { users, setUsers, loading, error } = useGetLatestUsers([]);
+	const { members, owner } = useOutletContext<ProjectOutletContext>();
 
 	const formValues = {
 		query: "",
@@ -62,7 +66,30 @@ export default function AddMember() {
 							)}
 						</Formik>
 						<h3>User list</h3>
-						<section></section>
+						<section className={styles.memberWrapper}>
+							{members && owner && users.length > 0 ? (
+								users
+									.filter(
+										(el) =>
+											!members
+												.map((element) => element._id)
+												.includes(el._id)
+											&& owner._id !== el._id
+									)
+									.map((el) => (
+										<MemberItem
+											key={el._id}
+											id={el._id}
+											profileImage={el.profileImage}
+											username={el.username}
+											theme={theme}
+											flag="Add"
+										/>
+									))
+							) : (
+								<h2>No users yet</h2>
+							)}
+						</section>
 					</>
 				)}
 			</section>
