@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import styles from "./AddMemberStyles.module.css";
 import { useGetLatestUsers, useSearchUsers } from "../../../hooks/useUser";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { ProjectOutletContext } from "../../../types/outlet_context";
 import MemberItem from "../../../commons/member_item/Memberitem";
 import { useState } from "react";
@@ -16,6 +16,8 @@ export default function AddMember() {
 	const { members, owner } = useOutletContext<ProjectOutletContext>();
 	const searchUsers = useSearchUsers();
 	const [isSearched, setIsSearched] = useState(false);
+	const { projectId } = useParams();
+	const navigate = useNavigate();
 
 	const formValues = {
 		query: "",
@@ -40,7 +42,7 @@ export default function AddMember() {
 	}
 
 	function onBack() {
-		history.back();
+		navigate(`/projects/${projectId}`);
 	}
 
 	return (
@@ -84,13 +86,7 @@ export default function AddMember() {
 					<section className={styles.memberWrapper}>
 						{members && owner && users.length > 0 ? (
 							users
-								.filter(
-									(el) =>
-										!members
-											.map((element) => element._id)
-											.includes(el._id) &&
-										owner._id !== el._id
-								)
+								.filter((el) => owner._id !== el._id)
 								.map((el) => (
 									<MemberItem
 										key={el._id}
@@ -99,6 +95,8 @@ export default function AddMember() {
 										username={el.username}
 										theme={theme}
 										flag="Add"
+										projectId={projectId}
+										members={members}
 									/>
 								))
 						) : !isSearched ? (

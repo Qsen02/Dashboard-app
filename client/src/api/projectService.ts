@@ -19,7 +19,10 @@ export async function createProject(data: object) {
 	return project as Project;
 }
 
-export async function addMemberToProject(userId: string, projectId: string) {
+export async function addMemberToProject(
+	userId: string,
+	projectId: string | undefined
+) {
 	const updatedProject = await put(
 		`${endpoint}/add-member/${userId}/in/${projectId}`,
 		{}
@@ -38,7 +41,10 @@ export async function addTaskToProject(
 	return updatedProject as Project;
 }
 
-export async function editProjectName(projectId: string | undefined, data: object) {
+export async function editProjectName(
+	projectId: string | undefined,
+	data: object
+) {
 	const updatedProject = await put(
 		`${endpoint}/project-name/${projectId}/edit`,
 		data

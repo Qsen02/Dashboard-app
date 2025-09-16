@@ -13,7 +13,7 @@
 	font-size: 16pt;
 }
 
-.wrapper button {
+.wrapper > button {
 	position: absolute;
 	color: grey;
 	font-size: 20pt;
@@ -24,7 +24,7 @@
 	cursor: pointer;
 }
 
-.wrapper button:hover {
+.wrapper > button:hover {
 	color: lightgray;
 }
 

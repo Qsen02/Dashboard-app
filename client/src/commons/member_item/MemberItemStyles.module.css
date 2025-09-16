@@ -29,6 +29,13 @@
 	background-color: rgb(146, 62, 224);
 }
 
+.messageWrapper {
+	padding: 10px 30px 10px 30px;
+	border-radius: 20px;
+	border: 1.5px solid grey;
+	font-size: 14pt;
+}
+
 @media (max-width: 1000px) {
 	.wrapper img {
 		width: 50px;
@@ -37,6 +44,10 @@
 	.wrapper button {
 		padding: 10px 20px 10px 20px;
 		font-size: 12pt;
+	}
+	.messageWrapper {
+		font-size: 12pt;
+		padding: 10px 20px 10px 20px;
 	}
 }
 
@@ -54,5 +65,9 @@
 	.wrapper button {
 		padding: 5px 10px 5px 10px;
 		font-size: 10pt;
+	}
+	.messageWrapper {
+		font-size: 10pt;
+		padding: 5px 10px 5px 10px;
 	}
 }

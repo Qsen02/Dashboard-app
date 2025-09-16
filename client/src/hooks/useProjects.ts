@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+	addMemberToProject,
 	addTaskToProject,
 	createProject,
 	deleteProject,
@@ -115,5 +116,11 @@ export function useDeleteProject(){
 export function useEditProject(){
 	return async function (projectId:string | undefined, data:object){
 		return await editProjectName(projectId,data);
+	}
+}
+
+export function useAddMember(){
+	return async function (userId:string,projectId:string | undefined){
+		return await addMemberToProject(userId,projectId)
 	}
 }

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { Theme } from "../../types/user";
+import { Theme, User } from "../../types/user";
 import styles from "./MemberItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
+import { useAddMember } from "../../hooks/useProjects";
+import { useState } from "react";
 
 interface MemberItemProp {
 	id: string;
@@ -9,6 +11,8 @@ interface MemberItemProp {
 	username: string;
 	theme: Theme | null;
 	flag: "Add" | "List";
+	projectId?: string;
+	members?: User[];
 }
 
 export default function MemberItem({
@@ -17,7 +21,22 @@ export default function MemberItem({
 	username,
 	theme,
 	flag,
+	projectId,
+	members,
 }: MemberItemProp) {
+	const addMember = useAddMember();
+	const [added, setAdded] = useState(() => {
+		if (members && members.map((el) => el._id).includes(id)) {
+			return true;
+		}
+		return false;
+	});
+
+	async function onAddMember() {
+		await addMember(id, projectId);
+		setAdded(true);
+	}
+
 	return (
 		<article
 			className={`
@@ -33,7 +52,21 @@ export default function MemberItem({
 				/>
 			</Link>
 			<h3>{username}</h3>
-			{flag === "List" ? <button>Remove</button> : <button>Add</button>}
+			{flag === "List" ? (
+				<button>Remove</button>
+			) : !added ? (
+				<button onClick={onAddMember}>Add</button>
+			) : (
+				<div
+					className={`${styles.messageWrapper} ${
+						theme === "light"
+							? "lightThemeSmoked"
+							: "darkThemeLighter"
+					}`}
+				>
+					<p>Added!</p>
+				</div>
+			)}
 		</article>
 	);
 }

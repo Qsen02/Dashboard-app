@@ -40,6 +40,7 @@ export default function Members() {
 								username={el.username}
                                 theme={theme}
 								flag="List"
+								members={members}
 							/>
 						))
 					)}
