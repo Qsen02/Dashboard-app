@@ -8,6 +8,7 @@ import {
 	editProjectName,
 	getProjectById,
 	getProjectMembers,
+	removeMember,
 } from "../services/project";
 import { isUser } from "../middlewares/guard";
 import { body, validationResult } from "express-validator";
@@ -23,7 +24,7 @@ projectRouter.get("/:projectId/members", isUser(), async (req, res) => {
 	if (!isValid) {
 		return res.status(404).json({ message: "Resource not found" });
 	}
-	const members=await getProjectMembers(projectId);
+	const members = await getProjectMembers(projectId);
 	res.json(members);
 });
 
@@ -165,6 +166,29 @@ projectRouter.put(
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Error occurd!" });
+			}
+		}
+	}
+);
+
+projectRouter.put(
+	"/:projectId/remove-member/:userId",
+	isUser(),
+	async (req: MyRequest, res) => {
+		const { projectId, userId } = req.params;
+		try {
+			const isValidProject = await checkProjectId(projectId);
+			const isValidUser = await checkUserId(userId);
+			if (!isValidProject || !isValidUser) {
+				return res.status(404).json({ message: "Resource not found" });
+			}
+			const updatedProject = await removeMember(projectId, userId);
+			res.json(updatedProject);
+		} catch (error) {
+			if (error instanceof Error) {
+				res.status(400).json({ message: error.message });
 			} else {
 				res.status(400).json({ message: "Error occurd!" });
 			}

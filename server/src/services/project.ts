@@ -46,7 +46,7 @@ async function addMember(projectId: string, userId: string) {
 	await UserModel.findByIdAndUpdate(userId, {
 		$push: { projects: projectId },
 	});
-	
+
 	return updatedProject;
 }
 
@@ -101,10 +101,29 @@ async function deleteProject(projectId: string) {
 	return deletedProject;
 }
 
-async function getProjectMembers(projectId:string){
-	const project = await ProjectModel.findById(projectId).populate("members").lean();
+async function getProjectMembers(projectId: string) {
+	const project = await ProjectModel.findById(projectId)
+		.populate("members")
+		.lean();
 
 	return project?.members;
+}
+
+async function removeMember(projectId: string, userId: string) {
+	const updatedProject = await ProjectModel.findByIdAndUpdate(
+		projectId,
+		{ $pull: { members: userId } },
+		{ new: true }
+	)
+		.populate("members")
+		.populate("tasks")
+		.populate("ownerId")
+		.lean();
+	await UserModel.findByIdAndUpdate(userId, {
+		$pull: { projects: projectId },
+	});
+
+	return updatedProject;
 }
 
 async function checkProjectId(projectId: string) {
@@ -123,5 +142,6 @@ export {
 	editProjectName,
 	deleteProject,
 	checkProjectId,
-	getProjectMembers
+	getProjectMembers,
+	removeMember
 };
