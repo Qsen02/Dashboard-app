@@ -55,3 +55,11 @@ export async function editProjectName(
 export async function deleteProject(projectId: string | undefined) {
 	await del(`${endpoint}/${projectId}/delete`);
 }
+
+export async function removeMember(projectId: string | undefined, userId: string) {
+	const updatedProject = await put(
+		`${endpoint}/${projectId}/remove-member/${userId}`,
+		{}
+	);
+	return updatedProject as Project;
+}

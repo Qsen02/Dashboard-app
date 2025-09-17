@@ -8,7 +8,7 @@ import styles from "./MembersStyles.module.css";
 export default function Members() {
 	const { projectId } = useParams();
 	const { theme } = useSelector((state: RootState) => state.theme);
-	const { members, loading, error } = useGetProjectMembers([], projectId);
+	const { members,setMembers, loading, error } = useGetProjectMembers([], projectId);
 
 	function onBack() {
 		history.back();
@@ -39,8 +39,10 @@ export default function Members() {
 								profileImage={el.profileImage}
 								username={el.username}
                                 theme={theme}
+								projectId={projectId}
 								flag="List"
 								members={members}
+								setMembersHandler={setMembers}
 							/>
 						))
 					)}

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Theme, User } from "../../types/user";
 import styles from "./MemberItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
-import { useAddMember } from "../../hooks/useProjects";
+import { useAddMember, useRemoveMember } from "../../hooks/useProjects";
 import { useState } from "react";
 
 interface MemberItemProp {
@@ -13,6 +13,7 @@ interface MemberItemProp {
 	flag: "Add" | "List";
 	projectId?: string;
 	members?: User[];
+	setMembersHandler?: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 export default function MemberItem({
@@ -23,8 +24,11 @@ export default function MemberItem({
 	flag,
 	projectId,
 	members,
+	setMembersHandler,
 }: MemberItemProp) {
 	const addMember = useAddMember();
+	const removeMember = useRemoveMember();
+
 	const [added, setAdded] = useState(() => {
 		if (members && members.map((el) => el._id).includes(id)) {
 			return true;
@@ -35,6 +39,13 @@ export default function MemberItem({
 	async function onAddMember() {
 		await addMember(id, projectId);
 		setAdded(true);
+	}
+
+	async function onRemoveMember() {
+		const updatedProject = await removeMember(projectId, id);
+		if (setMembersHandler) {
+			setMembersHandler(updatedProject.members);
+		}
 	}
 
 	return (
@@ -53,7 +64,7 @@ export default function MemberItem({
 			</Link>
 			<h3>{username}</h3>
 			{flag === "List" ? (
-				<button>Remove</button>
+				<button onClick={onRemoveMember}>Remove</button>
 			) : !added ? (
 				<button onClick={onAddMember}>Add</button>
 			) : (

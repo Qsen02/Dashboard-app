@@ -7,6 +7,7 @@ import {
 	editProjectName,
 	getProjectById,
 	getProjectMembers,
+	removeMember,
 } from "../api/projectService";
 import { Project } from "../types/project";
 import { useLoadingError } from "./useLoadingError";
@@ -96,6 +97,7 @@ export function useGetProjectMembers(
 
 	return {
 		members,
+		setMembers,
 		loading,
 		error,
 	};
@@ -122,5 +124,11 @@ export function useEditProject(){
 export function useAddMember(){
 	return async function (userId:string,projectId:string | undefined){
 		return await addMemberToProject(userId,projectId)
+	}
+}
+
+export function useRemoveMember(){
+	return async function (projectId:string | undefined,userId:string){
+		return await removeMember(projectId,userId);
 	}
 }
