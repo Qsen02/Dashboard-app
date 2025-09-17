@@ -15,6 +15,7 @@ import AddTask from "./components/project_details/add_task/AddTask";
 import ProjectDelete from "./components/project_details/delete_project/ProjectDelete";
 import ProjectEdit from "./components/project_details/edit_project/ProjectEdit";
 import AddMember from "./components/project_details/add_member/AddMember";
+import SuccessfullAction from "./commons/successfull_action/SuccessfullAction";
 
 function App() {
 	return (
@@ -31,10 +32,14 @@ function App() {
 							element={<ProjectDetails />}
 						>
 							<Route path="members" element={<Members />} />
-							<Route path="add-task" element={<AddTask/>}/>
-							<Route path="delete" element={<ProjectDelete/>}/>
-							<Route path="edit" element={<ProjectEdit/>}/>
-							<Route path="add-member" element={<AddMember/>}/>
+							<Route path="add-task" element={<AddTask />} />
+							<Route path="delete" element={<ProjectDelete />} />
+							<Route path="edit" element={<ProjectEdit />} />
+							<Route path="add-member" element={<AddMember />} />
+							<Route
+								path="successfull-action/:username/:flag"
+								element={<SuccessfullAction />}
+							/>
 						</Route>
 					</Route>
 					<Route element={<GuestGuard />}>

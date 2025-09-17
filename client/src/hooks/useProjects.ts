@@ -6,12 +6,10 @@ import {
 	deleteProject,
 	editProjectName,
 	getProjectById,
-	getProjectMembers,
 	removeMember,
 } from "../api/projectService";
 import { Project } from "../types/project";
 import { useLoadingError } from "./useLoadingError";
-import { User } from "../types/user";
 
 export function useCreateProject() {
 	return async function (data: object) {

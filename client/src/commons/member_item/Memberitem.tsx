@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Theme, User } from "../../types/user";
+import { Link, useNavigate } from "react-router-dom";
+import { Theme } from "../../types/user";
 import styles from "./MemberItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
 import { useAddMember, useRemoveMember } from "../../hooks/useProjects";
@@ -26,15 +26,18 @@ export default function MemberItem({
 }: MemberItemProp) {
 	const addMember = useAddMember();
 	const removeMember = useRemoveMember();
+	const navigate=useNavigate();
 
 	async function onAddMember() {
 		const updatedProject = await addMember(id, projectId);
 		setProjectHandler(updatedProject);
+		navigate(`/projects/${projectId}/successfull-action/${username}/add`);
 	}
 
 	async function onRemoveMember() {
 		const updatedProject = await removeMember(projectId, id);
 		setProjectHandler(updatedProject);
+		navigate(`/projects/${projectId}/successfull-action/${username}/remove`);
 	}
 
 	return (

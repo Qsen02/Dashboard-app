@@ -1,0 +1,49 @@
+.wrapper{
+    width: 30vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap:20px;
+    font-size: 12pt;
+}
+
+.wrapper button {
+    padding: 10px 30px 10px 30px;
+	border-radius: 20px;
+	cursor: pointer;
+	background-color: rgb(183, 120, 241);
+	color: white;
+	border: none;
+	font-size: 14pt;
+}
+
+.wrapper button:hover{
+    background-color: rgb(146, 62, 224);
+}
+
+@media(max-width:1000px){
+    .wrapper button{
+        padding: 10px 20px 10px 20px;
+        font-size: 12pt;
+    }
+
+    .wrapper{
+        width: 50vw;
+        font-size: 10pt;
+    }
+}
+
+@media(max-width:500px){
+    .wrapper button{
+        padding: 5px 10px 5px 10px;
+        font-size: 10pt;
+    }
+
+    .wrapper{
+        width: 75vw;
+        font-size: 8pt;
+    }
+}
