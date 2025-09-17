@@ -61,48 +61,6 @@ export function useGetOneProject(
 	};
 }
 
-export function useGetProjectMembers(
-	initValues: [],
-	projectId: string | undefined
-) {
-	const [members, setMembers] = useState<User[]>(initValues);
-	const { loading, setLoading, error, setError } = useLoadingError(
-		false,
-		false
-	);
-
-	useEffect(() => {
-		const controller = new AbortController();
-		const { signal } = controller;
-
-		(async () => {
-			try {
-				setLoading(true);
-				if (!signal.aborted && projectId) {
-					const project = await getProjectMembers(projectId);
-					setMembers(project);
-				}
-				setLoading(false);
-			} catch (err) {
-				setLoading(false);
-				setError(true);
-				return;
-			}
-		})();
-
-		return () => {
-			controller.abort();
-		};
-	}, []);
-
-	return {
-		members,
-		setMembers,
-		loading,
-		error,
-	};
-}
-
 export function useAddTask() {
 	return async function (projectId: string | undefined, data: object) {
 		return await addTaskToProject(projectId, data);

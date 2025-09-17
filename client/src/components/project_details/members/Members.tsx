@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { RootState } from "../../../redux/state/store";
-import { useGetProjectMembers } from "../../../hooks/useProjects";
 import MemberItem from "../../../commons/member_item/Memberitem";
 import styles from "./MembersStyles.module.css";
+import { ProjectOutletContext } from "../../../types/outlet_context";
 
 export default function Members() {
 	const { projectId } = useParams();
 	const { theme } = useSelector((state: RootState) => state.theme);
-	const { members,setMembers, loading, error } = useGetProjectMembers([], projectId);
+	const { setProjectHandler, members } =
+		useOutletContext<ProjectOutletContext>();
 
 	function onBack() {
 		history.back();
@@ -25,24 +26,19 @@ export default function Members() {
 				<button onClick={onBack}>X</button>
 				<h2>List of members</h2>
 				<section className={styles.membersWrapper}>
-					{loading && !error ? (
-						<span className="loader"></span>
-					) : error ? (
-						<p>Server is not responding, please try again later!</p>
-					) : members.length === 0 ? (
+					{members && members.length === 0 ? (
 						<p>No members yet.</p>
 					) : (
-						members.map((el) => (
+						members?.map((el) => (
 							<MemberItem
 								key={el._id}
 								id={el._id}
 								profileImage={el.profileImage}
 								username={el.username}
-                                theme={theme}
+								theme={theme}
 								projectId={projectId}
 								flag="List"
-								members={members}
-								setMembersHandler={setMembers}
+								setProjectHandler={setProjectHandler}
 							/>
 						))
 					)}

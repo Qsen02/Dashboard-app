@@ -3,7 +3,7 @@ import { Theme, User } from "../../types/user";
 import styles from "./MemberItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
 import { useAddMember, useRemoveMember } from "../../hooks/useProjects";
-import { useState } from "react";
+import { Project } from "../../types/project";
 
 interface MemberItemProp {
 	id: string;
@@ -12,8 +12,7 @@ interface MemberItemProp {
 	theme: Theme | null;
 	flag: "Add" | "List";
 	projectId?: string;
-	members?: User[];
-	setMembersHandler?: React.Dispatch<React.SetStateAction<User[]>>;
+	setProjectHandler: React.Dispatch<React.SetStateAction<Project | null>>;
 }
 
 export default function MemberItem({
@@ -23,29 +22,19 @@ export default function MemberItem({
 	theme,
 	flag,
 	projectId,
-	members,
-	setMembersHandler,
+	setProjectHandler,
 }: MemberItemProp) {
 	const addMember = useAddMember();
 	const removeMember = useRemoveMember();
 
-	const [added, setAdded] = useState(() => {
-		if (members && members.map((el) => el._id).includes(id)) {
-			return true;
-		}
-		return false;
-	});
-
 	async function onAddMember() {
-		await addMember(id, projectId);
-		setAdded(true);
+		const updatedProject = await addMember(id, projectId);
+		setProjectHandler(updatedProject);
 	}
 
 	async function onRemoveMember() {
 		const updatedProject = await removeMember(projectId, id);
-		if (setMembersHandler) {
-			setMembersHandler(updatedProject.members);
-		}
+		setProjectHandler(updatedProject);
 	}
 
 	return (
@@ -65,18 +54,8 @@ export default function MemberItem({
 			<h3>{username}</h3>
 			{flag === "List" ? (
 				<button onClick={onRemoveMember}>Remove</button>
-			) : !added ? (
-				<button onClick={onAddMember}>Add</button>
 			) : (
-				<div
-					className={`${styles.messageWrapper} ${
-						theme === "light"
-							? "lightThemeSmoked"
-							: "darkThemeLighter"
-					}`}
-				>
-					<p>Added!</p>
-				</div>
+				<button onClick={onAddMember}>Add</button>
 			)}
 		</article>
 	);

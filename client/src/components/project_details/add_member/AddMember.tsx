@@ -13,7 +13,7 @@ export default function AddMember() {
 	const { theme } = useSelector((state: RootState) => state.theme);
 	const { users, setUsers, loading, setLoading, error, setError } =
 		useGetLatestUsers([]);
-	const { members, owner } = useOutletContext<ProjectOutletContext>();
+	const { members, owner, setProjectHandler } = useOutletContext<ProjectOutletContext>();
 	const searchUsers = useSearchUsers();
 	const [isSearched, setIsSearched] = useState(false);
 	const { projectId } = useParams();
@@ -86,7 +86,13 @@ export default function AddMember() {
 					<section className={styles.memberWrapper}>
 						{members && owner && users.length > 0 ? (
 							users
-								.filter((el) => owner._id !== el._id)
+								.filter(
+									(el) =>
+										!members
+											.map((el) => el._id)
+											.includes(el._id) &&
+										owner._id !== el._id
+								)
 								.map((el) => (
 									<MemberItem
 										key={el._id}
@@ -96,7 +102,7 @@ export default function AddMember() {
 										theme={theme}
 										flag="Add"
 										projectId={projectId}
-										members={members}
+										setProjectHandler={setProjectHandler}
 									/>
 								))
 						) : !isSearched ? (
