@@ -16,6 +16,7 @@ import ProjectDelete from "./components/project_details/delete_project/ProjectDe
 import ProjectEdit from "./components/project_details/edit_project/ProjectEdit";
 import AddMember from "./components/project_details/add_member/AddMember";
 import SuccessfullAction from "./commons/successfull_action/SuccessfullAction";
+import DeleteTask from "./components/project_details/delete_task/DeleteTask";
 
 function App() {
 	return (
@@ -40,6 +41,7 @@ function App() {
 								path="successfull-action/:username/:flag"
 								element={<SuccessfullAction />}
 							/>
+							<Route path="delete/:taskId" element={<DeleteTask/>}/>
 						</Route>
 					</Route>
 					<Route element={<GuestGuard />}>

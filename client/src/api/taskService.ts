@@ -1,3 +1,4 @@
+import { Project } from "../types/project";
 import { Task } from "../types/task";
 import { del, get, post, put } from "./requester";
 
@@ -23,6 +24,7 @@ export async function editTask(taskId: string, data: object) {
 	return updatedTask as Task;
 }
 
-export async function deleteTask(taskId: string, projectId: string) {
-	await del(`${endpoint}/${taskId}/delete/in/${projectId}`);
+export async function deleteTask(taskId: string | undefined, projectId: string | undefined) {
+	const updatedProject = await del(`${endpoint}/${taskId}/delete/in/${projectId}`);
+	return updatedProject as Project;
 }

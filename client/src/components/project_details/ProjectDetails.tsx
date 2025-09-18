@@ -95,6 +95,7 @@ export default function ProjectDetails() {
 											user={user}
 											status={el.status}
 											owner={project.ownerId}
+											projectId={projectId}
 										/>
 									))}
 							</article>
@@ -110,6 +111,7 @@ export default function ProjectDetails() {
 											user={user}
 											status={el.status}
 											owner={project.ownerId}
+											projectId={projectId}
 										/>
 									))}
 							</article>
@@ -125,6 +127,7 @@ export default function ProjectDetails() {
 											user={user}
 											status={el.status}
 											owner={project.ownerId}
+											projectId={projectId}
 										/>
 									))}
 							</article>

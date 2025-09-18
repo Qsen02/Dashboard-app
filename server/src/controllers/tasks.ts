@@ -138,8 +138,8 @@ taskRouter.delete(
 			if (!isValidProject || !isValidTask) {
 				return res.status(404).json({ message: "Resource not found" });
 			}
-			await deleteTask(taskId, projectId);
-			res.status(200).json({ message: "Task deleted successfully!" });
+			const updatedProject = await deleteTask(taskId, projectId);
+			res.status(200).json(updatedProject);
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });
