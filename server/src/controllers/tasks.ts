@@ -109,12 +109,12 @@ taskRouter.put(
 			if (!results.isEmpty()) {
 				throw new Error(errorParser(results));
 			}
-			const updatedTask = await editTask(
+			const updatedProject = await editTask(
 				taskId,
 				fields.title,
 				fields.description
 			);
-			res.json(updatedTask);
+			res.json(updatedProject);
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });

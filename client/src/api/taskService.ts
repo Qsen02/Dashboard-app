@@ -19,9 +19,9 @@ export async function changeTaskStatus(taskId: string, data: object) {
 	return updatedTask as Task;
 }
 
-export async function editTask(taskId: string, data: object) {
+export async function editTask(taskId: string | undefined, data: object) {
 	const updatedTask = await put(`${endpoint}/${taskId}/edit`, data);
-	return updatedTask as Task;
+	return updatedTask as Project;
 }
 
 export async function deleteTask(taskId: string | undefined, projectId: string | undefined) {

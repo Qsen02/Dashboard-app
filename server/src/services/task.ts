@@ -61,16 +61,16 @@ async function deleteTask(taskId: string, projectId: string) {
 }
 
 async function editTask(taskId: string, title: string, description: string) {
-	const updatedTask = await TaskModel.findByIdAndUpdate(
-		taskId,
-		{ $set: { title, description } },
-		{ new: true }
-	)
-		.populate("appliedBy")
+	const updatedTask = await TaskModel.findByIdAndUpdate(taskId, {
+		$set: { title, description },
+	}).lean();
+	const updatedProject = await ProjectModel.findById(updatedTask?.projectId)
+		.populate("members")
+		.populate("tasks")
 		.populate("ownerId")
-		.populate("projectId")
 		.lean();
-	return updatedTask;
+
+	return updatedProject;
 }
 
 async function checkTaskId(taskId: string) {
