@@ -32,13 +32,21 @@ export default function TaskItem({
 		}
 	}
 
+	function navigateToEdit() {
+		if (projectId) {
+			navigate(`/projects/${projectId}/edit/${id}`);
+		} else {
+			navigate("404");
+		}
+	}
+
 	return (
 		<article className={styles.wrapper}>
 			<h3>{title}</h3>
 			<p>{description}</p>
 			{user?._id === owner._id ? (
 				<div className={styles.buttonWrapper}>
-					<button>Edit</button>
+					<button onClick={navigateToEdit}>Edit</button>
 					<button onClick={navigateToDelete}>Delete</button>
 				</div>
 			) : status === "pending" ? (

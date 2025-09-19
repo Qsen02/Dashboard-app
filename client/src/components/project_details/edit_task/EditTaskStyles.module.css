@@ -1,0 +1,22 @@
+.formWrapper{
+    width: 30vw;
+    border-radius: 10px;
+}
+
+.buttonWrapper{
+    display: flex;
+    gap:30px;
+    justify-content: center;
+}
+
+@media(max-width:1000px){
+    .formWrapper{
+        width: 50vw;
+    }
+}
+
+@media(max-width:500px){
+    .formWrapper{
+        width:80vw;
+    }
+}
