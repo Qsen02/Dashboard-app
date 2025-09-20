@@ -45,11 +45,11 @@ export async function getUserProjects(userId: string) {
 	return projects as Project[];
 }
 
-export async function changeUserRole(userId: string, role: User["role"]) {
-	const updatedUser = await put(
-		`${endpoint}/${userId}/change-role/${role}`,
-		{}
-	);
+export async function changeUserRole(
+	userId: string,
+	role: { role: User["role"] }
+) {
+	const updatedUser = await put(`${endpoint}/${userId}/change-role`, role);
 	return updatedUser as User;
 }
 

@@ -204,16 +204,37 @@ userRouter.post(
 	}
 );
 
-userRouter.put("/:userId/change-role/:role", isUser(), async (req, res) => {
-	const userId = req.params.userId;
-	const newRole = req.params.role;
-	const isValid = await checkUserId(userId);
-	if (!isValid) {
-		return res.status(404).json({ message: "Resource not found!" });
+userRouter.put(
+	"/:userId/change-role",
+	body("role")
+		.isString()
+		.isIn(["user", "admin", "programmer"])
+		.withMessage("Role must be user or admin!"),
+	isUser(),
+	async (req, res) => {
+		const userId = req.params.userId;
+		const fields = req.body;
+		const isValid = await checkUserId(userId);
+		if (!isValid) {
+			return res.status(404).json({ message: "Resource not found!" });
+		}
+		try {
+			const results = validationResult(req);
+			if (!results.isEmpty()) {
+				throw new Error(errorParser(results));
+			}
+			const updatedUser = await changeRole(userId, fields.role);
+			res.json(updatedUser);
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Error occurd!" });
+			}
+			return;
+		}
 	}
-	const updatedUser = await changeRole(userId, newRole);
-	res.json(updatedUser);
-});
+);
 
 userRouter.put(
 	"/:userId/edit",
