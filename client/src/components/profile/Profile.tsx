@@ -1,14 +1,30 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/state/store";
+import { profileImageError } from "../../utils/imageErrors";
+import styles from "./ProfileStyles.module.css";
 
-export default function Profile(){
-    const { theme }=useSelector((state:RootState)=>state.theme);
-    const { user }=useSelector((state:RootState)=>state.user);
-    const dispath=useDispatch();
+export default function Profile() {
+	const { theme } = useSelector((state: RootState) => state.theme);
+	const { user } = useSelector((state: RootState) => state.user);
 
-    return (
-        <div>
-            <p>Profile works {user?._id}</p>
-        </div>
-    )
+	return (
+		<section
+			className={`
+				${theme === "light" ? "lightThemeNormal" : "darkThemeNormal"}
+                ${styles.wrapper}
+			`}
+		>
+			<img
+				src={user?.profileImage}
+				alt={user?.username}
+				onError={profileImageError}
+			/>
+			<h2>{user?.username}</h2>
+			<p>{user?.email}</p>
+			<div className={styles.buttonWrapper}>
+				<button>Change password</button>
+				<button>Edit profile</button>
+			</div>
+		</section>
+	);
 }
