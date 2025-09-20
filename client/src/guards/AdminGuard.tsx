@@ -5,14 +5,18 @@ import { ProjectOutletContext } from "../types/outlet_context";
 
 export default function AdminGuard() {
 	const { user } = useSelector((state: RootState) => state.user);
-	const { setProjectHandler, owner, members, projectName } =
-		useOutletContext<ProjectOutletContext>();
+	const outletContext = useOutletContext<ProjectOutletContext>();
 
 	return (
 		<>
 			{user?.role === "admin" ? (
 				<Outlet
-					context={{ setProjectHandler, owner, members, projectName }}
+					context={{
+						setProjectHandler: outletContext?.setProjectHandler,
+						owner: outletContext?.owner,
+						members: outletContext?.members,
+						projectName: outletContext?.projectName,
+					}}
 				/>
 			) : (
 				<Navigate to="/" />
