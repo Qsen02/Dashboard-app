@@ -20,6 +20,7 @@ import DeleteTask from "./components/project_details/delete_task/DeleteTask";
 import EditTask from "./components/project_details/edit_task/EditTask";
 import AdminGuard from "./guards/AdminGuard";
 import Profile from "./components/profile/Profile";
+import UserProfile from "./components/user_profile/UserProfile";
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 							<Route path="/create" element={<CreateProject />} />
 						</Route>
 						<Route path="/profile" element={<Profile/>}/>
+						<Route path="/profile/:userId" element={<UserProfile/>}/>
 						<Route
 							path="/projects/:projectId"
 							element={<ProjectDetails />}

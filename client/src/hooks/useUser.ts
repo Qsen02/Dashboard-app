@@ -150,7 +150,6 @@ export function useGetOneUser(
 
 	return {
 		user,
-		setUser,
 		loading,
 		error,
 	};
