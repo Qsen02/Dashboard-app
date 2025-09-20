@@ -62,7 +62,7 @@ export default function TaskItem({
 			<h3>{title}</h3>
 			<p>{description}</p>
 			{appliedBy ? (
-				<div>
+				<div className={styles.userWrapper}>
 					<p>Applied By:</p>
 					<img
 						src={appliedBy.profileImage}

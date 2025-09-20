@@ -4,7 +4,8 @@
 	gap: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-    border-bottom: 2px solid grey;
+	border-bottom: 2px solid grey;
+	font-size: 14pt;
 }
 
 .buttonWrapper {
@@ -32,13 +33,40 @@
 	font-size: 16pt;
 }
 
+.userWrapper {
+	display: flex;
+	gap: 5px;
+	justify-content: center;
+	align-items: center;
+}
+
+.userWrapper img {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
 @media (max-width: 1000px) {
+	.wrapper {
+		font-size: 12pt;
+	}
+
 	.buttonWrapper i {
 		font-size: 14pt;
+	}
+
+	.userWrapper img {
+		width: 20px;
+		height: 20px;
 	}
 }
 
 @media (max-width: 500px) {
+	.wrapper {
+		font-size: 10pt;
+	}
+
 	.buttonWrapper button {
 		padding: 5px 10px 5px 10px;
 		font-size: 10pt;

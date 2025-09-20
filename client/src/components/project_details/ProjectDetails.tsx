@@ -38,6 +38,7 @@ export default function ProjectDetails() {
 			) : (
 				<section className={styles.wrapper}>
 					<h2>{project?.name}</h2>
+					<p>Owner: {project?.ownerId.username}</p>
 					{user?._id === project?.ownerId._id ? (
 						<div className={styles.buttonWrapper}>
 							<Link to={`/projects/${projectId}/add-member`}>
