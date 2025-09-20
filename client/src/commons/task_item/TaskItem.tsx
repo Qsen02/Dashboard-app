@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { TaskStatus } from "../../types/task";
+import { Task, TaskStatus } from "../../types/task";
 import { User, UserForAuth } from "../../types/user";
 import styles from "./TaskItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
@@ -33,17 +33,9 @@ export default function TaskItem({
 	const applyToTask = useApplyForTask();
 	const changeTaskStatus = useChangeTaskStatus();
 
-	function navigateToDelete() {
+	function navigating(action: "delete" | "edit") {
 		if (projectId) {
-			navigate(`/projects/${projectId}/delete/${id}`);
-		} else {
-			navigate("404");
-		}
-	}
-
-	function navigateToEdit() {
-		if (projectId) {
-			navigate(`/projects/${projectId}/edit/${id}`);
+			navigate(`/projects/${projectId}/${action}/${id}`);
 		} else {
 			navigate("404");
 		}
@@ -58,10 +50,10 @@ export default function TaskItem({
 		}
 	}
 
-	async function changeToInProgress() {
+	async function changeStatus(status: Task["status"]) {
 		try {
 			const updatedProject = await changeTaskStatus(id, {
-				status: "in-progress",
+				status: status,
 			});
 			projectHandler(updatedProject);
 		} catch (err) {
@@ -88,14 +80,16 @@ export default function TaskItem({
 			)}
 			{user?._id === owner._id ? (
 				<div className={styles.buttonWrapper}>
-					<button onClick={navigateToEdit}>Edit</button>
-					<button onClick={navigateToDelete}>Delete</button>
+					<button onClick={() => navigating("edit")}>Edit</button>
+					<button onClick={() => navigating("delete")}>Delete</button>
 				</div>
 			) : status === "pending" ? (
 				<div className={styles.buttonWrapper}>
 					{!appliedBy ? <button onClick={onApply}>Apply</button> : ""}
 					{user?._id === appliedBy?._id ? (
-						<button onClick={changeToInProgress}>Move</button>
+						<button onClick={() => changeStatus("in-progress")}>
+							Move
+						</button>
 					) : (
 						""
 					)}
@@ -104,8 +98,12 @@ export default function TaskItem({
 				<div className={styles.buttonWrapper}>
 					{user?._id === appliedBy?._id ? (
 						<>
-							<button>Return</button>
-							<button>Succeeded</button>
+							<button onClick={() => changeStatus("pending")}>
+								Return
+							</button>
+							<button onClick={() => changeStatus("completed")}>
+								Succeeded
+							</button>
 						</>
 					) : (
 						""
