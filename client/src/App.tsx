@@ -18,6 +18,7 @@ import AddMember from "./components/project_details/add_member/AddMember";
 import SuccessfullAction from "./commons/successfull_action/SuccessfullAction";
 import DeleteTask from "./components/project_details/delete_task/DeleteTask";
 import EditTask from "./components/project_details/edit_task/EditTask";
+import AdminGuard from "./guards/AdminGuard";
 
 function App() {
 	return (
@@ -28,22 +29,38 @@ function App() {
 					<Route element={<UserGuard />}>
 						<Route path="/" element={<Home />} />
 						<Route path="/logout" element={<Logout />} />
-						<Route path="/create" element={<CreateProject />} />
+						<Route element={<AdminGuard />}>
+							<Route path="/create" element={<CreateProject />} />
+						</Route>
 						<Route
 							path="/projects/:projectId"
 							element={<ProjectDetails />}
 						>
-							<Route path="members" element={<Members />} />
-							<Route path="add-task" element={<AddTask />} />
-							<Route path="delete" element={<ProjectDelete />} />
-							<Route path="edit" element={<ProjectEdit />} />
-							<Route path="add-member" element={<AddMember />} />
-							<Route
-								path="successfull-action/:username/:flag"
-								element={<SuccessfullAction />}
-							/>
-							<Route path="delete/:taskId" element={<DeleteTask/>}/>
-							<Route path="edit/:taskId" element={<EditTask/>}/>
+							<Route element={<AdminGuard />}>
+								<Route path="members" element={<Members />} />
+								<Route path="add-task" element={<AddTask />} />
+								<Route
+									path="delete"
+									element={<ProjectDelete />}
+								/>
+								<Route path="edit" element={<ProjectEdit />} />
+								<Route
+									path="add-member"
+									element={<AddMember />}
+								/>
+								<Route
+									path="successfull-action/:username/:flag"
+									element={<SuccessfullAction />}
+								/>
+								<Route
+									path="delete/:taskId"
+									element={<DeleteTask />}
+								/>
+								<Route
+									path="edit/:taskId"
+									element={<EditTask />}
+								/>
+							</Route>
 						</Route>
 					</Route>
 					<Route element={<GuestGuard />}>
