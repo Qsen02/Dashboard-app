@@ -22,12 +22,20 @@ async function applyForTask(taskId: string, userId: string | null | undefined) {
 		taskId,
 		{ $set: { appliedBy: userId } },
 		{ new: true }
-	)
-		.populate("appliedBy")
+	).lean();
+
+	const updatedProject = await ProjectModel.findById(updatedTask?.projectId)
+		.populate("members")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.populate("ownerId")
-		.populate("projectId")
 		.lean();
-	return updatedTask;
+
+	return updatedProject;
 }
 
 async function changeTaskStatus(
@@ -38,12 +46,20 @@ async function changeTaskStatus(
 		taskId,
 		{ $set: { status } },
 		{ new: true }
-	)
-		.populate("appliedBy")
+	).lean();
+
+	const updatedProject = await ProjectModel.findById(updatedTask?._id)
+		.populate("members")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.populate("ownerId")
-		.populate("projectId")
 		.lean();
-	return updatedTask;
+
+	return updatedProject;
 }
 
 async function deleteTask(taskId: string, projectId: string) {
@@ -52,7 +68,12 @@ async function deleteTask(taskId: string, projectId: string) {
 		{ $pull: { tasks: taskId } },
 		{ new: true }
 	)
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.populate("ownerId")
 		.populate("members")
 		.lean();
@@ -66,7 +87,12 @@ async function editTask(taskId: string, title: string, description: string) {
 	}).lean();
 	const updatedProject = await ProjectModel.findById(updatedTask?.projectId)
 		.populate("members")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.populate("ownerId")
 		.lean();
 

@@ -11,12 +11,12 @@ export async function getTaskById(taskId: string) {
 
 export async function applyToTask(taskId: string) {
 	const updatedTask = await post(`${endpoint}/${taskId}/apply`, {});
-	return updatedTask as Task;
+	return updatedTask as Project;
 }
 
 export async function changeTaskStatus(taskId: string, data: object) {
 	const updatedTask = await put(`${endpoint}/${taskId}/change-status`, data);
-	return updatedTask as Task;
+	return updatedTask as Project;
 }
 
 export async function editTask(taskId: string | undefined, data: object) {

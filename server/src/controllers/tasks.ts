@@ -38,8 +38,8 @@ taskRouter.post("/:taskId/apply", isUser(), async (req: MyRequest, res) => {
 		if (!isValid) {
 			return res.status(404).json({ message: "Resource not found" });
 		}
-		const updatedTask = await applyForTask(taskId, user?._id);
-		res.json(updatedTask);
+		const updatedProject = await applyForTask(taskId, user?._id);
+		res.json(updatedProject);
 	} catch (err) {
 		if (err instanceof Error) {
 			res.status(400).json({ message: err.message });
@@ -69,8 +69,8 @@ taskRouter.put(
 			if (!results.isEmpty()) {
 				throw new Error(errorParser(results));
 			}
-			const updatedTask = await changeTaskStatus(taskId, fields.status);
-			res.json(updatedTask);
+			const updatedProject = await changeTaskStatus(taskId, fields.status);
+			res.json(updatedProject);
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });

@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { TaskStatus } from "../../types/task";
 import { User, UserForAuth } from "../../types/user";
 import styles from "./TaskItemStyles.module.css";
+import { profileImageError } from "../../utils/imageErrors";
+import { useApplyForTask } from "../../hooks/useTasks";
+import { Project } from "../../types/project";
 
 interface TaskItemProps {
 	id: string;
@@ -11,6 +14,8 @@ interface TaskItemProps {
 	owner: User;
 	status: TaskStatus;
 	projectId: string | undefined;
+	appliedBy: User | undefined;
+	plojectHandler: React.Dispatch<React.SetStateAction<Project | null>>;
 }
 
 export default function TaskItem({
@@ -21,8 +26,11 @@ export default function TaskItem({
 	owner,
 	status,
 	projectId,
+	appliedBy,
+	plojectHandler,
 }: TaskItemProps) {
 	const navigate = useNavigate();
+	const applyToTask = useApplyForTask();
 
 	function navigateToDelete() {
 		if (projectId) {
@@ -40,10 +48,32 @@ export default function TaskItem({
 		}
 	}
 
+	async function onApply() {
+		try {
+			const updatedProject = await applyToTask(id);
+			plojectHandler(updatedProject);
+		} catch (err) {
+			navigate("404");
+		}
+	}
+
 	return (
 		<article className={styles.wrapper}>
 			<h3>{title}</h3>
 			<p>{description}</p>
+			{appliedBy ? (
+				<div>
+					<p>Applied By:</p>
+					<img
+						src={appliedBy.profileImage}
+						alt={appliedBy.username}
+						onError={profileImageError}
+					/>
+					<p>{appliedBy.username}</p>
+				</div>
+			) : (
+				<p>No users applied yet</p>
+			)}
 			{user?._id === owner._id ? (
 				<div className={styles.buttonWrapper}>
 					<button onClick={navigateToEdit}>Edit</button>
@@ -51,8 +81,8 @@ export default function TaskItem({
 				</div>
 			) : status === "pending" ? (
 				<div className={styles.buttonWrapper}>
-					<button>Apply</button>
-					<button>Move</button>
+					{!appliedBy ? <button onClick={onApply}>Apply</button> : ""}
+					{user?._id === appliedBy?._id ? <button>Move</button> : ""}
 				</div>
 			) : status === "in-progress" ? (
 				<div className={styles.buttonWrapper}>

@@ -7,7 +7,12 @@ async function getProjectById(projectId: string) {
 	const project = await ProjectModel.findById(projectId)
 		.populate("members")
 		.populate("ownerId")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.lean();
 	if (!project) {
 		throw new Error("Resource not found");
@@ -40,7 +45,12 @@ async function addMember(projectId: string, userId: string) {
 	)
 		.populate("members")
 		.populate("ownerId")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.lean();
 
 	await UserModel.findByIdAndUpdate(userId, {
@@ -73,7 +83,12 @@ async function addTask(
 	)
 		.populate("members")
 		.populate("ownerId")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.lean();
 	return updatedProject;
 }
@@ -86,7 +101,12 @@ async function editProjectName(projectId: string, newName: string) {
 	)
 		.populate("members")
 		.populate("ownerId")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.lean();
 	return updatedProject;
 }
@@ -95,7 +115,12 @@ async function deleteProject(projectId: string) {
 	const deletedProject = await ProjectModel.findByIdAndDelete(projectId)
 		.populate("members")
 		.populate("ownerId")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.lean();
 	await TaskModel.deleteMany({ projectId });
 	return deletedProject;
@@ -116,7 +141,12 @@ async function removeMember(projectId: string, userId: string) {
 		{ new: true }
 	)
 		.populate("members")
-		.populate("tasks")
+		.populate({
+			path: "tasks",
+			populate: {
+				path: "appliedBy",
+			},
+		})
 		.populate("ownerId")
 		.lean();
 	await UserModel.findByIdAndUpdate(userId, {
@@ -143,5 +173,5 @@ export {
 	deleteProject,
 	checkProjectId,
 	getProjectMembers,
-	removeMember
+	removeMember,
 };

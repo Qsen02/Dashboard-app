@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteTask, editTask, getTaskById } from "../api/taskService";
+import { applyToTask, deleteTask, editTask, getTaskById } from "../api/taskService";
 import { useLoadingError } from "./useLoadingError";
 import { Task } from "../types/task";
 
@@ -54,4 +54,10 @@ export function useGetOneTask(initValues: null, taskId: string | undefined) {
 		loading,
 		error,
 	};
+}
+
+export function useApplyForTask(){
+	return async function (taskId:string){
+		return await applyToTask(taskId);
+	}
 }

@@ -1,7 +1,6 @@
 import { UserModel } from "../models/users";
 import { SearchesModel } from "../models/searches";
 import bcrypt from "bcrypt";
-import { User } from "../types/users";
 import { Types } from "mongoose";
 
 async function register(

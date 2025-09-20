@@ -96,6 +96,8 @@ export default function ProjectDetails() {
 											status={el.status}
 											owner={project.ownerId}
 											projectId={projectId}
+											appliedBy={el.appliedBy}
+											plojectHandler={setProject}
 										/>
 									))}
 							</article>
@@ -112,6 +114,8 @@ export default function ProjectDetails() {
 											status={el.status}
 											owner={project.ownerId}
 											projectId={projectId}
+											appliedBy={el.appliedBy}
+											plojectHandler={setProject}
 										/>
 									))}
 							</article>
@@ -128,6 +132,8 @@ export default function ProjectDetails() {
 											status={el.status}
 											owner={project.ownerId}
 											projectId={projectId}
+											appliedBy={el.appliedBy}
+											plojectHandler={setProject}
 										/>
 									))}
 							</article>
