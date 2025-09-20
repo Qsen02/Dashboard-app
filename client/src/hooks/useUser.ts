@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
 	getLatestUsers,
+	getUserById,
 	getUserProjects,
 	login,
 	logout,
@@ -111,4 +112,46 @@ export function useSearchUsers(){
 	return async function (query:string){
 		return await searchUsers(query);
 	}
+}
+
+export function useGetOneUser(
+	initialValue: null,
+	userId: string | undefined
+) {
+	const [user, setUser] = useState<User | null>(initialValue);
+	const { loading, setLoading, error, setError } = useLoadingError(
+		false,
+		false
+	);
+
+	useEffect(() => {
+		const controller = new AbortController();
+		const { signal } = controller;
+
+		(async () => {
+			try {
+				setLoading(true);
+				if (!signal.aborted && userId) {
+					const curUser = await getUserById(userId);
+					setUser(curUser);
+				}
+				setLoading(false);
+			} catch (err) {
+				setLoading(false);
+				setError(true);
+				return;
+			}
+		})();
+
+		return () => {
+			controller.abort();
+		};
+	}, []);
+
+	return {
+		user,
+		setUser,
+		loading,
+		error,
+	};
 }
