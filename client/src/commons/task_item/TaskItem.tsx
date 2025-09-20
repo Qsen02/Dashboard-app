@@ -3,7 +3,7 @@ import { TaskStatus } from "../../types/task";
 import { User, UserForAuth } from "../../types/user";
 import styles from "./TaskItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
-import { useApplyForTask } from "../../hooks/useTasks";
+import { useApplyForTask, useChangeTaskStatus } from "../../hooks/useTasks";
 import { Project } from "../../types/project";
 
 interface TaskItemProps {
@@ -15,7 +15,7 @@ interface TaskItemProps {
 	status: TaskStatus;
 	projectId: string | undefined;
 	appliedBy: User | undefined;
-	plojectHandler: React.Dispatch<React.SetStateAction<Project | null>>;
+	projectHandler: React.Dispatch<React.SetStateAction<Project | null>>;
 }
 
 export default function TaskItem({
@@ -27,10 +27,11 @@ export default function TaskItem({
 	status,
 	projectId,
 	appliedBy,
-	plojectHandler,
+	projectHandler,
 }: TaskItemProps) {
 	const navigate = useNavigate();
 	const applyToTask = useApplyForTask();
+	const changeTaskStatus = useChangeTaskStatus();
 
 	function navigateToDelete() {
 		if (projectId) {
@@ -51,7 +52,18 @@ export default function TaskItem({
 	async function onApply() {
 		try {
 			const updatedProject = await applyToTask(id);
-			plojectHandler(updatedProject);
+			projectHandler(updatedProject);
+		} catch (err) {
+			navigate("404");
+		}
+	}
+
+	async function changeToInProgress() {
+		try {
+			const updatedProject = await changeTaskStatus(id, {
+				status: "in-progress",
+			});
+			projectHandler(updatedProject);
 		} catch (err) {
 			navigate("404");
 		}
@@ -82,12 +94,22 @@ export default function TaskItem({
 			) : status === "pending" ? (
 				<div className={styles.buttonWrapper}>
 					{!appliedBy ? <button onClick={onApply}>Apply</button> : ""}
-					{user?._id === appliedBy?._id ? <button>Move</button> : ""}
+					{user?._id === appliedBy?._id ? (
+						<button onClick={changeToInProgress}>Move</button>
+					) : (
+						""
+					)}
 				</div>
 			) : status === "in-progress" ? (
 				<div className={styles.buttonWrapper}>
-					<button>Return</button>
-					<button>Succeeded</button>
+					{user?._id === appliedBy?._id ? (
+						<>
+							<button>Return</button>
+							<button>Succeeded</button>
+						</>
+					) : (
+						""
+					)}
 				</div>
 			) : (
 				<div className={styles.buttonWrapper}>

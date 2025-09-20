@@ -48,7 +48,7 @@ async function changeTaskStatus(
 		{ new: true }
 	).lean();
 
-	const updatedProject = await ProjectModel.findById(updatedTask?._id)
+	const updatedProject = await ProjectModel.findById(updatedTask?.projectId)
 		.populate("members")
 		.populate({
 			path: "tasks",

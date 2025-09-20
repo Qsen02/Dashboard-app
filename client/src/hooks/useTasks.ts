@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { applyToTask, deleteTask, editTask, getTaskById } from "../api/taskService";
+import {
+	applyToTask,
+	changeTaskStatus,
+	deleteTask,
+	editTask,
+	getTaskById,
+} from "../api/taskService";
 import { useLoadingError } from "./useLoadingError";
 import { Task } from "../types/task";
 
@@ -56,8 +62,14 @@ export function useGetOneTask(initValues: null, taskId: string | undefined) {
 	};
 }
 
-export function useApplyForTask(){
-	return async function (taskId:string){
+export function useApplyForTask() {
+	return async function (taskId: string) {
 		return await applyToTask(taskId);
-	}
+	};
+}
+
+export function useChangeTaskStatus() {
+	return async function (taskId: string, data: { status: Task["status"] }) {
+		return await changeTaskStatus(taskId, data);
+	};
 }

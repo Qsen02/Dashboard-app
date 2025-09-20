@@ -14,7 +14,7 @@ export async function applyToTask(taskId: string) {
 	return updatedTask as Project;
 }
 
-export async function changeTaskStatus(taskId: string, data: object) {
+export async function changeTaskStatus(taskId: string, data: {status:Task["status"]}) {
 	const updatedTask = await put(`${endpoint}/${taskId}/change-status`, data);
 	return updatedTask as Project;
 }
