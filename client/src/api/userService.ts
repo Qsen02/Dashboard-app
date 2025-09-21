@@ -60,7 +60,7 @@ export async function editUser(userId: string | undefined, data: object) {
 
 export async function changePassword(userId: string | undefined, data: object) {
 	const updatedUser = await put(
-		`${endpoint}/${userId}/change-password`,
+		`${endpoint}/change-password/${userId}`,
 		data
 	);
 	return updatedUser as User;

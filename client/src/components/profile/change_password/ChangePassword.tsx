@@ -35,7 +35,7 @@ export default function ChangePassword() {
 				newPassword: newPassword,
 			});
 			actions.resetForm();
-			navigate("/profile/successfull-changed");
+			navigate("/profile/successfully-changed");
 		} catch (err) {
 			setIsErr(true);
 			if (err instanceof Error) {
@@ -55,52 +55,63 @@ export default function ChangePassword() {
 		}
 	}
 
+	function onBack() {
+		navigate("/profile");
+	}
+
 	return (
-		<Formik
-			initialValues={initValues}
-			onSubmit={onChangePassword}
-			validationSchema={changePasswordSchema}
-		>
-			{(props) => (
-				<Form className="form">
-					<h3>Change your password here</h3>
-					{isErr ? <p className="error">{errMessage}</p> : ""}
-					<div className="input">
-						<CustomInput
-							label="New password"
-							type={isPasswordVisible ? "text" : "password"}
-							value={initValues.newPassword}
-							name="newPassword"
-							className={
-								theme === "light"
-									? "lightThemeSmoked"
-									: "darkThemeLighter"
-							}
-							id="newPassword"
-						/>
-						{isPasswordVisible ? (
-							<i
-								className={`fa-regular fa-eye ${
+		<div className="modal">
+			<Formik
+				initialValues={initValues}
+				onSubmit={onChangePassword}
+				validationSchema={changePasswordSchema}
+			>
+				{(props) => (
+					<Form className="form">
+						<h3>Change your password here</h3>
+						{isErr ? <p className="error">{errMessage}</p> : ""}
+						<div className="input">
+							<CustomInput
+								label="New password"
+								type={isPasswordVisible ? "text" : "password"}
+								value={initValues.newPassword}
+								name="newPassword"
+								className={
 									theme === "light"
 										? "lightThemeSmoked"
 										: "darkThemeLighter"
-								}`}
-								onClick={showPassword}
-							></i>
-						) : (
-							<i
-								className={`fa-regular fa-eye-slash ${
-									theme === "light"
-										? "lightThemeSmoked"
-										: "darkThemeLighter"
-								}`}
-								onClick={showPassword}
-							></i>
-						)}
-					</div>
-					<button type="submit">Submit</button>
-				</Form>
-			)}
-		</Formik>
+								}
+								id="newPassword"
+							/>
+							{isPasswordVisible ? (
+								<i
+									className={`fa-regular fa-eye ${
+										theme === "light"
+											? "lightThemeSmoked"
+											: "darkThemeLighter"
+									}`}
+									onClick={showPassword}
+								></i>
+							) : (
+								<i
+									className={`fa-regular fa-eye-slash ${
+										theme === "light"
+											? "lightThemeSmoked"
+											: "darkThemeLighter"
+									}`}
+									onClick={showPassword}
+								></i>
+							)}
+						</div>
+						<div>
+							<button onClick={onBack} type="button">
+								Cancel
+							</button>
+							<button type="submit">Submit</button>
+						</div>
+					</Form>
+				)}
+			</Formik>
+		</div>
 	);
 }

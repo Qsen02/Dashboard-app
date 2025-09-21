@@ -237,6 +237,41 @@ userRouter.put(
 );
 
 userRouter.put(
+	"/change-password/:userId",
+	body("newPassword")
+		.trim()
+		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
+		.withMessage(
+			"Password must be at least 6 symbols and must contain digits, letters and at least one capital letter and special symbol!"
+		),
+		async (req, res) => {
+		const userId = req?.params?.userId;
+		const isValid = await checkUserId(userId);
+		if (!isValid) {
+			return res.status(404).json({ message: "Resource not found!" });
+		}
+		try {
+			const fields = req.body;
+			const results = validationResult(req);
+			if (!results.isEmpty()) {
+				throw new Error(errorParser(results));
+			}
+			const updatedUser = await changePassword(
+				userId,
+				fields.newPassword
+			);
+			res.json(updatedUser);
+		} catch (err) {
+			if (err instanceof Error) {
+				res.status(400).json({ message: err.message });
+			} else {
+				res.status(400).json({ message: "Unknown error" });
+			}
+		}
+	}
+);
+
+userRouter.put(
 	"/:userId/edit",
 	body("username")
 		.trim()
@@ -270,42 +305,6 @@ userRouter.put(
 				fields.profileImage
 			);
 			res.status(200).json({message:"Record edited successfully!"});
-		} catch (err) {
-			if (err instanceof Error) {
-				res.status(400).json({ message: err.message });
-			} else {
-				res.status(400).json({ message: "Unknown error" });
-			}
-		}
-	}
-);
-
-userRouter.put(
-	"/:userId/change-password",
-	body("newPassword")
-		.trim()
-		.matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/)
-		.withMessage(
-			"Password must be at least 6 symbols and must contain digits, letters and at least one capital letter and special symbol!"
-		),
-	isUser(),
-	async (req, res) => {
-		const userId = req.params.userId;
-		const isValid = await checkUserId(userId);
-		if (!isValid) {
-			return res.status(404).json({ message: "Resource not found!" });
-		}
-		try {
-			const fields = req.body;
-			const results = validationResult(req);
-			if (!results.isEmpty()) {
-				throw new Error(errorParser(results));
-			}
-			const updatedUser = await changePassword(
-				userId,
-				fields.newPassword
-			);
-			res.json(updatedUser);
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });

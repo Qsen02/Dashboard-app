@@ -23,6 +23,7 @@ import Profile from "./components/profile/Profile";
 import UserProfile from "./components/user_profile/UserProfile";
 import EditProfile from "./components/profile/edit_profile/EditProfile";
 import ChangePassword from "./components/profile/change_password/ChangePassword";
+import SuccessfullyChanged from "./components/profile/successfully_changed/SuccessfullyChanged";
 
 function App() {
 	return (
@@ -39,6 +40,7 @@ function App() {
 						<Route path="/profile" element={<Profile />}>
 							<Route path="edit" element={<EditProfile />} />
 							<Route path="change-password" element={<ChangePassword/>}/>
+							<Route path="successfully-changed" element={<SuccessfullyChanged/>}/>
 						</Route>
 						<Route
 							path="/profile/:userId"
