@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+	changePassword,
 	editUser,
 	getLatestUsers,
 	getUserById,
@@ -159,5 +160,11 @@ export function useGetOneUser(
 export function useEditProfile(){
 	return async function (userId:string | undefined,data:object){
 		return await editUser(userId,data);
+	}
+}
+
+export function useChangePassword(){
+	return async function (userId:string | undefined,data:object){
+		return await changePassword(userId,data);
 	}
 }

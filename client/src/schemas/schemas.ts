@@ -80,3 +80,13 @@ export const editProfileSchema = yup.object().shape({
 		.string()
 		.matches(/^https?:\/\//, "Image must be valid URL!"),
 });
+
+export const changePasswordSchema=yup.object().shape({
+	newPassword:yup
+		.string()
+		.matches(
+			/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/,
+			"Password must be at least 6 symbols and must contain digits, letters and at least one capital letter and special symbol!"
+		)
+		.required("Password is required!"),
+})

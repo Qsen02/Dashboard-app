@@ -3,44 +3,39 @@ import { RootState } from "../../../redux/state/store";
 import { Form, Formik, FormikHelpers } from "formik";
 import CustomInput from "../../../commons/CustomInput";
 import { useState } from "react";
-import { useLogin } from "../../../hooks/useUser";
-import { useNavigate } from "react-router-dom";
-import { setUser } from "../../../redux/state/user_state/userState";
-import { loginSchema } from "../../../schemas/schemas";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { changePasswordSchema, loginSchema } from "../../../schemas/schemas";
+import { ProfileOutletContext } from "../../../types/outlet_context";
+import { useChangePassword } from "../../../hooks/useUser";
 
-export default function Login() {
+export default function ChangePassword() {
 	const { theme } = useSelector((state: RootState) => state.theme);
-	const dispatch = useDispatch();
+	const { curUser } = useOutletContext<ProfileOutletContext>();
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-	const login = useLogin();
 	const navigate = useNavigate();
 	const [isErr, setIsErr] = useState(false);
 	const [errMessage, setErrMessage] = useState("");
+	const changePassword = useChangePassword();
 
 	interface formValues {
-		username: string;
-		password: string;
+		newPassword: string;
 	}
 
 	const initValues = {
-		username: "",
-		password: "",
+		newPassword: "",
 	};
 
-	async function onLogin(
+	async function onChangePassword(
 		values: formValues,
 		actions: FormikHelpers<formValues>
 	) {
 		try {
-			const username = values.username;
-			const password = values.password;
-			const user = await login({
-				username: username,
-				password: password,
+			const newPassword = values.newPassword;
+			await changePassword(curUser?._id, {
+				newPassword: newPassword,
 			});
-			dispatch(setUser(user));
 			actions.resetForm();
-			navigate("/");
+			navigate("/profile/successfull-changed");
 		} catch (err) {
 			setIsErr(true);
 			if (err instanceof Error) {
@@ -63,41 +58,25 @@ export default function Login() {
 	return (
 		<Formik
 			initialValues={initValues}
-			onSubmit={onLogin}
-			validationSchema={loginSchema}
+			onSubmit={onChangePassword}
+			validationSchema={changePasswordSchema}
 		>
 			{(props) => (
 				<Form className="form">
-					<h3>You can login into your account here</h3>
+					<h3>Change your password here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}
 					<div className="input">
 						<CustomInput
-							label="Username"
-							type="text"
-							value={initValues.username}
-							name="username"
-							className={
-								theme === "light"
-									? "lightThemeSmoked"
-									: "darkThemeLighter"
-							}
-							id="username"
-							autoComplete="given-name"
-						/>
-					</div>
-					<div className="input">
-						<CustomInput
-							label="Password"
+							label="New password"
 							type={isPasswordVisible ? "text" : "password"}
-							value={initValues.password}
-							name="password"
+							value={initValues.newPassword}
+							name="newPassword"
 							className={
 								theme === "light"
 									? "lightThemeSmoked"
 									: "darkThemeLighter"
 							}
-							id="password"
-							autoComplete="password"
+							id="newPassword"
 						/>
 						{isPasswordVisible ? (
 							<i

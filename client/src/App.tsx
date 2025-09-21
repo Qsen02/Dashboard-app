@@ -22,6 +22,7 @@ import AdminGuard from "./guards/AdminGuard";
 import Profile from "./components/profile/Profile";
 import UserProfile from "./components/user_profile/UserProfile";
 import EditProfile from "./components/profile/edit_profile/EditProfile";
+import ChangePassword from "./components/profile/change_password/ChangePassword";
 
 function App() {
 	return (
@@ -37,6 +38,7 @@ function App() {
 						</Route>
 						<Route path="/profile" element={<Profile />}>
 							<Route path="edit" element={<EditProfile />} />
+							<Route path="change-password" element={<ChangePassword/>}/>
 						</Route>
 						<Route
 							path="/profile/:userId"

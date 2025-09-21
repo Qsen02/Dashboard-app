@@ -13,6 +13,10 @@ export default function Profile() {
 		navigate("/profile/edit");
 	}
 
+	function navigateToChangePassword(){
+		navigate("/profile/change-password");
+	}
+
 	return (
 		<>
 			<Outlet context={{ curUser: user }} />
@@ -30,7 +34,7 @@ export default function Profile() {
 				<h2>{user?.username}</h2>
 				<p>{user?.email}</p>
 				<div className={styles.buttonWrapper}>
-					<button>Change password</button>
+					<button onClick={navigateToChangePassword}>Change password</button>
 					<button onClick={navigateToEdit}>Edit profile</button>
 				</div>
 			</section>
