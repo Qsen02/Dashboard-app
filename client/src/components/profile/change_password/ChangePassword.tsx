@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { Form, Formik, FormikHelpers } from "formik";
 import CustomInput from "../../../commons/CustomInput";
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { changePasswordSchema, loginSchema } from "../../../schemas/schemas";
+import { changePasswordSchema } from "../../../schemas/schemas";
 import { ProfileOutletContext } from "../../../types/outlet_context";
 import { useChangePassword } from "../../../hooks/useUser";
+import styles from "../../project_details/edit_task/EditTaskStyles.module.css";
 
 export default function ChangePassword() {
 	const { theme } = useSelector((state: RootState) => state.theme);
@@ -67,7 +68,13 @@ export default function ChangePassword() {
 				validationSchema={changePasswordSchema}
 			>
 				{(props) => (
-					<Form className="form">
+					<Form
+						className={`form ${
+							theme === "light"
+								? "lightThemeNormal"
+								: "darkThemeNormal"
+						} ${styles.formWrapper}`}
+					>
 						<h3>Change your password here</h3>
 						{isErr ? <p className="error">{errMessage}</p> : ""}
 						<div className="input">
@@ -103,7 +110,7 @@ export default function ChangePassword() {
 								></i>
 							)}
 						</div>
-						<div>
+						<div className={styles.buttonWrapper}>
 							<button onClick={onBack} type="button">
 								Cancel
 							</button>
