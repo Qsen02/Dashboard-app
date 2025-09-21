@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+	editUser,
 	getLatestUsers,
 	getUserById,
 	getUserProjects,
@@ -153,4 +154,10 @@ export function useGetOneUser(
 		loading,
 		error,
 	};
+}
+
+export function useEditProfile(){
+	return async function (userId:string | undefined,data:object){
+		return await editUser(userId,data);
+	}
 }

@@ -263,13 +263,13 @@ userRouter.put(
 			if (!results.isEmpty()) {
 				throw new Error(errorParser(results));
 			}
-			const updatedUser = await editUser(
+			await editUser(
 				userId,
 				fields.username,
 				fields.email,
 				fields.profileImage
 			);
-			res.json(updatedUser);
+			res.status(200).json({message:"Record edited successfully!"});
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });

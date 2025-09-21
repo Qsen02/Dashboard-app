@@ -65,14 +65,13 @@ async function editUser(
 	email: string,
 	profileImage: string
 ) {
-	const updatedUser = await UserModel.findByIdAndUpdate(
-		userId,
-		{ $set: { username, email, profileImage } },
-		{ new: true }
-	)
-		.populate("projects")
-		.lean();
-	return updatedUser;
+	await UserModel.findByIdAndUpdate(userId, {
+		$set: {
+			username: username,
+			email: email,
+			profileImage: profileImage,
+		},
+	});
 }
 
 async function changePassword(userId: string, newPassword: string) {

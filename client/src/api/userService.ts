@@ -53,7 +53,7 @@ export async function changeUserRole(
 	return updatedUser as User;
 }
 
-export async function editUser(userId: string, data: object) {
+export async function editUser(userId: string | undefined, data: object) {
 	const updatedUser = await put(`${endpoint}/${userId}/edit`, data);
 	return updatedUser as User;
 }
