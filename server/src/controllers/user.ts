@@ -22,7 +22,7 @@ import { MyRequest } from "../types/express";
 
 const userRouter = Router();
 
-userRouter.get("/logout",async (req: MyRequest, res) => {
+userRouter.get("/logout", isUser(), async (req: MyRequest, res) => {
 	const user = req.user;
 	if (user?.role === "programmer") {
 		await removeSearches(user?._id);

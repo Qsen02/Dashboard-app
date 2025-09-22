@@ -16,8 +16,8 @@ export default function Logout() {
 	}
 
 	async function onLogout() {
-		dispatch(removeUser());
 		await logout();
+		dispatch(removeUser());
 		navigate("/registration");
 	}
 
