@@ -101,27 +101,33 @@ export default function AdminPanel() {
 					))
 				)}
 			</section>
-			<section
-				className={`${styles.pagination} ${
-					theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
-				}`}
-			>
-				<button onClick={setFirstPage}>
-					<i className="fa-solid fa-angles-left"></i>
-				</button>
-				<button onClick={setPrevPage}>
-					<i className="fa-solid fa-angle-left"></i>
-				</button>
-				<p>
-					{curPage} of {maxPage}
-				</p>
-				<button onClick={setNextPage}>
-					<i className="fa-solid fa-angle-right"></i>
-				</button>
-				<button onClick={setLastPage}>
-					<i className="fa-solid fa-angles-right"></i>
-				</button>
-			</section>
+			{!loading && !error? (
+				<section
+					className={`${styles.pagination} ${
+						theme === "light"
+							? "lightThemeNormal"
+							: "darkThemeNormal"
+					}`}
+				>
+					<button onClick={setFirstPage}>
+						<i className="fa-solid fa-angles-left"></i>
+					</button>
+					<button onClick={setPrevPage}>
+						<i className="fa-solid fa-angle-left"></i>
+					</button>
+					<p>
+						{curPage} of {maxPage}
+					</p>
+					<button onClick={setNextPage}>
+						<i className="fa-solid fa-angle-right"></i>
+					</button>
+					<button onClick={setLastPage}>
+						<i className="fa-solid fa-angles-right"></i>
+					</button>
+				</section>
+			) : (
+				""
+			)}
 		</section>
 	);
 }
