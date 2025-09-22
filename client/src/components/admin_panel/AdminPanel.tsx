@@ -67,22 +67,37 @@ export default function AdminPanel() {
 						<h2>No users yet!</h2>
 					</div>
 				) : (
-					users
-						.map((el) => (
-							<UserItem
-								key={el._id}
-								id={el._id}
-								profileImage={el.profileImage}
-								username={el.username}
-								role={el.role}
-								theme={theme}
-							/>
-						))
+					users.map((el) => (
+						<UserItem
+							key={el._id}
+							id={el._id}
+							profileImage={el.profileImage}
+							username={el.username}
+							role={el.role}
+							theme={theme}
+						/>
+					))
 				)}
 			</section>
-            <section>
-                <button></button>
-            </section>
+			<section
+				className={`${styles.pagination} ${
+					theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
+				}`}
+			>
+				<button>
+					<i className="fa-solid fa-angles-left"></i>
+				</button>
+				<button>
+					<i className="fa-solid fa-angle-left"></i>
+				</button>
+				<p>1 of {maxPage}</p>
+				<button>
+					<i className="fa-solid fa-angle-right"></i>
+				</button>
+				<button>
+					<i className="fa-solid fa-angles-right"></i>
+				</button>
+			</section>
 		</section>
 	);
 }
