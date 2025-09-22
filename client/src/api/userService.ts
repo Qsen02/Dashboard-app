@@ -32,7 +32,7 @@ export async function paginateUsers(page: Number, isSearched: boolean) {
 	const users = await get(
 		`${endpoint}/page/${page}/isSearched/${isSearched}`
 	);
-	return users as User[];
+	return users as { users: User[]; maxPage: number };
 }
 
 export async function getLatestUsers() {

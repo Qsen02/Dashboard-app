@@ -7,6 +7,7 @@ import {
 	getUserProjects,
 	login,
 	logout,
+	paginateUsers,
 	register,
 	searchUsers,
 } from "../api/userService";
@@ -167,4 +168,50 @@ export function useChangePassword(){
 	return async function (userId:string | undefined,data:object){
 		return await changePassword(userId,data);
 	}
+}
+
+export function usePaginateUsers(initValues:[]){
+	const [users,setUsers] = useState<User[]>(initValues);
+	const [maxPage,setMaxPage] = useState(1);
+	const { loading, setLoading, error, setError } = useLoadingError(
+		false,
+		false
+	);
+	const [isSearched,setIsSearched] = useState(false);
+
+	useEffect(() => {
+		const controller = new AbortController();
+		const { signal } = controller;
+		(async () => {
+			try {
+				setLoading(true);
+				if (!signal.aborted) {
+					const {users,maxPage} = await paginateUsers(1,isSearched);
+					setUsers(users);
+					setMaxPage(maxPage);
+				}
+				setLoading(false);
+			} catch (err) {
+				setLoading(false);
+				setError(true);
+				return;
+			}
+		})();
+
+		return () => {
+			controller.abort();
+		};
+	}, []);
+
+	return {
+		users,
+		setUsers,
+		loading,
+		setLoading,
+		error,
+		setError,
+		maxPage,
+		isSearched,
+		setIsSearched
+	};
 }

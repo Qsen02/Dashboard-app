@@ -133,7 +133,7 @@ async function paginateUsers(
 	page: number,
 	isSearched: string
 ) {
-	const limit = 10;
+	const limit = 5;
 	if (isSearched === "true") {
 		const user = await SearchesModel.findOne({ userId })
 			.populate("searches")
@@ -147,7 +147,8 @@ async function paginateUsers(
 			.skip((page - 1) * limit)
 			.limit(limit)
 			.lean();
-		return users;
+		const maxPage = Math.ceil((await UserModel.countDocuments()) / limit);
+		return { users, maxPage };
 	}
 }
 

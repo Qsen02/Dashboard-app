@@ -3,9 +3,22 @@ import CustomInput from "../../commons/CustomInput";
 import { RootState } from "../../redux/state/store";
 import { useSelector } from "react-redux";
 import styles from "./AdminPanelStyles.module.css";
+import { usePaginateUsers } from "../../hooks/useUser";
+import UserItem from "../../commons/user_item/UserItem";
 
 export default function AdminPanel() {
 	const { theme } = useSelector((state: RootState) => state.theme);
+	const {
+		users,
+		setUsers,
+		loading,
+		setLoading,
+		error,
+		setError,
+		maxPage,
+		isSearched,
+		setIsSearched,
+	} = usePaginateUsers([]);
 
 	const formValues = {
 		query: "",
@@ -40,7 +53,34 @@ export default function AdminPanel() {
 					</Form>
 				)}
 			</Formik>
-			<section></section>
+			<section>
+				{loading && !error ? (
+					<span className="loader"></span>
+				) : error ? (
+					<div className="errorMessage">
+						<h2>
+							Server is not responding, please try again later!
+						</h2>
+					</div>
+				) : users.length === 0 ? (
+					<div className="errorMessage">
+						<h2>No users yet!</h2>
+					</div>
+				) : (
+					users
+						.filter((el) => el.role !== "programmer")
+						.map((el) => (
+							<UserItem
+								key={el._id}
+								id={el._id}
+								profileImage={el.profileImage}
+								username={el.username}
+								role={el.role}
+								theme={theme}
+							/>
+						))
+				)}
+			</section>
 		</section>
 	);
 }
