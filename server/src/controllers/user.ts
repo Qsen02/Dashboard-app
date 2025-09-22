@@ -83,7 +83,11 @@ userRouter.get(
 		const isSearched = req.params.isSearched;
 		const user = req.user;
 		try {
-			const users = await paginateUsers(user?._id, page, isSearched);
+			const users = await paginateUsers(
+				user?._id,
+				page,
+				isSearched
+			);
 			res.json(users);
 		} catch (err) {
 			if (err instanceof Error) {
@@ -244,7 +248,7 @@ userRouter.put(
 		.withMessage(
 			"Password must be at least 6 symbols and must contain digits, letters and at least one capital letter and special symbol!"
 		),
-		async (req, res) => {
+	async (req, res) => {
 		const userId = req?.params?.userId;
 		const isValid = await checkUserId(userId);
 		if (!isValid) {
@@ -304,7 +308,7 @@ userRouter.put(
 				fields.email,
 				fields.profileImage
 			);
-			res.status(200).json({message:"Record edited successfully!"});
+			res.status(200).json({ message: "Record edited successfully!" });
 		} catch (err) {
 			if (err instanceof Error) {
 				res.status(400).json({ message: err.message });

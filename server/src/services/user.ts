@@ -141,14 +141,16 @@ async function paginateUsers(
 		const searches =
 			user?.searches.slice((page - 1) * limit, page * limit) || [];
 		const filteredSearches = searches.filter((el) => el);
-		return filteredSearches;
+		const maxPage = Math.ceil((user?.searches.length || 0) / limit);
+		return { users: filteredSearches, maxPage };
 	} else if (isSearched === "false") {
 		const users = await UserModel.find()
 			.skip((page - 1) * limit)
 			.limit(limit)
 			.lean();
+		const filteredUsers = users.filter((el) => el.role !== "programmer");
 		const maxPage = Math.ceil((await UserModel.countDocuments()) / limit);
-		return { users, maxPage };
+		return { users: filteredUsers, maxPage };
 	}
 }
 

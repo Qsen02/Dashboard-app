@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Theme, UserRole } from "../../types/user";
 import { profileImageError } from "../../utils/imageErrors";
+import styles from "./UserItemStyles.module.css";
 
 interface UserItemProps {
 	id: string;
@@ -21,6 +22,7 @@ export default function UserItem({
 		<article
 			className={`
         ${theme === "light" ? "lightThemeNormal" : "darkThemeNormal"}
+        ${styles.wrapper}
     `}
 		>
 			<Link to={`/profile/${id}`}>
@@ -31,7 +33,7 @@ export default function UserItem({
 				/>
 			</Link>
 			<h2>{username}</h2>
-			<h2>{role}</h2>
+			<h2>Role: {role}</h2>
 			{role === "user" ? (
 				<button>Make Admin</button>
 			) : (

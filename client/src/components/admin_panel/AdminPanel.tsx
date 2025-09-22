@@ -53,7 +53,7 @@ export default function AdminPanel() {
 					</Form>
 				)}
 			</Formik>
-			<section>
+			<section className={styles.userWrapper}>
 				{loading && !error ? (
 					<span className="loader"></span>
 				) : error ? (
@@ -68,7 +68,6 @@ export default function AdminPanel() {
 					</div>
 				) : (
 					users
-						.filter((el) => el.role !== "programmer")
 						.map((el) => (
 							<UserItem
 								key={el._id}
@@ -81,6 +80,9 @@ export default function AdminPanel() {
 						))
 				)}
 			</section>
+            <section>
+                <button></button>
+            </section>
 		</section>
 	);
 }
