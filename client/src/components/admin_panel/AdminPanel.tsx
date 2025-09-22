@@ -16,6 +16,8 @@ export default function AdminPanel() {
 		error,
 		setError,
 		maxPage,
+		curPage,
+		setCurPage,
 		isSearched,
 		setIsSearched,
 	} = usePaginateUsers([]);
@@ -23,6 +25,26 @@ export default function AdminPanel() {
 	const formValues = {
 		query: "",
 	};
+
+	function setFirstPage() {
+		setCurPage(1);
+	}
+
+	function setLastPage() {
+		setCurPage(maxPage);
+	}
+
+	function setPrevPage() {
+		if (curPage > 1) {
+			setCurPage((value) => value - 1);
+		}
+	}
+
+	function setNextPage() {
+		if (curPage < maxPage) {
+			setCurPage((value) => value + 1);
+		}
+	}
 
 	return (
 		<section className={styles.wrapper}>
@@ -84,17 +106,19 @@ export default function AdminPanel() {
 					theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
 				}`}
 			>
-				<button>
+				<button onClick={setFirstPage}>
 					<i className="fa-solid fa-angles-left"></i>
 				</button>
-				<button>
+				<button onClick={setPrevPage}>
 					<i className="fa-solid fa-angle-left"></i>
 				</button>
-				<p>1 of {maxPage}</p>
-				<button>
+				<p>
+					{curPage} of {maxPage}
+				</p>
+				<button onClick={setNextPage}>
 					<i className="fa-solid fa-angle-right"></i>
 				</button>
-				<button>
+				<button onClick={setLastPage}>
 					<i className="fa-solid fa-angles-right"></i>
 				</button>
 			</section>

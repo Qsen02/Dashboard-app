@@ -173,6 +173,7 @@ export function useChangePassword(){
 export function usePaginateUsers(initValues:[]){
 	const [users,setUsers] = useState<User[]>(initValues);
 	const [maxPage,setMaxPage] = useState(1);
+	const [curPage,setCurPage]=useState(1);
 	const { loading, setLoading, error, setError } = useLoadingError(
 		false,
 		false
@@ -186,7 +187,7 @@ export function usePaginateUsers(initValues:[]){
 			try {
 				setLoading(true);
 				if (!signal.aborted) {
-					const {users,maxPage} = await paginateUsers(1,isSearched);
+					const {users,maxPage} = await paginateUsers(curPage,isSearched);
 					setUsers(users);
 					setMaxPage(maxPage);
 				}
@@ -201,7 +202,7 @@ export function usePaginateUsers(initValues:[]){
 		return () => {
 			controller.abort();
 		};
-	}, []);
+	}, [curPage,isSearched]);
 
 	return {
 		users,
@@ -211,6 +212,8 @@ export function usePaginateUsers(initValues:[]){
 		error,
 		setError,
 		maxPage,
+		curPage,
+		setCurPage,
 		isSearched,
 		setIsSearched
 	};
