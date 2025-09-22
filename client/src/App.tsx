@@ -24,6 +24,8 @@ import UserProfile from "./components/user_profile/UserProfile";
 import EditProfile from "./components/profile/edit_profile/EditProfile";
 import ChangePassword from "./components/profile/change_password/ChangePassword";
 import SuccessfullyChanged from "./components/profile/successfully_changed/SuccessfullyChanged";
+import ProgrammerGuard from "./guards/ProgrammerGuard";
+import AdminPanel from "./components/admin_panel/AdminPanel";
 
 function App() {
 	return (
@@ -46,6 +48,9 @@ function App() {
 							path="/profile/:userId"
 							element={<UserProfile />}
 						/>
+						<Route element={<ProgrammerGuard />}>
+						<Route path="/admins" element={<AdminPanel />} />
+						</Route>
 						<Route
 							path="/projects/:projectId"
 							element={<ProjectDetails />}
