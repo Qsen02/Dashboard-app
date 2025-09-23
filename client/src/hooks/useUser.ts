@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
 	changePassword,
+	changeUserRole,
 	editUser,
 	getLatestUsers,
 	getUserById,
@@ -226,5 +227,11 @@ export function usePagination(){
 			page,
 			isSearched
 		);
+	}
+}
+
+export function useChangeRole(){
+	return async function (userId: string, role: { role: User["role"] }) {
+		return await changeUserRole(userId, role);
 	}
 }

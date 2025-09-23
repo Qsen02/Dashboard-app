@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Theme, UserRole } from "../../types/user";
 import { profileImageError } from "../../utils/imageErrors";
 import styles from "./UserItemStyles.module.css";
+import { useChangeRole } from "../../hooks/useUser";
+import { useState } from "react";
 
 interface UserItemProps {
 	id: string;
@@ -18,6 +20,19 @@ export default function UserItem({
 	role,
 	theme,
 }: UserItemProps) {
+	const changeRole = useChangeRole();
+	const navigate = useNavigate();
+	const [curRole, setCurRole] = useState<UserRole>(role);
+
+	async function onChangeRole(role: "user" | "admin") {
+		try {
+			await changeRole(id, { role });
+			setCurRole(role);
+		} catch (err) {
+			navigate("404");
+		}
+	}
+
 	return (
 		<article
 			className={`
@@ -33,11 +48,15 @@ export default function UserItem({
 				/>
 			</Link>
 			<h2>{username}</h2>
-			<h2>Role: {role}</h2>
-			{role === "user" ? (
-				<button>Make Admin</button>
+			<h2>Role: {curRole}</h2>
+			{curRole === "user" ? (
+				<button onClick={() => onChangeRole("admin")}>
+					Make Admin
+				</button>
 			) : (
-				<button>Remove Admin</button>
+				<button onClick={() => onChangeRole("user")}>
+					Remove Admin
+				</button>
 			)}
 		</article>
 	);
