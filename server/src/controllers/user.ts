@@ -26,8 +26,8 @@ userRouter.get("/logout", isUser(), async (req: MyRequest, res) => {
 	const user = req.user;
 	if (user?.role === "programmer") {
 		await removeSearches(user?._id);
-		res.status(200).json({ message: "User logged out successfully" });
 	}
+	res.status(200).json({ message: "User logged out successfully" });
 });
 
 userRouter.get("/search/:value", isUser(), async (req: MyRequest, res) => {
