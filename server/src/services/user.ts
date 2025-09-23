@@ -133,7 +133,7 @@ async function paginateUsers(
 	page: number,
 	isSearched: string
 ) {
-	const limit = 5;
+	const limit = 10;
 	if (isSearched === "true") {
 		const user = await SearchesModel.findOne({ userId })
 			.populate("searches")
@@ -141,16 +141,15 @@ async function paginateUsers(
 		const searches =
 			user?.searches.slice((page - 1) * limit, page * limit) || [];
 		const filteredSearches = searches.filter((el) => el);
-		const maxPage = Math.ceil((user?.searches.length || 0) / limit);
-		return { users: filteredSearches, maxPage };
+		const maxPages = Math.ceil((user?.searches.length || 0) / limit);
+		return { users: filteredSearches, maxPages };
 	} else if (isSearched === "false") {
 		const users = await UserModel.find()
 			.skip((page - 1) * limit)
 			.limit(limit)
 			.lean();
-		const filteredUsers = users.filter((el) => el.role !== "programmer");
-		const maxPage = Math.ceil((await UserModel.countDocuments()) / limit);
-		return { users: filteredUsers, maxPage };
+		const maxPages = Math.ceil((await UserModel.countDocuments()) / limit);
+		return { users, maxPages };
 	}
 }
 

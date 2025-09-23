@@ -107,20 +107,17 @@ export function useGetLatestUsers(initValues: []) {
 		loading,
 		setLoading,
 		error,
-		setError
+		setError,
 	};
 }
 
-export function useSearchUsers(){
-	return async function (query:string){
+export function useSearchUsers() {
+	return async function (query: string) {
 		return await searchUsers(query);
-	}
+	};
 }
 
-export function useGetOneUser(
-	initialValue: null,
-	userId: string | undefined
-) {
+export function useGetOneUser(initialValue: null, userId: string | undefined) {
 	const [user, setUser] = useState<User | null>(initialValue);
 	const { loading, setLoading, error, setError } = useLoadingError(
 		false,
@@ -158,27 +155,27 @@ export function useGetOneUser(
 	};
 }
 
-export function useEditProfile(){
-	return async function (userId:string | undefined,data:object){
-		return await editUser(userId,data);
-	}
+export function useEditProfile() {
+	return async function (userId: string | undefined, data: object) {
+		return await editUser(userId, data);
+	};
 }
 
-export function useChangePassword(){
-	return async function (userId:string | undefined,data:object){
-		return await changePassword(userId,data);
-	}
+export function useChangePassword() {
+	return async function (userId: string | undefined, data: object) {
+		return await changePassword(userId, data);
+	};
 }
 
-export function usePaginateUsers(initValues:[]){
-	const [users,setUsers] = useState<User[]>(initValues);
-	const [maxPage,setMaxPage] = useState(1);
-	const [curPage,setCurPage]=useState(1);
+export function usePaginateUsers(initValues: []) {
+	const [users, setUsers] = useState<User[]>(initValues);
+	const [maxPage, setMaxPage] = useState(1);
+	const [curPage, setCurPage] = useState(1);
 	const { loading, setLoading, error, setError } = useLoadingError(
 		false,
 		false
 	);
-	const [isSearched,setIsSearched] = useState(false);
+	const [isSearched, setIsSearched] = useState(false);
 
 	useEffect(() => {
 		const controller = new AbortController();
@@ -187,9 +184,12 @@ export function usePaginateUsers(initValues:[]){
 			try {
 				setLoading(true);
 				if (!signal.aborted) {
-					const {users,maxPage} = await paginateUsers(curPage,isSearched);
+					const { users, maxPages } = await paginateUsers(
+						curPage,
+						isSearched
+					);
 					setUsers(users);
-					setMaxPage(maxPage);
+					setMaxPage(maxPages);
 				}
 				setLoading(false);
 			} catch (err) {
@@ -202,7 +202,7 @@ export function usePaginateUsers(initValues:[]){
 		return () => {
 			controller.abort();
 		};
-	}, [curPage,isSearched]);
+	}, [curPage, isSearched]);
 
 	return {
 		users,
@@ -212,9 +212,19 @@ export function usePaginateUsers(initValues:[]){
 		error,
 		setError,
 		maxPage,
+		setMaxPage,
 		curPage,
 		setCurPage,
 		isSearched,
-		setIsSearched
+		setIsSearched,
 	};
+}
+
+export function usePagination(){
+	return async function (page:number, isSearched:boolean) {
+		return await paginateUsers(
+			page,
+			isSearched
+		);
+	}
 }
