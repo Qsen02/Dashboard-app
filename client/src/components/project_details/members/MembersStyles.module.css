@@ -41,7 +41,7 @@
 		font-size: 14pt;
         width: 70vw;
 	}
-	.wrapper button {
+	.wrapper > button {
 		font-size: 18pt;
 	}
 }
@@ -51,7 +51,7 @@
 		font-size: 12pt;
         width: 85vw;
 	}
-	.wrapper button {
+	.wrapper > button {
 		font-size: 16pt;
 	}
 }
