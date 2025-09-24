@@ -4,8 +4,8 @@ This is web app for creating project dashboards adding tasks and tracking the co
 - Front-end: React with Typescript and Redux for global state managment.
 - Back-end: Express with Typescript and MongoDB.
 # How to start client and server
-- Client: run command `npm run dev` and open the link in terminal.
-- Server: run command `npm start` and the server should be launched.
+- Client: First install all dependancies with command `npm install` and next run command `npm run dev` and open the link in terminal.
+- Server: First install all dependancies with command `npm install` and next run command `npm start` and the server should be launched.
 # Features:
 - Types of users: There are 2 types of user first is common users and second is admins.
 - Common users: They can be a members of projects and they can apply for tasks and move the tasks throw different stages. They have profiles also and can change their profile data and password.
