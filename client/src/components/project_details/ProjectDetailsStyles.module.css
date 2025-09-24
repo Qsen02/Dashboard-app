@@ -89,6 +89,10 @@
 	border: none;
 }
 
+.borderNone {
+	border: none !important;
+}
+
 @media (max-width: 1000px) {
 	.buttonWrapper button {
 		padding: 10px 20px 10px 20px;

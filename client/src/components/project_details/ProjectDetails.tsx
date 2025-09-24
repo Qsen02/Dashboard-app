@@ -21,7 +21,7 @@ export default function ProjectDetails() {
 					setProjectHandler: setProject,
 					projectName: project?.name,
 					members: project?.members,
-					owner: project?.ownerId
+					owner: project?.ownerId,
 				}}
 			/>
 			{loading && !error ? (
@@ -71,6 +71,10 @@ export default function ProjectDetails() {
 								theme === "light"
 									? "lightThemeSmoked"
 									: "darkThemeLighter"
+							} ${
+								project?.tasks.length === 0
+									? styles.borderNone
+									: ""
 							}`}
 						>
 							<article>
