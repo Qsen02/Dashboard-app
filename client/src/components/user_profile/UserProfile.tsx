@@ -31,14 +31,18 @@ export default function UserProfile() {
                 ${styles.wrapper}
 			`}
 				>
-					<img
-						src={user?.profileImage}
-						alt={user?.username}
-						onError={profileImageError}
-					/>
-					<h2>{user?.username}</h2>
-					<p>{user?.email}</p>
-					<p>Projects count: {user?.projects.length}</p>
+					<section className={styles.headerWrapper}>
+						<img
+							src={user?.profileImage}
+							alt={user?.username}
+							onError={profileImageError}
+						/>
+						<div className={styles.headerInfo}>
+							<h2>{user?.username}</h2>
+							<p>{user?.email}</p>
+							<p>Projects count: {user?.projects.length}</p>
+						</div>
+					</section>
 				</section>
 			)}
 		</>

@@ -1,6 +1,6 @@
 .wrapper {
 	margin: 30px auto;
-	width: 50vw;
+	width: 55vw;
 	border-radius: 10px;
 	padding: 20px;
 	display: flex;
@@ -59,7 +59,7 @@
 
 @media (max-width: 1000px) {
 	.wrapper {
-		width: 70vw;
+		width: 80vw;
 		font-size: 14pt;
 	}
 
@@ -80,6 +80,7 @@
 
 @media (max-width: 500px) {
 	.wrapper {
+		width: 90%;
 		font-size: 12pt;
 	}
 
