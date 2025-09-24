@@ -13,7 +13,7 @@ export default function Profile() {
 		navigate("/profile/edit");
 	}
 
-	function navigateToChangePassword(){
+	function navigateToChangePassword() {
 		navigate("/profile/change-password");
 	}
 
@@ -26,15 +26,21 @@ export default function Profile() {
                 ${styles.wrapper}
 			`}
 			>
-				<img
-					src={user?.profileImage}
-					alt={user?.username}
-					onError={profileImageError}
-				/>
-				<h2>{user?.username}</h2>
-				<p>{user?.email}</p>
+				<section className={styles.headerWrapper}>
+					<img
+						src={user?.profileImage}
+						alt={user?.username}
+						onError={profileImageError}
+					/>
+					<div className={styles.headerInfo}>
+						<h2>{user?.username}</h2>
+						<p>{user?.email}</p>
+					</div>
+				</section>
 				<div className={styles.buttonWrapper}>
-					<button onClick={navigateToChangePassword}>Change password</button>
+					<button onClick={navigateToChangePassword}>
+						Change password
+					</button>
 					<button onClick={navigateToEdit}>Edit profile</button>
 				</div>
 			</section>
