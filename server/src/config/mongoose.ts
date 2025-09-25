@@ -4,8 +4,10 @@ import { UserModel } from "../models/users";
 import { ProjectModel } from "../models/projects";
 import { SearchesModel } from "../models/searches";
 
+const localDB = "mongodb://127.0.0.1:27017/Dashboard";
+
 async function runDB() {
-	await mongoose.connect("mongodb://127.0.0.1:27017/Dashboard");
+	await mongoose.connect(process.env.MONGODB_URI!);
     await TaskModel.init();
     await UserModel.init();
     await ProjectModel.init();
