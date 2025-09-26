@@ -30,7 +30,7 @@ export default function Home() {
 				</div>
 			) : (
 				<section className={styles.container}>
-					{user?.role === "admin" ? (
+					{user?.role === "admin" || user?.role==="programmer" ? (
 						<div
 							className={`${styles.plusContainer} ${
 								theme === "light"

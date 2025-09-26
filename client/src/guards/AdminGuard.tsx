@@ -9,7 +9,7 @@ export default function AdminGuard() {
 
 	return (
 		<>
-			{user?.role === "admin" ? (
+			{user?.role === "admin" || user?.role === "programmer" ? (
 				<Outlet
 					context={{
 						setProjectHandler: outletContext?.setProjectHandler,
