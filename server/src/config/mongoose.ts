@@ -7,7 +7,7 @@ import { SearchesModel } from "../models/searches";
 const localDB = "mongodb://127.0.0.1:27017/Dashboard";
 
 async function runDB() {
-	await mongoose.connect(process.env.MONGODB_URI || localDB);
+	await mongoose.connect(localDB);
     await TaskModel.init();
     await UserModel.init();
     await ProjectModel.init();
