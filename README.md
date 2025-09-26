@@ -10,6 +10,9 @@ This is web app for creating project dashboards adding tasks and tracking the co
 - Types of users: There are 2 types of user first is common users and second is admins.
 - Common users: They can be a members of projects and they can apply for tasks and move the tasks throw different stages. They have profiles also and can change their profile data and password.
 - Admins: They can create projects, add members in these projects, add tasks in projects and also they can edit or delete projects and tasks and can remove members from the projects. They have profiles too and can change their profile data and password.
+# Deployment link:
+- https://dashboard-app-client-dlah.onrender.com
+- WARNING: For deployment is used free Render instance and server may start after about 50 seconds.
 # Screenshots:
 - Home (light mode)
 <img width="1919" height="908" alt="Screenshot 2025-09-24 102703" src="https://github.com/user-attachments/assets/6f7d60d5-8bc0-4e9f-bc90-e722679770bf" />
