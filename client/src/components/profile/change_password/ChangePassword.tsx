@@ -67,7 +67,7 @@ export default function ChangePassword() {
 				onSubmit={onChangePassword}
 				validationSchema={changePasswordSchema}
 			>
-				{(props) => (
+				{() => (
 					<Form
 						className={`form ${
 							theme === "light"

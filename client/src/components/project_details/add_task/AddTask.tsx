@@ -64,7 +64,7 @@ export default function AddTask() {
 				onSubmit={onAddTask}
 				validationSchema={addTaskSchema}
 			>
-				{(props) => (
+				{() => (
 					<Form
 						className={`form ${
 							theme === "light"

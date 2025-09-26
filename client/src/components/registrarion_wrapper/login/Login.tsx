@@ -66,7 +66,7 @@ export default function Login() {
 			onSubmit={onLogin}
 			validationSchema={loginSchema}
 		>
-			{(props) => (
+			{() => (
 				<Form className="form">
 					<h3>You can login into your account here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}

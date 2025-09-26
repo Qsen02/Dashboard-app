@@ -49,7 +49,7 @@ export default function CreateProject() {
 			onSubmit={onCreate}
 			validationSchema={createProjectSchema}
 		>
-			{(props) => (
+			{() => (
 				<Form className={`form ${theme==="light"?"lightThemeNormal":"darkThemeNormal"} ${styles.form}`}>
 					<h3>Create your project here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}

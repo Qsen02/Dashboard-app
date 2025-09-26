@@ -80,7 +80,7 @@ export default function AdminPanel() {
 		<section className={styles.wrapper}>
 			<h1>Admin Panel</h1>
 			<Formik initialValues={formValues} onSubmit={onSearch}>
-				{(props) => (
+				{() => (
 					<Form className="form">
 						<div className={`input ${styles.inputWrapper}`}>
 							<CustomInput

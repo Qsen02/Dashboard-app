@@ -54,7 +54,7 @@ export default function AddMember() {
 			>
 				<button onClick={onBack}>X</button>
 				<Formik initialValues={formValues} onSubmit={onSearch}>
-					{(props) => (
+					{() => (
 						<Form className="form">
 							<h2>Search users</h2>
 							<div className={`input ${styles.inputWrapper}`}>

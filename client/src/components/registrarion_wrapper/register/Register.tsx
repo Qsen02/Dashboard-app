@@ -87,7 +87,7 @@ export default function Register() {
 			onSubmit={onRegister}
 			validationSchema={registerSchema}
 		>
-			{(props) => (
+			{() => (
 				<Form className="form">
 					<h3>You can create your account here</h3>
 					{isErr ? <p className="error">{errMessage}</p> : ""}

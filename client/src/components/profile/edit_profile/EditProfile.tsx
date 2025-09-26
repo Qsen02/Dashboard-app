@@ -76,7 +76,7 @@ export default function EditProfile() {
 				validationSchema={editProfileSchema}
 				onSubmit={onEdit}
 			>
-				{(props) => (
+				{() => (
 					<Form
 						className={`form ${
 							theme === "light"

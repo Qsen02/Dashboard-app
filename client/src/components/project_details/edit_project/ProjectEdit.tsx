@@ -54,7 +54,7 @@ export default function ProjectEdit() {
 				onSubmit={onEdit}
 				validationSchema={createProjectSchema}
 			>
-				{(props) => (
+				{() => (
 					<Form
 						className={`form ${
 							theme === "light"
