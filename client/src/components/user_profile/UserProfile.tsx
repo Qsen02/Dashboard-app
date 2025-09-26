@@ -3,7 +3,7 @@ import { RootState } from "../../redux/state/store";
 import { profileImageError } from "../../utils/imageErrors";
 import styles from "../profile/ProfileStyles.module.css";
 import { useGetOneUser } from "../../hooks/useUser";
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function UserProfile() {
 	const { userId } = useParams();
