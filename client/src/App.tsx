@@ -55,6 +55,7 @@ function App() {
 							path="/projects/:projectId"
 							element={<ProjectDetails />}
 						>
+							<></>
 							<Route element={<AdminGuard />}>
 								<Route path="members" element={<Members />} />
 								<Route path="add-task" element={<AddTask />} />

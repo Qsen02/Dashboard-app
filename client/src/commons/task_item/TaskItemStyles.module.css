@@ -1,12 +1,12 @@
 .wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 20px;
 	border-bottom: 2px solid grey;
 	font-size: 14pt;
-	height: 200px;
+	height: 140px;
 }
 
 .buttonWrapper {
@@ -48,6 +48,30 @@
 	object-fit: cover;
 }
 
+.info {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 30px;
+	height: 30px;
+	border: solid 1px grey;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.info:hover {
+	background-color: darkgrey;
+}
+
+.info i {
+	color: grey;
+	font-size: 12pt;
+}
+
 @media (max-width: 1000px) {
 	.wrapper {
 		font-size: 12pt;
@@ -57,21 +81,40 @@
 		font-size: 14pt;
 	}
 
+	.info i {
+		font-size: 14pt;
+	}
+
 	.userWrapper img {
 		width: 20px;
 		height: 20px;
+	}
+	.info {
+		width: 20px;
+		height: 20px;
+	}
+	.info i {
+		font-size: 10pt;
 	}
 }
 
 @media (max-width: 500px) {
 	.wrapper {
 		font-size: 10pt;
-		height: 175px;
 	}
 
 	.buttonWrapper button {
 		padding: 5px 10px 5px 10px;
 		font-size: 10pt;
+	}
+
+	.info {
+		padding: 5px 10px 5px 10px;
+		font-size: 10pt;
+	}
+
+	.info i {
+		font-size: 12pt;
 	}
 
 	.buttonWrapper i {
@@ -82,5 +125,12 @@
 		gap: 10px;
 		justify-content: center;
 		align-items: center;
+	}
+	.info {
+		right: 5px;
+		top: 5px;
+	}
+	.info i {
+		font-size: 8pt;
 	}
 }

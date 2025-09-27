@@ -96,13 +96,11 @@ export default function ProjectDetails() {
 											key={el._id}
 											id={el._id}
 											title={el.title}
-											description={el.description}
 											user={user}
 											status={el.status}
-											owner={project.ownerId}
-											projectId={projectId}
 											appliedBy={el.appliedBy}
 											projectHandler={setProject}
+											projectId={projectId}
 										/>
 									))}
 							</article>
@@ -114,13 +112,11 @@ export default function ProjectDetails() {
 											key={el._id}
 											id={el._id}
 											title={el.title}
-											description={el.description}
 											user={user}
 											status={el.status}
-											owner={project.ownerId}
-											projectId={projectId}
 											appliedBy={el.appliedBy}
 											projectHandler={setProject}
+											projectId={projectId}
 										/>
 									))}
 							</article>
@@ -132,13 +128,11 @@ export default function ProjectDetails() {
 											key={el._id}
 											id={el._id}
 											title={el.title}
-											description={el.description}
 											user={user}
 											status={el.status}
-											owner={project.ownerId}
-											projectId={projectId}
 											appliedBy={el.appliedBy}
 											projectHandler={setProject}
+											projectId={projectId}
 										/>
 									))}
 							</article>

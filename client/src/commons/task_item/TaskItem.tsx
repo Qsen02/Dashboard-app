@@ -5,41 +5,30 @@ import styles from "./TaskItemStyles.module.css";
 import { profileImageError } from "../../utils/imageErrors";
 import { useApplyForTask, useChangeTaskStatus } from "../../hooks/useTasks";
 import { Project } from "../../types/project";
+import { addDots } from "../../utils/textTransform";
 
 interface TaskItemProps {
 	id: string;
 	title: string;
-	description: string;
 	user: UserForAuth | null;
-	owner: User;
 	status: TaskStatus;
-	projectId: string | undefined;
 	appliedBy: User | undefined;
 	projectHandler: React.Dispatch<React.SetStateAction<Project | null>>;
+	projectId: string | undefined;
 }
 
 export default function TaskItem({
 	id,
 	title,
-	description,
 	user,
-	owner,
 	status,
-	projectId,
 	appliedBy,
 	projectHandler,
+	projectId,
 }: TaskItemProps) {
 	const navigate = useNavigate();
 	const applyToTask = useApplyForTask();
 	const changeTaskStatus = useChangeTaskStatus();
-
-	function navigating(action: "delete" | "edit") {
-		if (projectId) {
-			navigate(`/projects/${projectId}/${action}/${id}`);
-		} else {
-			navigate("404");
-		}
-	}
 
 	async function onApply() {
 		try {
@@ -61,10 +50,20 @@ export default function TaskItem({
 		}
 	}
 
+	function navigateToInfo() {
+		try {
+			navigate(`/projects/${projectId}/task/${id}`);
+		} catch (err) {
+			navigate("404");
+		}
+	}
+
 	return (
 		<article className={styles.wrapper}>
-			<h3>{title}</h3>
-			<p>{description}</p>
+			<button className={styles.info} onClick={navigateToInfo}>
+				<i className="fa-solid fa-info"></i>
+			</button>
+			<h3>{title.length > 20 ? addDots(title) : title}</h3>
 			{appliedBy ? (
 				<div className={styles.userWrapper}>
 					<p>Applied By:</p>
@@ -78,12 +77,7 @@ export default function TaskItem({
 			) : (
 				<p>No users applied yet</p>
 			)}
-			{user?._id === owner._id ? (
-				<div className={styles.buttonWrapper}>
-					<button onClick={() => navigating("edit")}>Edit</button>
-					<button onClick={() => navigating("delete")}>Delete</button>
-				</div>
-			) : status === "pending" ? (
+			{status === "pending" ? (
 				<div className={styles.buttonWrapper}>
 					{!appliedBy ? <button onClick={onApply}>Apply</button> : ""}
 					{user?._id === appliedBy?._id ? (
@@ -110,9 +104,11 @@ export default function TaskItem({
 					)}
 				</div>
 			) : (
-				<div className={styles.buttonWrapper}>
-					<i className="fa-solid fa-circle-check"></i>
-				</div>
+				<>
+					<div className={styles.buttonWrapper}>
+						<i className="fa-solid fa-circle-check"></i>
+					</div>
+				</>
 			)}
 		</article>
 	);
