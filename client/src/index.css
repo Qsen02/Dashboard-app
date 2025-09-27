@@ -61,31 +61,37 @@ main {
 .darkThemeDarker {
 	background-color: rgb(20, 20, 20);
 	color: white;
+	transition: all 0.3s ease-in-out;
 }
 
 .darkThemeNormal {
 	background-color: rgb(30, 30, 30);
 	color: white;
+	transition: all 0.3s ease-in-out;
 }
 
 .darkThemeLighter {
 	background-color: rgb(40, 40, 40);
 	color: white;
+	transition: all 0.3s ease-in-out;
 }
 
 .lightThemeLighter {
 	background-color: rgb(255, 255, 255);
 	color: black;
+	transition: all 0.3s ease-in-out;
 }
 
 .lightThemeNormal {
 	background-color: rgb(245, 245, 245);
 	color: black;
+	transition: all 0.3s ease-in-out;
 }
 
 .lightThemeSmoked {
 	background-color: rgb(235, 235, 235);
 	color: black;
+	transition: all 0.3s ease-in-out;
 }
 
 .error {
