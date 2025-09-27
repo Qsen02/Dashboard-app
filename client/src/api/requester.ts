@@ -4,9 +4,9 @@ import {
 	removeUserData,
 } from "../utils/userHelper";
 
-const host = "http://localhost:3000";
+// const host = "http://localhost:3000";
 
-// const host="https://dashboard-app-server-l4o2.onrender.com";
+const host="https://dashboard-app-server-l4o2.onrender.com";
 
 async function requester(method: string, url: string, data?: object) {
 	const headers: Record<string, string> = {

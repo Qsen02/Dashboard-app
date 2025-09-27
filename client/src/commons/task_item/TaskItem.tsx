@@ -79,7 +79,11 @@ export default function TaskItem({
 			)}
 			{status === "pending" ? (
 				<div className={styles.buttonWrapper}>
-					{!appliedBy ? <button onClick={onApply}>Apply</button> : ""}
+					{!appliedBy && user?.role === "user" ? (
+						<button onClick={onApply}>Apply</button>
+					) : (
+						""
+					)}
 					{user?._id === appliedBy?._id ? (
 						<button onClick={() => changeStatus("in-progress")}>
 							Move

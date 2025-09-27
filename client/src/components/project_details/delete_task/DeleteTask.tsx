@@ -20,7 +20,7 @@ export default function DeleteTask() {
 		try {
 			const updatedProject = await deleteTask(taskId, projectId);
             setProjectHandler(updatedProject);
-			history.back();
+			navigate(`/projects/${projectId}`);
 		} catch (err) {
 			navigate("404");
 			return;
