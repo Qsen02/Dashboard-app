@@ -23,6 +23,7 @@
 	color: white;
 	border: none;
 	font-size: 12pt;
+	transition: all 0.3s ease-in-out;
 }
 
 .buttonWrapper button:hover {
@@ -61,6 +62,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: all 0.3s ease-in-out;
 }
 
 .info:hover {

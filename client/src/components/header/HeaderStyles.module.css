@@ -27,6 +27,7 @@
 	border: none;
 	cursor: pointer;
 	color: black;
+	transition: all 0.3s ease-in-out;
 }
 
 .wrapper button:hover {

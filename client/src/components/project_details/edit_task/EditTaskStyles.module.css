@@ -1,6 +1,7 @@
 .formWrapper{
     width: 30vw;
     border-radius: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 .buttonWrapper{
