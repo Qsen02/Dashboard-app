@@ -38,23 +38,23 @@ main {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    padding: 5px;
+	width: 10px;
+	padding: 5px;
 	-webkit-overflow-scrolling: initial;
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: rgb(80,80,80);
+	background-color: rgb(80, 80, 80);
 }
 
-::-webkit-scrollbar-thumb{
-    background-color: grey;
-    border-radius: 20px;
+::-webkit-scrollbar-thumb {
+	background-color: grey;
+	border-radius: 20px;
 	cursor: pointer;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
 	background-color: darkgrey;
 }
 
@@ -265,6 +265,10 @@ main {
 		width: 50px;
 		height: 50px;
 	}
+	::-webkit-scrollbar {
+		width: 5px;
+		padding: 3px;
+	}
 }
 
 @media (max-width: 500px) {
@@ -302,5 +306,9 @@ main {
 	.loader:after {
 		width: 30px;
 		height: 30px;
+	}
+	::-webkit-scrollbar {
+		width: 3px;
+		padding: 1px;
 	}
 }
