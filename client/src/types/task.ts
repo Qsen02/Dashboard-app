@@ -11,4 +11,6 @@ export interface Task {
 	status: TaskStatus;
 	projectId: Project;
 	ownerId: User;
+	created_at: string;
+	updated_at: string;
 }

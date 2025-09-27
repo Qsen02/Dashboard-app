@@ -26,6 +26,7 @@ import ChangePassword from "./components/profile/change_password/ChangePassword"
 import SuccessfullyChanged from "./components/profile/successfully_changed/SuccessfullyChanged";
 import ProgrammerGuard from "./guards/ProgrammerGuard";
 import AdminPanel from "./components/admin_panel/AdminPanel";
+import TaskDetails from "./components/project_details/task_details/TaskDetails";
 
 function App() {
 	return (
@@ -55,7 +56,7 @@ function App() {
 							path="/projects/:projectId"
 							element={<ProjectDetails />}
 						>
-							<></>
+							<Route path="task/:taskId" element={<TaskDetails />} />
 							<Route element={<AdminGuard />}>
 								<Route path="members" element={<Members />} />
 								<Route path="add-task" element={<AddTask />} />
