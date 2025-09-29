@@ -19,9 +19,9 @@ This is web app for creating project dashboards adding tasks and tracking the co
 - Home (dark mode)
 <img width="1919" height="916" alt="Screenshot 2025-09-24 102430" src="https://github.com/user-attachments/assets/de2e945c-ebf4-4256-a726-c6b119319166" />
 - Project details (common user)
-<img width="1919" height="906" alt="Screenshot 2025-09-24 102530" src="https://github.com/user-attachments/assets/dcc97402-30c9-4d80-b093-651cbc3c9dbd" />
+<img width="1919" height="909" alt="Screenshot 2025-09-29 134035" src="https://github.com/user-attachments/assets/afbd1e73-2a15-4fd3-a38d-d5bc22cd0350" />
 - Project details (admin)
-<img width="1919" height="912" alt="Screenshot 2025-09-24 102441" src="https://github.com/user-attachments/assets/c34c522c-6ff8-46a9-9666-37676d4651c8" />
+<img width="1919" height="916" alt="Screenshot 2025-09-29 134100" src="https://github.com/user-attachments/assets/a1bc5196-72f3-4c6d-a588-672692da1179" />
 - List of members for project
 <img width="1919" height="908" alt="Screenshot 2025-09-24 111124" src="https://github.com/user-attachments/assets/3edaf7bf-e0ea-4117-a64e-6b2c6fdbaa18" />
 - Profile page
