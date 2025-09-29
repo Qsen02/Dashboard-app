@@ -38,10 +38,23 @@
 .wrapper i {
 	font-size: 16pt;
 	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.wrapper i:hover {
+	color: rgba(110, 8, 205, 1);
 }
 
 .wrapper p {
 	font-size: 16pt;
+}
+
+.wrapper li a{
+	transition: all 0.3s ease-in-out;
+}
+
+.wrapper li a:hover {
+	color: rgba(110, 8, 205, 1);
 }
 
 @media (max-width: 1000px) {
