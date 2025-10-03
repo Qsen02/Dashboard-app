@@ -26,18 +26,26 @@ export default function TaskDetails() {
 
 	return (
 		<div className="modal">
-			className=
-			{`${styles.wrapper} ${
-				theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
-			}`}
 			{loading && !error ? (
 				<span className="loader"></span>
 			) : error ? (
-				<section className={styles.wrapper}>
+				<section
+					className={`${styles.wrapper} ${
+						theme === "light"
+							? "lightThemeNormal"
+							: "darkThemeNormal"
+					}`}
+				>
 					<h2>Server is not responding, please try again later.</h2>
 				</section>
 			) : (
-				<section className={styles.wrapper}>
+				<section
+					className={`${styles.wrapper} ${
+						theme === "light"
+							? "lightThemeNormal"
+							: "darkThemeNormal"
+					}`}
+				>
 					<button onClick={onClose}>X</button>
 					<h2>{task?.title}</h2>
 					<p>{task?.description}</p>
