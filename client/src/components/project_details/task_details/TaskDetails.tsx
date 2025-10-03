@@ -26,41 +26,43 @@ export default function TaskDetails() {
 
 	return (
 		<div className="modal">
-			<section
-				className={`${styles.wrapper} ${
-					theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
-				}`}
-			>
-				{loading && !error ? (
-					<span className="loader"></span>
-				) : error ? (
-					<h2>
-						Server is not responding, please try again later.
-					</h2>
-				) : (
-					<>
-						<button onClick={onClose}>X</button>
-						<h2>{task?.title}</h2>
-						<p>{task?.description}</p>
-						<p>Status: {task?.status}</p>
-						<p>
-							Applied By:{" "}
-							{task?.appliedBy
-								? task.appliedBy.username
-								: "No users applied yet"}
-						</p>
-						<p>Created on: {transformDate(task?.created_at)}</p>
-						{task?.ownerId._id === user?._id ? (
-							<div className={styles.buttonWrapper}>
-								<button onClick={() => onNavigate("edit")}>Edit</button>
-								<button onClick={() => onNavigate("delete")}>Delete</button>
-							</div>
-						) : (
-							""
-						)}
-					</>
-				)}
-			</section>
+			className=
+			{`${styles.wrapper} ${
+				theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
+			}`}
+			{loading && !error ? (
+				<span className="loader"></span>
+			) : error ? (
+				<section className={styles.wrapper}>
+					<h2>Server is not responding, please try again later.</h2>
+				</section>
+			) : (
+				<section className={styles.wrapper}>
+					<button onClick={onClose}>X</button>
+					<h2>{task?.title}</h2>
+					<p>{task?.description}</p>
+					<p>Status: {task?.status}</p>
+					<p>
+						Applied By:{" "}
+						{task?.appliedBy
+							? task.appliedBy.username
+							: "No users applied yet"}
+					</p>
+					<p>Created on: {transformDate(task?.created_at)}</p>
+					{task?.ownerId._id === user?._id ? (
+						<div className={styles.buttonWrapper}>
+							<button onClick={() => onNavigate("edit")}>
+								Edit
+							</button>
+							<button onClick={() => onNavigate("delete")}>
+								Delete
+							</button>
+						</div>
+					) : (
+						""
+					)}
+				</section>
+			)}
 		</div>
 	);
 }
