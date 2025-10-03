@@ -7,6 +7,8 @@
 	border-bottom: 2px solid grey;
 	font-size: 14pt;
 	height: 140px;
+	content-visibility: auto;
+	contain-intrinsic-size: 300px;
 }
 
 .buttonWrapper {

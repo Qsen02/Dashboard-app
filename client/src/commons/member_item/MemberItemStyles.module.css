@@ -6,6 +6,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	content-visibility: auto;
+	contain-intrinsic-size: 200px;
 }
 
 .wrapper img {

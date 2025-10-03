@@ -9,6 +9,8 @@
 	padding-bottom: 20px;
 	font-size: 16pt;
 	font-weight: bold;
+	content-visibility: auto;
+	contain-intrinsic-size: 200px;
 }
 
 @media (max-width: 1000px) {

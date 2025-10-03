@@ -74,6 +74,8 @@
 	justify-content: space-evenly;
 	align-items: center;
 	gap: 10px;
+	content-visibility: auto;
+	contain-intrinsic-size: 200px;
 }
 
 .pagination button {
