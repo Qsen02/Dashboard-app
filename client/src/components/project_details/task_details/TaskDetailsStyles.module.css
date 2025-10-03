@@ -9,10 +9,10 @@
 	padding: 20px;
 	border-radius: 10px;
 	width: 50vw;
-	height: 70vh;
 	position: relative;
 	transition: all 0.3s ease-in-out;
     overflow: auto;
+    word-break: break-all;
 }
 
 .wrapper > button {
