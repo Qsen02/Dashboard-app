@@ -1,4 +1,12 @@
-.wrapper {
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	gap:20px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.profileWrapper {
 	margin: 30px auto;
 	width: 55vw;
 	border-radius: 10px;

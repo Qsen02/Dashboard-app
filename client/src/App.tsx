@@ -44,6 +44,7 @@ function App() {
 							<Route path="edit" element={<EditProfile />} />
 							<Route path="change-password" element={<ChangePassword/>}/>
 							<Route path="successfully-changed" element={<SuccessfullyChanged/>}/>
+							<Route path="task/:taskId" element={<TaskDetails/>}/>
 						</Route>
 						<Route
 							path="/profile/:userId"
