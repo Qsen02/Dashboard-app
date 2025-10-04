@@ -50,6 +50,7 @@ export default function TaskDetails() {
 					<h2>{task?.title}</h2>
 					<p>{task?.description}</p>
 					<p>Status: {task?.status}</p>
+					<p>Project: {task?.projectId.name}</p>
 					<p>
 						Applied By:{" "}
 						{task?.appliedBy

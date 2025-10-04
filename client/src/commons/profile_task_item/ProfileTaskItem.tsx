@@ -3,6 +3,7 @@ import { TaskStatus } from "../../types/task";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/state/store";
 import styles from "./ProfileTaskItemStyles.module.css";
+import { addDots } from "../../utils/textTransform";
 
 interface ProfileTaskItemProps {
 	id: string;
@@ -33,7 +34,7 @@ export default function ProfileTaskItem({
 			}`}
 		>
 			<i className="fa-solid fa-thumbtack"></i>
-			<h3>{title}</h3>
+			<h3>{title.length > 20 ? addDots(title) : title}</h3>
 			<p>Status: {status}</p>
 			<button onClick={goToTaskDetails}>Details</button>
 		</article>
