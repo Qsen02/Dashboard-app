@@ -5,6 +5,7 @@ import {
 	checkUserId,
 	createSearches,
 	editUser,
+	getAppliedTasks,
 	getLastUsers,
 	getUserById,
 	getUserProjects,
@@ -59,6 +60,12 @@ userRouter.get("/latest", isUser(), async (req, res) => {
 			res.status(400).json({ message: "Unknown error" });
 		}
 	}
+});
+
+userRouter.get("/applied-tasks", isUser(), async (req:MyRequest, res) => {
+	const user = req.user;
+	const tasks = await getAppliedTasks(user);
+	res.json(tasks);
 });
 
 userRouter.get("/:userId", async (req, res) => {

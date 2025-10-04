@@ -2,6 +2,8 @@ import { UserModel } from "../models/users";
 import { SearchesModel } from "../models/searches";
 import bcrypt from "bcrypt";
 import { Types } from "mongoose";
+import { TaskModel } from "../models/tasks";
+import { UserPayload } from "../types/users";
 
 async function register(
 	username: string,
@@ -161,6 +163,15 @@ async function removeSearches(userId: string | undefined) {
 	await SearchesModel.findOneAndDelete({ userId: userId });
 }
 
+async function getAppliedTasks(user: UserPayload | null | undefined) {
+	if (user) {
+		const tasks = await TaskModel.find({ appliedBy: user._id }).lean();
+
+		return tasks;
+	}
+	return [];
+}
+
 export {
 	register,
 	getUserById,
@@ -175,4 +186,5 @@ export {
 	paginateUsers,
 	createSearches,
 	removeSearches,
+	getAppliedTasks,
 };
