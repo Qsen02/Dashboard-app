@@ -1,25 +1,28 @@
 .wrapper {
-    width: 95%;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap:10px;
-    font-size: 14pt;
-    content-visibility: auto;
+	width: 95%;
+	padding: 20px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	font-size: 14pt;
+	text-align: center;
+	content-visibility: auto;
 	contain-intrinsic-size: 200px;
 }
 
-.wrapper img{
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
+.wrapper img {
+	margin-left: 80px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
-.wrapper button{
-    padding: 10px 30px 10px 30px;
+.wrapper button {
+	margin-right: 80px;
+	padding: 10px 30px 10px 30px;
 	border-radius: 20px;
 	cursor: pointer;
 	background-color: rgb(183, 120, 241);
@@ -29,41 +32,42 @@
 }
 
 .wrapper button:hover {
-    background-color: rgb(146, 62, 224);
+	background-color: rgb(146, 62, 224);
 }
 
-@media(max-width:1000px){
-    .wrapper{
-        font-size: 12pt;
-    }
+@media (max-width: 1000px) {
+	.wrapper {
+		font-size: 12pt;
+	}
 
-    .wrapper button{
-        padding: 10px 20px 10px 20px;
-        font-size: 12pt;
-    }
+	.wrapper button {
+		margin-right: 0;
+		padding: 10px 20px 10px 20px;
+		font-size: 12pt;
+	}
 
-    .wrapper img{
-        width: 50px;
-        height: 50px;
-    }
+	.wrapper img {
+		margin-left: 0;
+		width: 50px;
+		height: 50px;
+	}
 }
 
-@media(max-width:500px){
-    .wrapper{
-        font-size: 10pt;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+@media (max-width: 500px) {
+	.wrapper {
+		font-size: 10pt;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 
-    .wrapper button{
-        padding: 5px 10px 5px 10px;
-        font-size: 10pt;
-    }
+	.wrapper button {
+		padding: 5px 10px 5px 10px;
+		font-size: 10pt;
+	}
 
-    .wrapper img{
-        width: 30px;
-        height: 30px;
-    }
+	.wrapper img {
+		width: 30px;
+		height: 30px;
+	}
 }
-
