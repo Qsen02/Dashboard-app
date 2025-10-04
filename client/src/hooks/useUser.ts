@@ -6,6 +6,7 @@ import {
 	getLatestUsers,
 	getUserById,
 	getUserProjects,
+	getUserTasks,
 	login,
 	logout,
 	paginateUsers,
@@ -15,6 +16,7 @@ import {
 import { Project } from "../types/project";
 import { useLoadingError } from "./useLoadingError";
 import { User } from "../types/user";
+import { Task } from "../types/task";
 
 export function useRegister() {
 	return async function (data: object) {
@@ -221,17 +223,52 @@ export function usePaginateUsers(initValues: []) {
 	};
 }
 
-export function usePagination(){
-	return async function (page:number, isSearched:boolean) {
-		return await paginateUsers(
-			page,
-			isSearched
-		);
-	}
+export function usePagination() {
+	return async function (page: number, isSearched: boolean) {
+		return await paginateUsers(page, isSearched);
+	};
 }
 
-export function useChangeRole(){
+export function useChangeRole() {
 	return async function (userId: string, role: { role: User["role"] }) {
 		return await changeUserRole(userId, role);
+	};
+}
+
+export function useGetUserTasks(initialValue: []) {
+	const [tasks, setTasks] = useState<Task[]>(initialValue);
+	const { loading, setLoading, error, setError } = useLoadingError(
+		false,
+		false
+	);
+
+	useEffect(() => {
+		const controller = new AbortController();
+		const { signal } = controller;
+
+		(async () => {
+			try {
+				setLoading(true);
+				if (!signal.aborted) {
+					const curTasks = await getUserTasks();
+					setTasks(curTasks);
+				}
+				setLoading(false);
+			} catch (err) {
+				setLoading(false);
+				setError(true);
+				return;
+			}
+		})();
+
+		return () => {
+			controller.abort();
+		};
+	}, []);
+
+	return {
+		tasks,
+		loading,
+		error,
 	}
 }

@@ -1,4 +1,5 @@
 import { Project } from "../types/project";
+import { Task } from "../types/task";
 import { User, UserForAuth } from "../types/user";
 import { get, post, put } from "./requester";
 
@@ -65,3 +66,9 @@ export async function changePassword(userId: string | undefined, data: object) {
 	);
 	return updatedUser as User;
 }
+
+export async function getUserTasks(){
+	const tasks = await get(`${endpoint}/applied-tasks`);
+	return tasks as Task[];
+}
+
