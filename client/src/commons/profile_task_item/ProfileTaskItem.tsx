@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { TaskStatus } from "../../types/task";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/state/store";
+import styles from "./ProfileTaskItemStyles.module.css";
 
 interface ProfileTaskItemProps {
 	id: string;
@@ -12,6 +15,7 @@ export default function ProfileTaskItem({
 	title,
 	status,
 }: ProfileTaskItemProps) {
+	const { theme } = useSelector((state: RootState) => state.theme);
 	const navigate = useNavigate();
 
 	function goToTaskDetails() {
@@ -23,7 +27,12 @@ export default function ProfileTaskItem({
 	}
 
 	return (
-		<article>
+		<article
+			className={`${styles.wrapper} ${
+				theme === "light" ? "lightThemeNormal" : "darkThemeNormal"
+			}`}
+		>
+			<i className="fa-solid fa-thumbtack"></i>
 			<h3>{title}</h3>
 			<p>Status: {status}</p>
 			<button onClick={goToTaskDetails}>Details</button>

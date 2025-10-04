@@ -28,7 +28,7 @@ export default function UserProfile() {
 				<section
 					className={`
 				${theme === "light" ? "lightThemeNormal" : "darkThemeNormal"}
-                ${styles.wrapper}
+                ${styles.profileWrapper}
 			`}
 				>
 					<section className={styles.headerWrapper}>

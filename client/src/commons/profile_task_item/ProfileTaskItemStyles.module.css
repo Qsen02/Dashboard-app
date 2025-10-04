@@ -1,0 +1,67 @@
+.wrapper {
+	flex-basis: 28%;
+	position: relative;
+	padding: 20px;
+	border-radius: 10px;
+	content-visibility: auto;
+	contain-intrinsic-size: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	font-size: 16pt;
+	gap: 10px;
+}
+
+.wrapper i {
+	position: absolute;
+	font-size: 20pt;
+	right: 5px;
+	top: 3px;
+	color: darkgray;
+}
+
+.wrapper button {
+	padding: 7px 30px 7px 30px;
+	border-radius: 20px;
+	cursor: pointer;
+	background-color: rgb(183, 120, 241);
+	color: white;
+	border: none;
+	font-size: 14pt;
+	transition: all 0.3s ease-in-out;
+}
+
+.wrapper button:hover {
+	background-color: rgb(146, 62, 224);
+}
+
+@media (max-width: 1000px) {
+	.wrapper {
+        flex-basis: 40%;
+		font-size: 14pt;
+	}
+	.wrapper i {
+		font-size: 18pt;
+	}
+
+	.wrapper button {
+        padding: 5px 20px 5px 20px;
+        font-size: 12pt;
+	}
+}
+
+@media (max-width: 500px) {
+	.wrapper {
+        flex-basis: 90%;
+		font-size: 12pt;
+	}
+	.wrapper i {
+		font-size: 16pt;
+	}
+
+	.wrapper button {
+        padding: 5px 10px 5px 10px;
+        font-size: 10pt;
+	}
+}

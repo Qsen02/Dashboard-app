@@ -74,7 +74,7 @@ export default function Profile() {
 						<h3>No tasks yet</h3>
 					</div>
 				) : (
-					<section>
+					<section className={styles.taskWrapper}>
 						{tasks.map((el) => (
 							<ProfileTaskItem
 								key={el._id}

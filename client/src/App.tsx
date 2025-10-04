@@ -42,22 +42,34 @@ function App() {
 						</Route>
 						<Route path="/profile" element={<Profile />}>
 							<Route path="edit" element={<EditProfile />} />
-							<Route path="change-password" element={<ChangePassword/>}/>
-							<Route path="successfully-changed" element={<SuccessfullyChanged/>}/>
-							<Route path="task/:taskId" element={<TaskDetails/>}/>
+							<Route
+								path="change-password"
+								element={<ChangePassword />}
+							/>
+							<Route
+								path="successfully-changed"
+								element={<SuccessfullyChanged />}
+							/>
+							<Route
+								path="task/:taskId"
+								element={<TaskDetails />}
+							/>
 						</Route>
 						<Route
 							path="/profile/:userId"
 							element={<UserProfile />}
 						/>
 						<Route element={<ProgrammerGuard />}>
-						<Route path="/admins" element={<AdminPanel />} />
+							<Route path="/admins" element={<AdminPanel />} />
 						</Route>
 						<Route
 							path="/projects/:projectId"
 							element={<ProjectDetails />}
 						>
-							<Route path="task/:taskId" element={<TaskDetails />} />
+							<Route
+								path="task/:taskId"
+								element={<TaskDetails />}
+							/>
 							<Route element={<AdminGuard />}>
 								<Route path="members" element={<Members />} />
 								<Route path="add-task" element={<AddTask />} />
