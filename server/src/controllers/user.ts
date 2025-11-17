@@ -23,6 +23,10 @@ import { MyRequest } from "../types/express";
 
 const userRouter = Router();
 
+userRouter.get("/initial-load", (req, res) => {
+	res.status(200).json({ message: "Server is up and running!" });
+});
+
 userRouter.get("/logout", isUser(), async (req: MyRequest, res) => {
 	const user = req.user;
 	if (user?.role === "programmer") {
@@ -62,7 +66,7 @@ userRouter.get("/latest", isUser(), async (req, res) => {
 	}
 });
 
-userRouter.get("/applied-tasks", isUser(), async (req:MyRequest, res) => {
+userRouter.get("/applied-tasks", isUser(), async (req: MyRequest, res) => {
 	const user = req.user;
 	const tasks = await getAppliedTasks(user);
 	res.json(tasks);
@@ -90,11 +94,7 @@ userRouter.get(
 		const isSearched = req.params.isSearched;
 		const user = req.user;
 		try {
-			const users = await paginateUsers(
-				user?._id,
-				page,
-				isSearched
-			);
+			const users = await paginateUsers(user?._id, page, isSearched);
 			res.json(users);
 		} catch (err) {
 			if (err instanceof Error) {

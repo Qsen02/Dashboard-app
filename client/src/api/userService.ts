@@ -5,6 +5,10 @@ import { get, post, put } from "./requester";
 
 const endpoint = "users";
 
+export async function initialLoad(){
+	return await get(`${endpoint}/initial-load`);
+} 
+
 export async function logout() {
 	return await get(`${endpoint}/logout`);
 }

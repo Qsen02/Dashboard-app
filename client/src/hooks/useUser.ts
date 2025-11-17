@@ -7,6 +7,7 @@ import {
 	getUserById,
 	getUserProjects,
 	getUserTasks,
+	initialLoad,
 	login,
 	logout,
 	paginateUsers,
@@ -17,6 +18,39 @@ import { Project } from "../types/project";
 import { useLoadingError } from "./useLoadingError";
 import { User } from "../types/user";
 import { Task } from "../types/task";
+
+export function useInitialLoad() {
+	const { loading, setLoading, error, setError } = useLoadingError(
+		false,
+		false
+	);
+	useEffect(() => {
+		const controller = new AbortController();
+		const { signal } = controller;
+		(async () => {
+			try {
+				setLoading(true);
+				if (!signal.aborted) {
+					await initialLoad();
+				}
+				setLoading(false);
+			} catch (err) {
+				setLoading(false);
+				setError(true);
+				return;
+			}
+		})();
+
+		return () => {
+			controller.abort();
+		};
+	}, []);
+
+	return {
+		loading,
+		error,
+	};
+}
 
 export function useRegister() {
 	return async function (data: object) {
