@@ -27,84 +27,102 @@ import SuccessfullyChanged from "./components/profile/successfully_changed/Succe
 import ProgrammerGuard from "./guards/ProgrammerGuard";
 import AdminPanel from "./components/admin_panel/AdminPanel";
 import TaskDetails from "./components/project_details/task_details/TaskDetails";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 function App() {
 	return (
 		<>
 			<Header />
 			<Main>
-				<Routes>
-					<Route element={<UserGuard />}>
-						<Route path="/" element={<Home />} />
-						<Route path="/logout" element={<Logout />} />
-						<Route element={<AdminGuard />}>
-							<Route path="/create" element={<CreateProject />} />
-						</Route>
-						<Route path="/profile" element={<Profile />}>
-							<Route path="edit" element={<EditProfile />} />
-							<Route
-								path="change-password"
-								element={<ChangePassword />}
-							/>
-							<Route
-								path="successfully-changed"
-								element={<SuccessfullyChanged />}
-							/>
-							<Route
-								path="task/:taskId"
-								element={<TaskDetails />}
-							/>
-						</Route>
-						<Route
-							path="/profile/:userId"
-							element={<UserProfile />}
-						/>
-						<Route element={<ProgrammerGuard />}>
-							<Route path="/admins" element={<AdminPanel />} />
-						</Route>
-						<Route
-							path="/projects/:projectId"
-							element={<ProjectDetails />}
-						>
-							<Route
-								path="task/:taskId"
-								element={<TaskDetails />}
-							/>
+				<ErrorBoundary>
+					<Routes>
+						<Route element={<UserGuard />}>
+							<Route path="/" element={<Home />} />
+							<Route path="/logout" element={<Logout />} />
 							<Route element={<AdminGuard />}>
-								<Route path="members" element={<Members />} />
-								<Route path="add-task" element={<AddTask />} />
 								<Route
-									path="delete"
-									element={<ProjectDelete />}
-								/>
-								<Route path="edit" element={<ProjectEdit />} />
-								<Route
-									path="add-member"
-									element={<AddMember />}
-								/>
-								<Route
-									path="successfull-action/:username/:flag"
-									element={<SuccessfullAction />}
-								/>
-								<Route
-									path="delete/:taskId"
-									element={<DeleteTask />}
-								/>
-								<Route
-									path="edit/:taskId"
-									element={<EditTask />}
+									path="/create"
+									element={<CreateProject />}
 								/>
 							</Route>
+							<Route path="/profile" element={<Profile />}>
+								<Route path="edit" element={<EditProfile />} />
+								<Route
+									path="change-password"
+									element={<ChangePassword />}
+								/>
+								<Route
+									path="successfully-changed"
+									element={<SuccessfullyChanged />}
+								/>
+								<Route
+									path="task/:taskId"
+									element={<TaskDetails />}
+								/>
+							</Route>
+							<Route
+								path="/profile/:userId"
+								element={<UserProfile />}
+							/>
+							<Route element={<ProgrammerGuard />}>
+								<Route
+									path="/admins"
+									element={<AdminPanel />}
+								/>
+							</Route>
+							<Route
+								path="/projects/:projectId"
+								element={<ProjectDetails />}
+							>
+								<Route
+									path="task/:taskId"
+									element={<TaskDetails />}
+								/>
+								<Route element={<AdminGuard />}>
+									<Route
+										path="members"
+										element={<Members />}
+									/>
+									<Route
+										path="add-task"
+										element={<AddTask />}
+									/>
+									<Route
+										path="delete"
+										element={<ProjectDelete />}
+									/>
+									<Route
+										path="edit"
+										element={<ProjectEdit />}
+									/>
+									<Route
+										path="add-member"
+										element={<AddMember />}
+									/>
+									<Route
+										path="successfull-action/:username/:flag"
+										element={<SuccessfullAction />}
+									/>
+									<Route
+										path="delete/:taskId"
+										element={<DeleteTask />}
+									/>
+									<Route
+										path="edit/:taskId"
+										element={<EditTask />}
+									/>
+								</Route>
+							</Route>
 						</Route>
-					</Route>
-					<Route element={<GuestGuard />}>
-						<Route
-							path="/registration"
-							element={<RegistrationWrapper />}
-						/>
-					</Route>
-					<Route path="*" element={<NotFound />} />
-				</Routes>
+						<Route element={<GuestGuard />}>
+							<Route
+								path="/registration"
+								element={<RegistrationWrapper />}
+							/>
+						</Route>
+						<Route path="*" element={<NotFound />} />
+					</Routes>
+				</ErrorBoundary>
 			</Main>
 			<Footer />
 		</>
