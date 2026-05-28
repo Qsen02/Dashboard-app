@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "68c08786836c927a76571619"
+  },
+  "name": "Notebook",
+  "ownerId": {
+    "$oid": "68ad5e5e337674ad34239dca"
+  },
+  "members": [
+    {
+      "$oid": "68bc889cbf2ef705e0169b2d"
+    },
+    {
+      "$oid": "68ad5e97337674ad34239dda"
+    },
+    {
+      "$oid": "68ad5e8d337674ad34239dd6"
+    }
+  ],
+  "tasks": [
+    {
+      "$oid": "68cbe1ab38352318337cf993"
+    },
+    {
+      "$oid": "68ce6cff81bf06faefcee94a"
+    }
+  ],
+  "created_at": {
+    "$date": "2025-09-09T20:01:10.070Z"
+  },
+  "updated_at": {
+    "$date": "2025-10-03T08:21:44.633Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c716613f66ab0d54d47583"
+  },
+  "name": "Special project",
+  "ownerId": {
+    "$oid": "68ad5e51337674ad34239dc6"
+  },
+  "members": [
+    {
+      "$oid": "68ad5e5e337674ad34239dca"
+    },
+    {
+      "$oid": "68ad5e67337674ad34239dce"
+    },
+    {
+      "$oid": "68ad5e74337674ad34239dd2"
+    }
+  ],
+  "tasks": [
+    {
+      "$oid": "68c716ac3f66ab0d54d47597"
+    },
+    {
+      "$oid": "68cee11e380ce3413e92e076"
+    },
+    {
+      "$oid": "68d2992d2e5cf0a5615a420d"
+    }
+  ],
+  "created_at": {
+    "$date": "2025-09-14T19:24:17.631Z"
+  },
+  "updated_at": {
+    "$date": "2025-10-04T15:59:35.076Z"
+  },
+  "__v": 0
+}]

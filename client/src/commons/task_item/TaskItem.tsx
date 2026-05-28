@@ -79,7 +79,7 @@ export default function TaskItem({
 			)}
 			{status === "pending" ? (
 				<div className={styles.buttonWrapper}>
-					{!appliedBy && user?.role === "user" ? (
+					{!appliedBy ? (
 						<button onClick={onApply}>Apply</button>
 					) : (
 						""

@@ -1,0 +1,212 @@
+[{
+  "_id": {
+    "$oid": "68ac265c6b26b90671870da0"
+  },
+  "username": "Qsen",
+  "email": "qsen@gmail.com",
+  "password": "$2b$10$5/ZLFWzQnaqSlinJ/jRwieuDHL47O2anMq3/fOSNOevbdVpCatohS",
+  "role": "programmer",
+  "projects": [
+    {
+      "$oid": "68c716613f66ab0d54d47583"
+    },
+    {
+      "$oid": "68df84be8221cbe283648ff8"
+    },
+    {
+      "$oid": "6a1808a53788b64e2eccabd5"
+    }
+  ],
+  "profileImage": "https://www.animalcarectr.com/blog/images/fluffy_grey_cat.jpg",
+  "created_at": {
+    "$date": "2025-08-25T09:01:16.521Z"
+  },
+  "updated_at": {
+    "$date": "2026-05-28T09:19:33.012Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad5e51337674ad34239dc6"
+  },
+  "username": "Pesho",
+  "email": "pesho@gmail.com",
+  "password": "$2b$10$xZQsgki90xmEkcr6XpT0hOSjz8F/KjHK5wxbt6WBn/mlABaM2FpM6",
+  "role": "admin",
+  "projects": [
+    {
+      "$oid": "68c716613f66ab0d54d47583"
+    },
+    {
+      "$oid": "68cee138380ce3413e92e085"
+    },
+    {
+      "$oid": "68df84be8221cbe283648ff8"
+    },
+    {
+      "$oid": "6a1808a53788b64e2eccabd5"
+    }
+  ],
+  "profileImage": "https://yumove.co.uk/cdn/shop/articles/Dog_ageing_puppy_da5d1eeb-9265-4925-adc2-24396ff6e7aa.jpg?v=1739461142&width=1240",
+  "created_at": {
+    "$date": "2025-08-26T07:12:17.448Z"
+  },
+  "updated_at": {
+    "$date": "2026-05-28T09:19:45.722Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad5e5e337674ad34239dca"
+  },
+  "username": "Gosho",
+  "email": "gosho@gmail.com",
+  "password": "$2b$10$lrwHZiFINN6FAE3d3eexxe/bQ8BI5KQHQtYWSO4Wt19pEDFwDmj7a",
+  "role": "admin",
+  "projects": [
+    {
+      "$oid": "68c08786836c927a76571619"
+    },
+    {
+      "$oid": "68c716613f66ab0d54d47583"
+    },
+    {
+      "$oid": "68cef5ae3cf5b7b942da8e7e"
+    },
+    {
+      "$oid": "68d432304c97974715dab28d"
+    },
+    {
+      "$oid": "6a1808a53788b64e2eccabd5"
+    }
+  ],
+  "profileImage": "https://images.squarespace-cdn.com/content/v1/607f89e638219e13eee71b1e/1684821560422-SD5V37BAG28BURTLIXUQ/michael-sum-LEpfefQf4rU-unsplash.jpg?format=2500w",
+  "created_at": {
+    "$date": "2025-08-26T07:12:30.609Z"
+  },
+  "updated_at": {
+    "$date": "2026-05-28T09:19:42.966Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad5e67337674ad34239dce"
+  },
+  "username": "Tosho",
+  "email": "tosho@gmail.com",
+  "password": "$2b$10$CdrG3azFUE9J3NDVZKEUrOJiyJ74tTwp5SyweUHD4uKV/t4MyREuq",
+  "role": "admin",
+  "projects": [
+    {
+      "$oid": "68c716613f66ab0d54d47583"
+    },
+    {
+      "$oid": "68df84be8221cbe283648ff8"
+    },
+    {
+      "$oid": "6a1808a53788b64e2eccabd5"
+    }
+  ],
+  "profileImage": "https://cdn.outsideonline.com/wp-content/uploads/2013/12/Husky1.jpg?crop=16:9&width=960&enable=upscale&quality=100",
+  "created_at": {
+    "$date": "2025-08-26T07:12:39.316Z"
+  },
+  "updated_at": {
+    "$date": "2026-05-28T09:19:39.661Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad5e74337674ad34239dd2"
+  },
+  "username": "Sasho",
+  "email": "sasho@gmail.com",
+  "password": "$2b$10$FGDP1QC50BOD38T5klXXlub3sIaR.yU5V1svhnamuir4kmAZjN41O",
+  "role": "user",
+  "projects": [
+    {
+      "$oid": "68c716613f66ab0d54d47583"
+    }
+  ],
+  "profileImage": "https://s3.us-east-1.amazonaws.com/assets.mapleleaffarms.com/content/Pages/4-Farm-raised-Duck/Duck-Breeds/_716x416_crop_center_85_none/white-pekin-duck-breed.jpg",
+  "created_at": {
+    "$date": "2025-08-26T07:12:52.715Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-23T12:54:56.253Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad5e8d337674ad34239dd6"
+  },
+  "username": "Ivan",
+  "email": "ivan@gmail.com",
+  "password": "$2b$10$EK/YdrEx4lyeG6a1b0zTe.wpOyR04qT0FGAmaIUg2HG/Xtr8sovki",
+  "role": "user",
+  "projects": [
+    {
+      "$oid": "68c08786836c927a76571619"
+    }
+  ],
+  "profileImage": "",
+  "created_at": {
+    "$date": "2025-08-26T07:13:17.871Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-23T12:46:41.816Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad5e97337674ad34239dda"
+  },
+  "username": "Maria",
+  "email": "maria@gmail.com",
+  "password": "$2b$10$qknqtPIcLJYda/XbMxaXEeGV5h82WFIJzZu2Z1nFJiXHkzCeE4bLS",
+  "role": "user",
+  "projects": [
+    {
+      "$oid": "68c08786836c927a76571619"
+    }
+  ],
+  "profileImage": "",
+  "created_at": {
+    "$date": "2025-08-26T07:13:27.125Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-16T19:46:00.293Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68bc889cbf2ef705e0169b2d"
+  },
+  "username": "Viktoria",
+  "email": "viktoria@gmail.com",
+  "password": "$2b$10$F70uVEhkKx3x.kJbWgZQkexQi6juS2SiPWjonh02RxFIacnRuudlm",
+  "role": "user",
+  "projects": [
+    {
+      "$oid": "68c08786836c927a76571619"
+    },
+    {
+      "$oid": "68df84be8221cbe283648ff8"
+    }
+  ],
+  "profileImage": "",
+  "created_at": {
+    "$date": "2025-09-06T19:16:44.875Z"
+  },
+  "updated_at": {
+    "$date": "2025-10-03T08:09:42.536Z"
+  },
+  "__v": 0
+}]

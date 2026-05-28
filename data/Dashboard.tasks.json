@@ -1,0 +1,120 @@
+[{
+  "_id": {
+    "$oid": "68c716ac3f66ab0d54d47597"
+  },
+  "title": "Refactor the code",
+  "description": "Code in the add task task form component must be refactored",
+  "status": "in-progress",
+  "ownerId": {
+    "$oid": "68ad5e51337674ad34239dc6"
+  },
+  "projectId": {
+    "$oid": "68c716613f66ab0d54d47583"
+  },
+  "appliedBy": {
+    "$oid": "68ad5e67337674ad34239dce"
+  },
+  "created_at": {
+    "$date": "2025-09-14T19:25:32.997Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-27T08:42:19.753Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68cbe1ab38352318337cf993"
+  },
+  "title": "New task",
+  "description": "New task description",
+  "status": "in-progress",
+  "ownerId": {
+    "$oid": "68ad5e5e337674ad34239dca"
+  },
+  "projectId": {
+    "$oid": "68c08786836c927a76571619"
+  },
+  "appliedBy": {
+    "$oid": "68bc889cbf2ef705e0169b2d"
+  },
+  "created_at": {
+    "$date": "2025-09-18T10:40:43.176Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-27T09:40:48.029Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ce6cff81bf06faefcee94a"
+  },
+  "title": "Another task",
+  "description": "Implement another great functionallity",
+  "status": "pending",
+  "ownerId": {
+    "$oid": "68ad5e5e337674ad34239dca"
+  },
+  "projectId": {
+    "$oid": "68c08786836c927a76571619"
+  },
+  "appliedBy": {
+    "$oid": "68ad5e8d337674ad34239dd6"
+  },
+  "created_at": {
+    "$date": "2025-09-20T08:59:43.806Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-20T17:42:02.901Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68cee11e380ce3413e92e076"
+  },
+  "title": "Another task",
+  "description": "Another description for task",
+  "status": "completed",
+  "ownerId": {
+    "$oid": "68ad5e51337674ad34239dc6"
+  },
+  "projectId": {
+    "$oid": "68c716613f66ab0d54d47583"
+  },
+  "appliedBy": {
+    "$oid": "68ad5e5e337674ad34239dca"
+  },
+  "created_at": {
+    "$date": "2025-09-20T17:15:10.208Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-21T10:59:37.628Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68d2992d2e5cf0a5615a420d"
+  },
+  "title": "New task for ducks",
+  "description": "This task is special and it is for ducks like Sasho",
+  "status": "in-progress",
+  "ownerId": {
+    "$oid": "68ad5e51337674ad34239dc6"
+  },
+  "projectId": {
+    "$oid": "68c716613f66ab0d54d47583"
+  },
+  "appliedBy": {
+    "$oid": "68ad5e74337674ad34239dd2"
+  },
+  "created_at": {
+    "$date": "2025-09-23T12:57:17.962Z"
+  },
+  "updated_at": {
+    "$date": "2025-09-24T07:25:33.511Z"
+  },
+  "__v": 0
+}]
