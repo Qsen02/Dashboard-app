@@ -6,6 +6,7 @@ This is web app for creating project dashboards adding tasks and tracking the co
 # How to start client and server
 - Client: First install all dependancies with command `npm install` and next run command `npm run dev` and open the link in terminal.
 - Server: First install all dependancies with command `npm install` and next run command `npm start` and the server should be launched.
+- Data: In folder `data` you have test data that you can import in your MongoDB compass.
 # Features:
 - Types of users: There are 2 types of user first is common users and second is admins.
 - Common users: They can be a members of projects and they can apply for tasks and move the tasks throw different stages. They have profiles also and can change their profile data and password.
